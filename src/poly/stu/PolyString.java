@@ -38,6 +38,15 @@ public class PolyString {
      * @rit.pre poly is not an empty array.  Minimally it will contain
      * a constant term.
      */
+    public static String getCoefficient(int element){
+        if (element == 1){
+            return "";
+        } else if (element == -1){
+            return "-";
+        }else{
+            return String.valueOf(element);
+        }
+    }
     public static String getString(int[] poly) {
         //TODO
         StringBuilder polystring = new StringBuilder();
@@ -46,10 +55,9 @@ public class PolyString {
             if(poly[i] == 0){
                 continue;
             }
-            String str_coefficient = String.valueOf(poly[i]);
+            String str_coefficient = getCoefficient(poly[i]);
             String variable = (i == 1) ? "" : "^"+i;
-            polystring.append(str_coefficient + "x" + variable + "+");
-            System.out.println(polystring);
+            polystring.append(str_coefficient + "x" + variable + " + ");
         }
         /*
         Insert last element since it has no x
