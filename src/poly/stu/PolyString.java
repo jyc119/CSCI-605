@@ -40,7 +40,22 @@ public class PolyString {
      */
     public static String getString(int[] poly) {
         //TODO
+        StringBuilder polystring = new StringBuilder();
 
-        return null;
+        for (int i = poly.length - 1; i >= 1; i--) {
+            if(poly[i] == 0){
+                continue;
+            }
+            String str_coefficient = String.valueOf(poly[i]);
+            String variable = (i == 1) ? "" : "^"+i;
+            polystring.append(str_coefficient + "x" + variable + "+");
+            System.out.println(polystring);
+        }
+        /*
+        Insert last element since it has no x
+         */
+        polystring.append(poly[0]);
+        return polystring.toString();
+
     }
 }
