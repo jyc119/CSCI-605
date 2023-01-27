@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca85975d-4088-4ae7-a5ab-b7e1d38ea210" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI-605/Problem6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem9.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/poly/stu/PolyEval.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI-605/poly/stu/PolyEval.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/poly/stu/PolyString.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI-605/poly/stu/PolyString.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/poly/stu/PolyEval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/poly/stu/PolyEval.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +73,7 @@
       <updated>1674597446617</updated>
       <workItem from="1674597448113" duration="363000" />
       <workItem from="1674682997650" duration="6578000" />
-      <workItem from="1674691445851" duration="11688000" />
+      <workItem from="1674691445851" duration="13634000" />
     </task>
     <servers />
   </component>

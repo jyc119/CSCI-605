@@ -55,8 +55,19 @@ public class PolyEval {
      */
     public static boolean isZero(int[] poly) {
         // TODO
-
-
-        return false;
+        int i;
+        boolean nonZero = false;
+        int searchfor = 0;
+        for (i = 0; i < poly.length; i++) {
+            if (poly[i] != searchfor) {
+                nonZero = true;
+                break;
+            }
+        }
+        if (nonZero) {
+            return false;
+        }  else   {
+            return true;
+        }
     }
 }
