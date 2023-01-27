@@ -1,4 +1,4 @@
-package poly.stu;
+package poly.poly.stu;
 
 /**
  * This class can evaluate a polynomial, and determine whether the polynomial

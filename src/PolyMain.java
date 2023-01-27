@@ -1,9 +1,9 @@
 package poly;
 
-import poly.stu.PolyDerive;
-import poly.stu.PolyEval;
-import poly.stu.PolyRoot;
-import poly.stu.PolyString;
+import poly.poly.stu.PolyDerive;
+import poly.poly.stu.PolyEval;
+import poly.poly.stu.PolyRoot;
+import poly.poly.stu.PolyString;
 
 import java.util.Scanner;
 

@@ -1,4 +1,5 @@
-package poly.stu;
+package poly.poly.stu;
+import java.lang.Math;
 
 /**
  * This class can compute the root of a polynomial (whose derivative is
@@ -61,6 +62,14 @@ public class PolyRoot {
      */
     private static double newtonsMethod(int[] poly, double x0, int iter) {
         // TODO
-        return 0;
+
+        if (iter > MAX_ITERATIONS || Math.abs(x0) < EPSILON){
+            return x0;
+        }
+
+        int[] deriveArray = PolyDerive.computeDerivative(poly);
+        double approx = x0 - PolyEval.evaluate(poly, x0) / PolyEval.evaluate(deriveArray,x0);
+        return newtonsMethod(poly, approx, iter++);
+
     }
 }

@@ -1,4 +1,4 @@
-package poly.stu;
+package poly.poly.stu;
 
 /**
  * This class can return a string representation of a polynomial of order n,

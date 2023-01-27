@@ -1,4 +1,4 @@
-package poly.stu;
+package poly.poly.stu;
 
 /**
  * This class can compute the derivative of a polynomial.
