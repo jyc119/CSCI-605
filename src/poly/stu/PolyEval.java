@@ -33,8 +33,10 @@ public class PolyEval {
      */
     public static double evaluate(int[] poly, double x) {
         // TODO
-
-        return 0;
+        float eval = 0;
+        for (int i = 0; i < poly.length; i++)
+            eval += ((float) Math.pow(x, i)) * poly[i];
+        return eval;
     }
 
     /**
@@ -53,6 +55,7 @@ public class PolyEval {
      */
     public static boolean isZero(int[] poly) {
         // TODO
+
 
         return false;
     }

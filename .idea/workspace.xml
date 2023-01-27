@@ -5,8 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca85975d-4088-4ae7-a5ab-b7e1d38ea210" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/poly/stu/PolyString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/poly/stu/PolyString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI-605/Problem6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/Problem9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/poly/stu/PolyEval.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI-605/poly/stu/PolyEval.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CSCI-605/poly/stu/PolyString.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CSCI-605/poly/stu/PolyString.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poly/stu/PolyEval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/poly/stu/PolyEval.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,18 +38,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/jorda/IdeaProjects/Testing",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jorda/IdeaProjects/Testing&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="PolyMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="poly.PolyMain" />
@@ -66,6 +85,8 @@
       <option name="presentableId" value="Default" />
       <updated>1674597446617</updated>
       <workItem from="1674597448113" duration="363000" />
+      <workItem from="1674682997650" duration="6578000" />
+      <workItem from="1674691445851" duration="11688000" />
     </task>
     <servers />
   </component>
