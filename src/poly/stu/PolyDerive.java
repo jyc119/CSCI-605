@@ -30,9 +30,18 @@ public class PolyDerive {
      * @return A polynomial as a native array in reverse order.
      */
     public static int[] computeDerivative(int[] poly) {
-        int[] deriv= new int[ 0 /* TODO */];
 
-        // TODO
+        int deriveLength = (poly.length == 1) ? 1 : poly.length-1;
+        int[] deriv= new int[deriveLength];
+        for (int i = 1; i < poly.length; i++){
+            if(poly[i] == 0){
+                continue;
+            }
+            int newIndex = i-1;
+            int coefficient = i * poly[i];
+            deriv[newIndex] = coefficient;
+
+        }
 
         return deriv;
     }
