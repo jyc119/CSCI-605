@@ -3,7 +3,7 @@ Problem 2: i cannot be an integer, needs to be string because string class was u
 Problem 3: Cannot divide by 0. Error type is run time.
 Problem 4: y has no type. Needs to be int type. Error type is compile time.
 Problem 5: There is no return statement for if x is not less than y. Error type is compile time.
-Problem 6:  Error type is run time.
+Problem 6: The array "list" is empty so trying to get the value at index 0 results in an error since it does not exist. Error type is run time.
 Problem 7: A string was created so there is no Char class. Error type is compile time.
 Problem 8: The variable j was not initialized before being used in the method. Error type is compile time.
 Problem 9: 0.0 if not specified with an f or d is a double by default so float cannot be utilized there. Either change
