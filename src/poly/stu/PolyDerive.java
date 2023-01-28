@@ -3,8 +3,8 @@ package poly.poly.stu;
 /**
  * This class can compute the derivative of a polynomial.
  *
- * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class PolyDerive {
 
@@ -33,16 +33,14 @@ public class PolyDerive {
 
         int deriveLength = (poly.length == 1) ? 1 : poly.length-1;
         int[] deriv= new int[deriveLength];
-        for (int i = 1; i < poly.length; i++){
-            if(poly[i] == 0){
+        for (int i = 1; i < poly.length; i++) {
+            if(poly[i] == 0) {
                 continue;
             }
             int newIndex = i-1;
             int coefficient = i * poly[i];
             deriv[newIndex] = coefficient;
-
         }
-
         return deriv;
     }
 }

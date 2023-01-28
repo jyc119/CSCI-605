@@ -6,8 +6,8 @@ import java.util.Arrays;
  * This class can compute the root of a polynomial (whose derivative is
  * non-zero), using Newton's method of successive approximation.
  *
- * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class PolyRoot {
     /**
@@ -62,12 +62,11 @@ public class PolyRoot {
      * @return An estimated root for the polynomial.
      */
     private static double newtonsMethod(int[] poly, double x0, int iter) {
-        // TODO
+
         double result = PolyEval.evaluate(poly, x0);
-        if (iter > MAX_ITERATIONS || Math.abs(result) <= EPSILON){
+        if (iter > MAX_ITERATIONS || Math.abs(result) <= EPSILON) {
             return x0;
         }
-
         int[] deriveArray = PolyDerive.computeDerivative(poly);
         double approx = x0 - result / PolyEval.evaluate(deriveArray,x0);
         return newtonsMethod(poly, approx, iter+=1);

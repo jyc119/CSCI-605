@@ -4,8 +4,8 @@ package poly.poly.stu;
  * This class can evaluate a polynomial, and determine whether the polynomial
  * is zero or not.
  *
- * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class PolyEval {
 
@@ -32,7 +32,7 @@ public class PolyEval {
      * @return The result of the evaluation.
      */
     public static double evaluate(int[] poly, double x) {
-        // TODO
+
         double eval = 0;
         for (int i = 0; i < poly.length; i++)
             eval += ( Math.pow(x, i)) * poly[i];
@@ -54,7 +54,7 @@ public class PolyEval {
      * @return True if it is zero, False otherwise.
      */
     public static boolean isZero(int[] poly) {
-        // TODO
+
         int i;
         boolean nonZero = false;
         int searchfor = 0;
@@ -66,7 +66,7 @@ public class PolyEval {
         }
         if (nonZero) {
             return false;
-        }  else   {
+        } else {
             return true;
         }
     }

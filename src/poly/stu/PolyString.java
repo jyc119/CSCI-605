@@ -7,8 +7,8 @@ package poly.poly.stu;
  * x^n + x^n-1 + ... x^1 + constant
  * </pre>
  *
- * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class PolyString {
 
@@ -24,6 +24,10 @@ public class PolyString {
     }
 
     /**
+     * Helper method getCoefficient gets the coefficient of each component of the polynomial
+     * @return A string representation of the coefficients in the polynomial
+     *
+     *
      * Get the string representation of the polynomial.  For example:
      * <pre>
      * poly=[1]: "1"
@@ -38,32 +42,30 @@ public class PolyString {
      * @rit.pre poly is not an empty array.  Minimally it will contain
      * a constant term.
      */
-    public static String getCoefficient(int element){
-        if (element == 1){
+    public static String getCoefficient(int element) {
+
+        if (element == 1) {
             return "";
-        } else if (element == -1){
+        } else if (element == -1) {
             return "-";
-        }else{
+        } else {
             return String.valueOf(element);
         }
     }
     public static String getString(int[] poly) {
-        //TODO
+
         StringBuilder polystring = new StringBuilder();
 
         for (int i = poly.length - 1; i >= 1; i--) {
-            if(poly[i] == 0){
+            if(poly[i] == 0) {
                 continue;
             }
             String str_coefficient = getCoefficient(poly[i]);
             String variable = (i == 1) ? "" : "^"+i;
             polystring.append(str_coefficient + "x" + variable + " + ");
         }
-        /*
-        Insert last element since it has no x
-         */
+        // Insert last element since it has no x
         polystring.append(poly[0]);
         return polystring.toString();
-
     }
 }

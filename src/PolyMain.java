@@ -58,7 +58,8 @@ import java.util.Scanner;
  * Root: 0.9128983495621411
  * </pre>
  *
- * @author RIT CS
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class PolyMain {
     /**
