@@ -33,9 +33,9 @@ public class PolyEval {
      */
     public static double evaluate(int[] poly, double x) {
         // TODO
-        float eval = 0;
+        double eval = 0;
         for (int i = 0; i < poly.length; i++)
-            eval += ((float) Math.pow(x, i)) * poly[i];
+            eval += ( Math.pow(x, i)) * poly[i];
         return eval;
     }
 
