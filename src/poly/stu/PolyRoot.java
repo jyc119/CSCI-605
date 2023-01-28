@@ -62,14 +62,13 @@ public class PolyRoot {
      */
     private static double newtonsMethod(int[] poly, double x0, int iter) {
         // TODO
-
-        if (iter > MAX_ITERATIONS || Math.abs(x0) < EPSILON){
+        double result = PolyEval.evaluate(poly, x0);
+        if (iter > MAX_ITERATIONS || Math.abs(result) < EPSILON){
             return x0;
         }
 
         int[] deriveArray = PolyDerive.computeDerivative(poly);
-        double approx = x0 - PolyEval.evaluate(poly, x0) / PolyEval.evaluate(deriveArray,x0);
-        return newtonsMethod(poly, approx, iter++);
-
+        double approx = x0 - result / PolyEval.evaluate(deriveArray,x0);
+        return newtonsMethod(poly, approx, iter+=1);
     }
 }
