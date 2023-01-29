@@ -1,12 +1,12 @@
 Problem 1: Public class was mislabelled as Problem when the file name is Problem1. Error type is compile time.
 Problem 2: i cannot be an integer, needs to be string because string class was used. Error type is compile time.
-Problem 3: Cannot divide by 0. Error type is run time.
+Problem 3: Integers cannot divide by 0 because INFINITY is not available for integers. Error type is run time.
 Problem 4: y has no type. Needs to be int type. Error type is compile time.
 Problem 5: There is no return statement for if x is not less than y. Error type is compile time.
 Problem 6: The array "list" is empty so trying to get the value at index 0 results in an error since it does not exist. Error type is run time.
-Problem 7: A string was created so there is no Char class. Error type is compile time.
+Problem 7: The variable 'ch' of type Char is initialized with a String type so the types do not match. Error type is compile time.
 Problem 8: The variable j was not initialized before being used in the method. Error type is compile time.
 Problem 9: 0.0 if not specified with an f or d is a double by default so float cannot be utilized there. Either change
 float to double or specify 0.0 as a float. Error type is compile time.
-Problem 10: Indexing starts at 0 so the d in the string is at index 10 and the index value of 12 is exclusive.
-The 12 needs to be maximum 11. Error type is run time error.
+Problem 10: Indexing starts at 0 so the last character in the string is at index 10 and the index value of 12 is exclusive when using substring().
+The 12 needs to be 11 because 12 is accessing a character outside the string. Error type is run time error.
