@@ -12,4 +12,12 @@ package game;
  */
 
 public class Dot {
+    private int xcor;
+    private int ycor;
+
+    public Dot(int xVal, int yVal){
+        xcor = xVal;
+        ycor = yVal;
+    }
+
 }

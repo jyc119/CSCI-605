@@ -12,4 +12,11 @@ package game;
  */
 
 public class Line {
+    private Dot first;
+    private Dot second;
+
+    public Line(Dot firstDot, Dot secondDot){
+        first = firstDot;
+        second = secondDot;
+    }
 }
