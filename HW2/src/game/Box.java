@@ -12,4 +12,15 @@ package game;
  */
 
 public class Box {
+
+    private int row;
+    private int col;
+    private Lines lines;
+
+    public Box(int allRows, int allCols, Lines allLines){
+        row = allRows;
+        col = allCols;
+        lines = allLines;
+    }
+
 }

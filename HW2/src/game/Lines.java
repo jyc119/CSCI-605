@@ -12,4 +12,16 @@ package game;
  */
 
 public class Lines {
+
+    private int rows;
+    private int cols;
+
+    private Dot[][] dots;
+
+    public Lines(int noRows, int noCols, Dot[][] allDots){
+        rows = noRows;
+        cols = noCols;
+        dots = allDots;
+    }
+
 }
