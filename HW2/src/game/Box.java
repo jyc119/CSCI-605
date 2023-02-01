@@ -23,4 +23,32 @@ public class Box {
         lines = allLines;
     }
 
+    public int getRow(){
+        return row;
+    }
+
+    public int getColumn(){
+        return col;
+    }
+
+    public void claim(Player player){
+
+    }
+
+    public Line getTopLine(){
+
+    }
+
+    public Line getBottomLine(){
+
+    }
+
+    public Line getRightLine(){
+
+    }
+
+    public Line getLeftLine(){
+
+    }
+
 }

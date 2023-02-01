@@ -20,4 +20,12 @@ public class Dot {
         ycor = yVal;
     }
 
+    public int getRow(){
+        return xcor;
+    }
+
+    public int getColumn(){
+        return ycor;
+    }
+
 }
