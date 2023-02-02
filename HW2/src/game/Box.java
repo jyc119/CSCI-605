@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Scanner;
+
 /**
  * Represents a single "box" in the game of Dots and Boxes.
  * <pre>
@@ -14,12 +16,12 @@ package game;
 public class Box {
 
     private int row;
-    private int col;
+    private int column;
     private Lines lines;
 
     public Box(int allRows, int allCols, Lines allLines){
         row = allRows;
-        col = allCols;
+        column = allCols;
         lines = allLines;
     }
 
@@ -28,7 +30,7 @@ public class Box {
     }
 
     public int getColumn(){
-        return col;
+        return column;
     }
 
     public void claim(Player player){

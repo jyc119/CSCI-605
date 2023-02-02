@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Scanner;
+
 /**
  * The main program for the pen and paper game, Dots And Boxes.
  * <pre>

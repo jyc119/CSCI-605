@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Scanner;
+
 /**
  * Represents a single dot in the game of Dots and Boxes.
  * <pre>

@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Scanner;
+
 /**
  * This class is an enumeration for representing the players in the Dots And Boxes game.
  * <pre>
