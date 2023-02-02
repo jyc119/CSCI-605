@@ -17,16 +17,16 @@ public class Dot {
     private int xcor;
     private int ycor;
 
-    public Dot(int xVal, int yVal){
+    public Dot(int xVal, int yVal) {
         xcor = xVal;
         ycor = yVal;
     }
 
-    public int getRow(){
+    public int getRow() {
         return xcor;
     }
 
-    public int getColumn(){
+    public int getColumn() {
         return ycor;
     }
 

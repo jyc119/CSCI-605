@@ -15,3 +15,6 @@ import java.util.Scanner;
 
 public class DotsAndBoxes {
 }
+
+public void play() {
+}

@@ -19,37 +19,37 @@ public class Box {
     private int column;
     private Lines lines;
 
-    public Box(int allRows, int allCols, Lines allLines){
+    public Box(int allRows, int allCols, Lines allLines) {
         row = allRows;
         column = allCols;
         lines = allLines;
     }
 
-    public int getRow(){
+    public int getRow() {
         return row;
     }
 
-    public int getColumn(){
+    public int getColumn() {
         return column;
     }
 
-    public void claim(Player player){
+    public void claim(Player player) {
 
     }
 
-    public Line getTopLine(){
+    public Line getTopLine() {
 
     }
 
-    public Line getBottomLine(){
+    public Line getBottomLine() {
 
     }
 
-    public Line getRightLine(){
+    public Line getRightLine() {
 
     }
 
-    public Line getLeftLine(){
+    public Line getLeftLine() {
 
     }
 
