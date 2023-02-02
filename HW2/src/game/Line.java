@@ -30,4 +30,6 @@ public class Line {
         return secondDot;
     }
 
+    public
+
 }

@@ -13,5 +13,27 @@ import java.util.Scanner;
  * @author Charlie Leyens, cal3368@rit.edu
  */
 
-public class Player {
+public enum Player {
+    NONE, RED, BLUE;
+
+    public static Player[] values(){
+
+    }
+
+    public static Player valueOf(String name){
+
+    }
+
+    public String getLabel() {
+        switch(this){
+            case NONE:
+                return "NONE";
+            case RED:
+                return "RED";
+            case BLUE:
+                return "BLUE";
+        }
+    }
 }
+
+
