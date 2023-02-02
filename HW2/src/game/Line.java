@@ -14,11 +14,20 @@ import java.util.Scanner;
  */
 
 public class Line {
-    private Dot first;
-    private Dot second;
+    private Dot firstDot;
+    private Dot secondDot;
 
-    public Line(Dot firstDot, Dot secondDot) {
-        first = firstDot;
-        second = secondDot;
+    public Line(Dot firstDotVal, Dot secondDotVal) {
+        firstDotVal = firstDotVal;
+        secondDotVal = secondDotVal;
     }
+
+    public Dot getFirst(){
+        return firstDot;
+    }
+
+    public Dot getSecond(){
+        return secondDot;
+    }
+
 }

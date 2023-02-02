@@ -17,7 +17,7 @@ public class Dot {
     private int xcor;
     private int ycor;
 
-    public Dot(int xVal, int yVal) {
+    public Dot(int yVal, int xVal) {
         xcor = xVal;
         ycor = yVal;
     }
@@ -28,6 +28,14 @@ public class Dot {
 
     public int getColumn() {
         return ycor;
+    }
+
+    public boolean equals(Object other){
+        Dot test = (Dot) other;
+        if (test.xcor == this.xcor && test.ycor == this.ycor){
+            return true;
+        }
+        return false;
     }
 
 }
