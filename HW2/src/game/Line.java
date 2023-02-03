@@ -31,7 +31,23 @@ public class Line {
         return secondDot;
     }
 
-    public static final String toString() {
-        return " ";
+    public String toString() {
+        if(firstDot.getRow() == secondDot.getRow()){
+            return HORI_LINE;
+        }
+        else if(firstDot.getColumn() == secondDot.getColumn()){
+            return VERT_LINE;
+        }
+        else{
+            return EMPTY;
+        }
+    }
+
+    public boolean equals(Object other){
+        Line line = (Line) other;
+        if (line.firstDot == this.firstDot && line.secondDot == this.secondDot){
+            return true;
+        }
+        return false;
     }
 }
