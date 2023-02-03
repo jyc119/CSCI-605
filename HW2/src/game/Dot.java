@@ -1,5 +1,7 @@
 package game;
 
+import java.lang.AssertionError;
+
 /**
  * Represents a single dot in the game of Dots and Boxes.
  * <pre>
@@ -12,28 +14,36 @@ package game;
  */
 
 public class Dot {
-    private int xcor;
-    private int ycor;
+    private int row;
+    private int column;
 
     public Dot(int yVal, int xVal) {
-        xcor = xVal;
-        ycor = yVal;
+        if ((xVal < 0) || (yVal < 0)) {
+            throw new AssertionError();
+        } else; {
+            row = xVal;
+            column = yVal;
+        }
     }
 
     public int getRow() {
-        return ycor;
+        return row;
     }
 
     public int getColumn() {
-        return xcor;
+        return column;
     }
 
     public boolean equals(Object other){
-        Dot test = (Dot) other;
-        if (test.xcor == this.xcor && test.ycor == this.ycor){
+        Dot dot = (Dot) other;
+        if (dot.row == this.row && dot.column == this.column){
             return true;
         }
         return false;
+    }
+
+    public String toString() {
+        return ".";
     }
 
 }

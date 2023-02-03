@@ -16,10 +16,17 @@ public class Lines {
 
     private Dot[][] dots;
 
-    public Lines(int noRows, int noCols, Dot[][] allDots) {
-        rows = noRows;
-        cols = noCols;
-        dots = allDots;
+    public Lines(int rows, int columns, Dot[][] Dots) {
+        rows = rows;
+        cols = columns;
+        dots = Dots;
     }
 
+    public Line getLine(int row1, int column1, int row2, int column2) {
+        return (row1, column1, row2, column2);
+    }
+
+    public int size() {
+        return ;
+    }
 }
