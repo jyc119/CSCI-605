@@ -20,8 +20,11 @@ public enum Player {
     }
 
     public static Player[] values(){
-        Player[] players = [Player.NONE, Player.RED, Player.BLUE]
+        Player[] players = {NONE, RED, BLUE};
         return players;
+    }
+
+    public static Player valueOf(String name){
     }
 
     public String getLabel() {

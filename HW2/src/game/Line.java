@@ -32,7 +32,12 @@ public class Line {
     }
 
     public Player getOwner(){
+    }
 
+    public ArrayList<Box> getBoxes(){
+        if(firstDot.getRow() == secondDot.getRow()){
+
+        }
     }
 
     public String toString() {

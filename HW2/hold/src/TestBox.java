@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * A test unit for the game.Box class.
+ * A test unit for the game.game.Box class.
  *
  * @author RIT CS
  */

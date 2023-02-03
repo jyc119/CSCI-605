@@ -1,3 +1,5 @@
+package game;
+
 /**
  * Represents a single "box" in the game of Dots and Boxes.
  * <pre>
@@ -15,9 +17,9 @@ public class Box {
     private int column;
     private Lines lines;
 
-    public Box(int allRows, int allCols, Lines allLines) {
-        row = allRows;
-        column = allCols;
+    public Box(int upperLeftrow, int upperLeftcolumn, Lines allLines) {
+        row = upperLeftrow;
+        column = upperLeftcolumn;
         lines = allLines;
     }
 
@@ -34,19 +36,21 @@ public class Box {
     }
 
     public Line getTopLine() {
-
+        return new Line(new Dot(row, column), new Dot(row, column + 1));
     }
 
     public Line getBottomLine() {
-
+        return new Line(new Dot(row + 1, column),
+                new Dot(row + 1, column + 1));
     }
 
     public Line getRightLine() {
-
+        return new Line(new Dot(row, column + 1),
+                new Dot(row + 1, column + 1));
     }
 
     public Line getLeftLine() {
-
+        return new Line(new Dot(row, column), new Dot(row + 1, column));
     }
 
 }
