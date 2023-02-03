@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * A test unit for the game.game.Lines class.
+ * A test unit for the game.Lines class.
  *
  * @author RIT CS
  */

@@ -17,6 +17,8 @@ public class Dot {
     private int row;
     private int column;
 
+    public static final String DOT = ".";
+
     public Dot(int yVal, int xVal) {
         if ((xVal < 0) || (yVal < 0)) {
             throw new AssertionError();
@@ -43,7 +45,7 @@ public class Dot {
     }
 
     public String toString() {
-        return ".";
+        return DOT;
     }
 
 }

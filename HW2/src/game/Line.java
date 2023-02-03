@@ -31,4 +31,7 @@ public class Line {
         return secondDot;
     }
 
+    public static final String toString() {
+        return " ";
+    }
 }
