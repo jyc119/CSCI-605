@@ -1,3 +1,5 @@
+package game;
+
 /**
  * This class holds the collection of all lines in the game of Dots and Boxes.
  * <pre>
@@ -23,10 +25,10 @@ public class Lines {
     }
 
     public Line getLine(int row1, int column1, int row2, int column2) {
-        return (row1, column1, row2, column2);
+        return new Line(new Dot(row1,column1), new Dot(row2,column2));
     }
 
     public int size() {
-        return ;
+        return 0;
     }
 }

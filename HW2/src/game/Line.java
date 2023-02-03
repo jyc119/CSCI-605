@@ -1,3 +1,5 @@
+package game;
+
 /**
  * Represents a single line in the game of Dots and Boxes.
  * <pre>
@@ -25,7 +27,5 @@ public class Line {
     public Dot getSecond(){
         return secondDot;
     }
-
-    public
 
 }

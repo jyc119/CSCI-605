@@ -1,3 +1,5 @@
+package game;
+
 /**
  * This class is an enumeration for representing the players in the Dots And Boxes game.
  * <pre>
@@ -11,15 +13,6 @@
 
 public enum Player {
     NONE, RED, BLUE;
-
-    public static Player[] values(){
-
-        return [NONE, RED, BLUE];
-    }
-
-    public static Player valueOf(String name){
-
-    }
 
     public String getLabel() {
         switch(this){
