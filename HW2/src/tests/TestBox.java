@@ -1,3 +1,5 @@
+package tests;
+
 import game.*;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,5 +1,3 @@
-package tests;
-
 import game.Dot;
 import game.Line;
 import game.Player;
@@ -34,11 +32,11 @@ public class TestLine {
         Assert.assertEquals(0, horiLine.getSecond().getRow());
         Assert.assertEquals(1, horiLine.getSecond().getColumn());
         Assert.assertEquals(false, horiLine.hasOwner());
-        assertEquals(Player.NONE, horiLine.getOwner());
+        Assert.assertEquals(Player.NONE, horiLine.getOwner());
         Assert.assertEquals(" ", horiLine.toString());
         horiLine.claim(Player.RED);
         Assert.assertEquals(true, horiLine.hasOwner());
-        assertEquals(Player.RED, horiLine.getOwner());
+        Assert.assertEquals(Player.RED, horiLine.getOwner());
         Assert.assertEquals("-", horiLine.toString());
     }
 
@@ -50,11 +48,11 @@ public class TestLine {
         Assert.assertEquals(1, vertLine.getSecond().getRow());
         Assert.assertEquals(0, vertLine.getSecond().getColumn());
         Assert.assertEquals(false, vertLine.hasOwner());
-        assertEquals(Player.NONE, vertLine.getOwner());
+        Assert.assertEquals(Player.NONE, vertLine.getOwner());
         Assert.assertEquals(" ", vertLine.toString());
         vertLine.claim(Player.BLUE);
         Assert.assertEquals(true, vertLine.hasOwner());
-        assertEquals(Player.BLUE, vertLine.getOwner());
+        Assert.assertEquals(Player.BLUE, vertLine.getOwner());
         Assert.assertEquals("|", vertLine.toString());
     }
 

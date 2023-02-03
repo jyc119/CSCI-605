@@ -53,4 +53,19 @@ public class Box {
         return new Line(new Dot(row, column), new Dot(row + 1, column));
     }
 
+    public void claim(Player owner){
+
+    }
+
+    public String toString(){
+        return Player.getLabel();
+    }
+
+    public boolean equals(Object other){
+        Box box = (Box) other;
+        if (box.lines == this.lines){
+            return true;
+        }
+        return false;
+    }
 }
