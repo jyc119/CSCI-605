@@ -28,14 +28,12 @@ public class Lines {
         if(row2 < row1 || column2 < column1){
             return null;
         }
-        return new Line(new Dot(row1, column1), new Dot(row2, column2));
+        return new Line(dots[row1][column1],dots[row2][column2]);
     }
 
     public int size() {
         int m = rows + 1;
-        System.out.println(m);
         int n = columns + 1;
-        System.out.println(n);
         return 2*m*n - m - n;
     }
 }

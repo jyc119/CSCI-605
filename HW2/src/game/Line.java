@@ -16,8 +16,8 @@ public class Line {
     private Dot secondDot;
 
     public Line(Dot firstDotVal, Dot secondDotVal) {
-        firstDotVal = firstDotVal;
-        secondDotVal = secondDotVal;
+        firstDot = firstDotVal;
+        secondDot = secondDotVal;
     }
 
     public Dot getFirst(){
