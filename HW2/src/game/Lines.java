@@ -14,21 +14,28 @@ package game;
 public class Lines {
 
     private int rows;
-    private int cols;
+    private int columns;
 
     private Dot[][] dots;
 
-    public Lines(int rows, int columns, Dot[][] Dots) {
-        rows = rows;
-        cols = columns;
+    public Lines(int rowsVal, int columnsVal, Dot[][] Dots) {
+        rows = rowsVal;
+        columns = columnsVal;
         dots = Dots;
     }
 
     public Line getLine(int row1, int column1, int row2, int column2) {
-        return new Line(new Dot(row1,column1), new Dot(row2,column2));
+        if(row2 < row1 || column2 < column1){
+            return null;
+        }
+        return new Line(new Dot(row1, column1), new Dot(row2, column2));
     }
 
     public int size() {
-        return 0;
+        int m = rows + 1;
+        System.out.println(m);
+        int n = columns + 1;
+        System.out.println(n);
+        return 2*m*n - m - n;
     }
 }

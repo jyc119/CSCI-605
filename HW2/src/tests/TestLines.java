@@ -44,7 +44,7 @@ public class TestLines {
         assertEquals(2*(ROWS+1)*(COLUMNS+1) - (ROWS+1) - (COLUMNS+1), this.lines.size());
 
         // check for a line that can't be found
-        Assert.assertNull(this.lines.getLine(0, 1, 0, 0));
+        assertNull(this.lines.getLine(0, 1, 0, 0));
 
         // check for all lines that should exist
         for (int row=0; row<=ROWS; ++row) {
