@@ -1,9 +1,7 @@
-package game;
-
 import java.util.Scanner;
 
 /**
- * The main program for the pen and paper game, Dots And Boxes.
+ * This is the main class for representing and playing the Dots And Boxes game.
  * <pre>
  * $ java DotsAndBoxes rows columns
  * Usage: java DotsAndBoxes rows columns
@@ -13,8 +11,5 @@ import java.util.Scanner;
  * @author Charlie Leyens, cal3368@rit.edu
  */
 
-public class DotsAndBoxes {
-}
-
-public void play() {
+public class GameBoard {
 }

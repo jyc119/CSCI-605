@@ -1,7 +1,5 @@
 package game;
 
-import java.util.Scanner;
-
 /**
  * Represents a single dot in the game of Dots and Boxes.
  * <pre>
@@ -23,11 +21,11 @@ public class Dot {
     }
 
     public int getRow() {
-        return xcor;
+        return ycor;
     }
 
     public int getColumn() {
-        return ycor;
+        return xcor;
     }
 
     public boolean equals(Object other){

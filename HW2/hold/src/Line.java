@@ -1,7 +1,3 @@
-package game;
-
-import java.util.Scanner;
-
 /**
  * Represents a single line in the game of Dots and Boxes.
  * <pre>

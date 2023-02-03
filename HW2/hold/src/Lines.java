@@ -1,7 +1,3 @@
-package game;
-
-import java.util.Scanner;
-
 /**
  * This class holds the collection of all lines in the game of Dots and Boxes.
  * <pre>

@@ -3,10 +3,11 @@ package tests;
 import game.Dot;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
- * A test unit for the game.Dot class.
+ * A test unit for the Dot class.
  *
  * @author RIT CS
  */

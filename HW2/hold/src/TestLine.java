@@ -1,5 +1,3 @@
-package tests;
-
 import game.Dot;
 import game.Line;
 import game.Player;
