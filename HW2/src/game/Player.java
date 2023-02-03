@@ -12,7 +12,17 @@ package game;
  */
 
 public enum Player {
-    NONE, RED, BLUE;
+    NONE(0), RED(1), BLUE(2);
+
+    private int gamePlayer;
+    Player(int gamePlayer){
+        this.gamePlayer = gamePlayer;
+    }
+
+    public static Player[] values(){
+        Player[] players = [Player.NONE, Player.RED, Player.BLUE]
+        return players;
+    }
 
     public String getLabel() {
         switch(this){

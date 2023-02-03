@@ -31,6 +31,10 @@ public class Line {
         return secondDot;
     }
 
+    public Player getOwner(){
+
+    }
+
     public String toString() {
         if(firstDot.getRow() == secondDot.getRow()){
             return HORI_LINE;
