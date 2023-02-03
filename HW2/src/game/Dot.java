@@ -21,8 +21,8 @@ public class Dot {
         if ((xVal < 0) || (yVal < 0)) {
             throw new AssertionError();
         } else; {
-            row = xVal;
-            column = yVal;
+            row = yVal;
+            column = xVal;
         }
     }
 
