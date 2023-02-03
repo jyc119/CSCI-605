@@ -14,6 +14,9 @@ package game;
 public class Line {
     private Dot firstDot;
     private Dot secondDot;
+    public static final String EMPTY = " ";
+    public static final String HORI_LINE = "-";
+    public static final String VERT_LINE = "|";
 
     public Line(Dot firstDotVal, Dot secondDotVal) {
         firstDot = firstDotVal;
