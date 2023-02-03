@@ -63,7 +63,8 @@ public class Box {
 
     public boolean equals(Object other){
         Box box = (Box) other;
-        if (box.lines == this.lines){
+        if (box.row == this.row && box.column == this.column
+                && box.lines == this.lines){
             return true;
         }
         return false;
