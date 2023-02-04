@@ -1,3 +1,5 @@
+package game;
+
 /**
  * This class is an enumeration for representing the players in the Dots And Boxes game.
  * <pre>
@@ -17,12 +19,12 @@ public enum Player {
         this.player = player;
     }
     /*
-    public static Player[] values(){
-        Player[] player = {NONE, RED, BLUE};
+    public static game.Player[] values(){
+        game.Player[] player = {NONE, RED, BLUE};
         return player;
     }
 
-    public static Player valueOf(String name){
+    public static game.Player valueOf(String name){
         if (name == null){
             throw NullPointerException;
         }

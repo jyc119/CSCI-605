@@ -14,13 +14,20 @@ package game;
 public class Line {
     private Dot firstDot;
     private Dot secondDot;
+    private Player player;
     public static final String EMPTY = " ";
     public static final String HORI_LINE = "-";
     public static final String VERT_LINE = "|";
 
     public Line(Dot firstDotVal, Dot secondDotVal) {
-        firstDot = firstDotVal;
-        secondDot = secondDotVal;
+        if(firstDotVal.getColumn() > secondDotVal.getColumn() || firstDotVal.getRow() > secondDotVal.getRow()){
+            throw new AssertionError();
+        } else {
+
+            firstDot = firstDotVal;
+            secondDot = secondDotVal;
+            player = Player.NONE;
+        }
     }
 
     public Dot getFirst(){
@@ -31,18 +38,33 @@ public class Line {
         return secondDot;
     }
 
+    public Player getOwner(){
+        return player;
+    }
+    /*
+    public ArrayList<Box> getBoxes(){
+        if(firstDot.getRow() == secondDot.getRow()){
 
-    //public ArrayList<Box> getBoxes(){
-  //      if(firstDot.getRow() == secondDot.getRow()){
-//
-      //  }
-    //}
+        }
+    }
+    */
+
+    public boolean hasOwner(){
+        if(player == Player.RED || player == Player.BLUE ){
+            return true;
+        }
+        return false;
+    }
+
+    public void claim(Player owner){
+        player = owner;
+    }
 
     public String toString() {
-        if(firstDot.getRow() == secondDot.getRow()){
+        if(firstDot.getRow() == secondDot.getRow() && player != Player.NONE){
             return HORI_LINE;
         }
-        else if(firstDot.getColumn() == secondDot.getColumn()){
+        else if(firstDot.getColumn() == secondDot.getColumn() && player != Player.NONE){
             return VERT_LINE;
         }
         else{
@@ -52,9 +74,14 @@ public class Line {
 
     public boolean equals(Object other){
         Line line = (Line) other;
-        if (line.firstDot == this.firstDot && line.secondDot == this.secondDot){
+        System.out.println(line.firstDot.getRow());
+        System.out.println(line.firstDot.getColumn());
+        System.out.println(this.firstDot.getRow());
+        System.out.println(this.firstDot.getColumn());
+        if (line.firstDot.getColumn() == this.firstDot.getColumn() && line.firstDot.getRow() == this.firstDot.getRow() && line.secondDot.getColumn() == this.secondDot.getColumn() && line.secondDot.getRow() == line.secondDot.getRow()){
             return true;
         }
+        System.out.println("ggg");
         return false;
     }
 }

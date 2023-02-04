@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * This is the main class for representing and playing the Dots And Boxes game.
  * <pre>
