@@ -1,6 +1,9 @@
+package tests;
+
 import game.Dot;
 import game.Line;
 import game.Lines;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * A test unit for the game.game.Lines class.
+ * A test unit for the game.game.game.Lines class.
  *
  * @author RIT CS
  */
@@ -39,7 +42,7 @@ public class TestLines {
     @Test
     public void verifyLines() {
         // verify number of lines
-        Assert.assertEquals(2*(ROWS+1)*(COLUMNS+1) - (ROWS+1) - (COLUMNS+1), this.lines.size());
+        Assert.assertEquals(2 * (ROWS + 1) * (COLUMNS + 1) - (ROWS + 1) - (COLUMNS + 1), this.lines.size());
 
         // check for a line that can't be found
         Assert.assertNull(this.lines.getLine(0, 1, 0, 0));

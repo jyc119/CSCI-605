@@ -1,5 +1,3 @@
-package game;
-
 /**
  * This class is an enumeration for representing the players in the Dots And Boxes game.
  * <pre>
@@ -12,23 +10,31 @@ package game;
  */
 
 public enum Player {
-    NONE(0), RED(1), BLUE(2);
+    NONE("N"), RED("R"), BLUE("B");
 
-    private int gamePlayer;
-    Player(int gamePlayer){
-        this.gamePlayer = gamePlayer;
+    private String player;
+    Player(String  player){
+        this.player = player;
     }
 
     public static Player[] values(){
-        Player[] players = {NONE, RED, BLUE};
-        return players;
+        Player[] player = {NONE, RED, BLUE};
+        return player;
     }
 
     public static Player valueOf(String name){
+        if (name == null){
+            throw NullPointerException;
+        }
+        else if (name != "BLUE" || name != "RED" || name != "NONE"){
+            throw IllegalArgumentException;
+        }
+        else
+        }
     }
 
     public String getLabel() {
-        switch(this){
+        switch (this){
             case NONE:
                 return "None";
             case RED:

@@ -1,13 +1,14 @@
 package tests;
 
 import game.Dot;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * A test unit for the Dot class.
+ * A test unit for the game.Dot class.
  *
  * @author RIT CS
  */
@@ -25,14 +26,14 @@ public class TestDot {
     @Test
     public void testAccessors() {
         Dot dot = new Dot(1, 2);
-        assertEquals(1, dot.getRow());
-        assertEquals(2, dot.getColumn());
+        Assert.assertEquals(1, dot.getRow());
+        Assert.assertEquals(2, dot.getColumn());
     }
 
     @Test
     public void testString() {
         Dot dot = new Dot(3, 4);
-        assertEquals(".", dot.toString());
+        Assert.assertEquals(".", dot.toString());
     }
 
     @Test
@@ -40,7 +41,7 @@ public class TestDot {
         Dot dot1 = new Dot(3, 4);
         Dot dot2 = new Dot(3, 4);
         Dot dot3 = new Dot(4, 3);
-        assertEquals(dot1, dot2);
-        assertNotEquals(dot1, dot3);
+        Assert.assertEquals(dot1, dot2);
+        Assert.assertNotEquals(dot1, dot3);
     }
 }

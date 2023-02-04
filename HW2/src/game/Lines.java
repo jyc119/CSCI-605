@@ -25,10 +25,11 @@ public class Lines {
     }
 
     public Line getLine(int row1, int column1, int row2, int column2) {
+        new Line (new Dot(row1, column1), new Dot(row2, column2));
         if(row2 < row1 || column2 < column1){
             return null;
         }
-        return new Line(dots[row1][column1],dots[row2][column2]);
+        return new Line(new Dot(row1,column1), new Dot(row2,column2));
     }
 
     public int size() {

@@ -12,4 +12,29 @@ import java.util.Scanner;
  */
 
 public class GameBoard {
+
+    public GameBoard(int rows, int columns){
+    rows = rowsTotal;
+    columns = columnsTotal;
+    }
+
+    public boolean gameOver(){
+
+    }
+
+    public Player whoseTurn(){
+
+    }
+
+    public boolean isLineValid(int row1, int column1, int row2, int column2){
+
+    }
+
+    public void makeMove(int row1, int column1, int row2, int column2){
+
+    }
+
+    public String toString(){
+
+    }
 }

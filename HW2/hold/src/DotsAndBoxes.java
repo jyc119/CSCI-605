@@ -12,7 +12,15 @@ import java.util.Scanner;
  */
 
 public class DotsAndBoxes {
+
+    public DotsAndBoxes(int rows, int columns){
+        rows = rowsTotal;
+        columns = columnsTotal;
+    }
+
+    public void play() {
 }
 
-public void play() {
+    public static void main(String[] args){
+    }
 }

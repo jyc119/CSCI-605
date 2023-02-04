@@ -31,14 +31,12 @@ public class Line {
         return secondDot;
     }
 
-    public Player getOwner(){
-    }
 
-    public ArrayList<Box> getBoxes(){
-        if(firstDot.getRow() == secondDot.getRow()){
-
-        }
-    }
+    //public ArrayList<Box> getBoxes(){
+  //      if(firstDot.getRow() == secondDot.getRow()){
+//
+      //  }
+    //}
 
     public String toString() {
         if(firstDot.getRow() == secondDot.getRow()){

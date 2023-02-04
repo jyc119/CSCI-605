@@ -1,5 +1,3 @@
-package game;
-
 /**
  * Represents a single "box" in the game of Dots and Boxes.
  * <pre>

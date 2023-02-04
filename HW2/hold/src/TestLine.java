@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * A test unit for the game.game.Line class.
+ * A test unit for the game.game.game.game.game.Line class.
  *
  * @author RIT CS
  */
