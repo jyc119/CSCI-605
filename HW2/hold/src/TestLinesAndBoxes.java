@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * This is a unit test once the game.game.game.game.game.game.game.Line and game.game.Box classes have been implemented.  The
+ * This is a unit test once the game.game.game.game.tests.Line and game.game.Box classes have been implemented.  The
  * main thing it tests is the lines that are associated with a box, and
  * when claiming a line that the boxes associated with the line are also
  * correctly claimed.

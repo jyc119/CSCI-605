@@ -1,3 +1,5 @@
+package tests;
+
 import game.Dot;
 import game.Line;
 import game.Player;
@@ -7,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * A test unit for the game.game.game.game.game.Line class.
+ * A test unit for the game.game.tests.Line class.
  *
  * @author RIT CS
  */

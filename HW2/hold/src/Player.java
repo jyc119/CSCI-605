@@ -16,7 +16,7 @@ public enum Player {
     Player(String  player){
         this.player = player;
     }
-
+    /*
     public static Player[] values(){
         Player[] player = {NONE, RED, BLUE};
         return player;
@@ -32,6 +32,7 @@ public enum Player {
         else
         }
     }
+     */
 
     public String getLabel() {
         switch (this){
