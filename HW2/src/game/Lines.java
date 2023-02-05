@@ -1,7 +1,5 @@
 package game;
 
-import javafx.scene.SubScene;
-
 /**
  * This class holds the collection of all lines in the game of Dots and Boxes.
  * <pre>
@@ -20,10 +18,25 @@ public class Lines {
 
     private Dot[][] dots;
 
+    private Line[][] horiLines;
+    private Line[][] vertLines;
+
     public Lines(int rowsVal, int columnsVal, Dot[][] Dots) {
         rows = rowsVal;
         columns = columnsVal;
         dots = Dots;
+        this.horiLines = new Line[rowsVal+1][columnsVal+1];
+        this.vertLines = new Line[rowsVal+1][columnsVal+1];
+        for (int row=0; row<=rowsVal; row++) {
+            for (int column=0; column<=columnsVal; column++) {
+                if (column < columnsVal){
+                    horiLines[row][column] = new Line(dots[row][column], dots[row][column+1]);
+                }
+                if (row < rowsVal){
+                    vertLines[row][column] = new Line(dots[row][column], dots[row+1][column]);
+                }
+            }
+        }
     }
 
     public Line getLine(int row1, int column1, int row2, int column2) {
@@ -33,11 +46,15 @@ public class Lines {
 
         for (int row=0; row<=rows; row++) {
             for (int column=0; column<=columns; column++) {
-                if (column < columns && dots[row][column].equals(new Dot(row1, column1)) && dots[row][column+1].equals(new Dot(row2,column2))){
-                    return new Line(dots[row][column] , dots[row][column+1]);
+                if (column < columns && row == row1 && column == column1 && row == row2 && column+1 == column2){
+                    System.out.println(horiLines[row][column].getFirst().getColumn());
+                    System.out.println(horiLines[row][column].getFirst().getRow());
+                    return horiLines[row][column];
                 }
-                else if (row <  rows && dots[row][column].equals(new Dot(row1,column1)) && dots[row+1][column].equals(new Dot(row2,column2))){
-                    return new Line(dots[row][column] , dots[row+1][column]);
+                else if (row <  rows && row == row1 && column == column1 && row+1 == row2 && column == column2){
+                    System.out.println(vertLines[row][column].getFirst().getColumn());
+                    System.out.println(vertLines[row][column].getFirst().getRow());
+                    return vertLines[row][column];
                 }
             }
         }

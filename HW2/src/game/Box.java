@@ -1,3 +1,5 @@
+package game;
+
 /**
  * Represents a single "box" in the game of Dots and Boxes.
  * <pre>
@@ -21,6 +23,7 @@ public class Box {
         row = upperLeftrow;
         column = upperLeftcolumn;
         lines = allLines;
+        player = Player.NONE;
     }
 
     public int getRow() {
@@ -31,32 +34,35 @@ public class Box {
         return column;
     }
 
-    public void claim(Player player) {
-        player = this.player;
-    }
-
-    public void 
-
     public Line getTopLine() {
-        return new Line(new Dot(row, column), new Dot(row, column + 1));
+        //print(lines.getLine(row,column,row,column+1));
+        return lines.getLine(row, column, row, column+1);
     }
 
     public Line getBottomLine() {
-        return new Line(new Dot(row + 1, column),
-                new Dot(row + 1, column + 1));
+        return lines.getLine(row+1, column, row+1, column+1);
     }
 
     public Line getRightLine() {
-        return new Line(new Dot(row, column + 1),
-                new Dot(row + 1, column + 1));
+        return lines.getLine(row,column+1,row+1, column+1);
     }
 
     public Line getLeftLine() {
-        return new Line(new Dot(row, column), new Dot(row + 1, column));
+        return lines.getLine(row, column, row+1, column);
+    }
+
+    public Player getOwner(){
+        return player;
+    }
+
+    public void claim(Player owner) {
+        if(this.getTopLine().hasOwner() && this.getBottomLine().hasOwner() && this.getLeftLine().hasOwner() && this.getRightLine().hasOwner()){
+            player=owner;
+        }
     }
 
     public String toString(){
-        return Player.getLabel();
+        return player.getLabel();
     }
 
     public boolean equals(Object other){

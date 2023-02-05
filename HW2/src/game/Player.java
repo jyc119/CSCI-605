@@ -34,7 +34,7 @@ public enum Player {
     public String getLabel() {
         switch (this){
             case NONE:
-                return "None";
+                return " ";
             case RED:
                 return "R";
             case BLUE:

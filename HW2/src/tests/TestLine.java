@@ -37,6 +37,7 @@ public class TestLine {
         assertEquals(Player.NONE, horiLine.getOwner());
         assertEquals(" ", horiLine.toString());
         horiLine.claim(Player.RED);
+        System.out.println(horiLine.getOwner());
         assertEquals(true, horiLine.hasOwner());
         assertEquals(Player.RED, horiLine.getOwner());
         assertEquals("-", horiLine.toString());

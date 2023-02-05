@@ -1,3 +1,5 @@
+package tests;
+
 import game.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,13 +39,13 @@ public class TestBox {
     @Test
     public void testAccessors() {
         Box box1 = new Box(0, 1, this.lines);
-        Assert.assertEquals(0, box1.getRow());
-        Assert.assertEquals(1, box1.getColumn());
+        assertEquals(0, box1.getRow());
+        assertEquals(1, box1.getColumn());
         assertEquals(Player.NONE, box1.getOwner());
-        Assert.assertEquals(new Line(new Dot(0, 1), new Dot(0, 2)), box1.getTopLine());
-        Assert.assertEquals(new Line(new Dot(0, 2), new Dot(1, 2)), box1.getRightLine());
-        Assert.assertEquals(new Line(new Dot(1, 1), new Dot(1, 2)), box1.getBottomLine());
-        Assert.assertEquals(new Line(new Dot(0, 1), new Dot(1, 1)), box1.getLeftLine());
+        assertEquals(new Line(new Dot(0, 1), new Dot(0, 2)), box1.getTopLine());
+        assertEquals(new Line(new Dot(0, 2), new Dot(1, 2)), box1.getRightLine());
+        assertEquals(new Line(new Dot(1, 1), new Dot(1, 2)), box1.getBottomLine());
+        assertEquals(new Line(new Dot(0, 1), new Dot(1, 1)), box1.getLeftLine());
     }
 
     @Test
@@ -70,22 +72,22 @@ public class TestBox {
     @Test
     public void testString() {
         Box box1 = new Box(0, 1, this.lines);
-        Assert.assertEquals(" ", box1.toString());
+        assertEquals(" ", box1.toString());
         box1.getTopLine().claim(Player.BLUE);
         box1.getRightLine().claim(Player.RED);
         box1.getBottomLine().claim(Player.RED);
         box1.getLeftLine().claim(Player.BLUE);
         box1.claim(Player.BLUE);
-        Assert.assertEquals("B", box1.toString());
+        assertEquals("B", box1.toString());
 
         Box box2 = new Box(1, 0, this.lines);
-        Assert.assertEquals(" ", box2.toString());
+        assertEquals(" ", box2.toString());
         box2.getTopLine().claim(Player.RED);
         box2.getRightLine().claim(Player.BLUE);
         box2.getBottomLine().claim(Player.BLUE);
         box2.getLeftLine().claim(Player.RED);
         box2.claim(Player.RED);
-        Assert.assertEquals("R", box2.toString());
+        assertEquals("R", box2.toString());
     }
 
     @Test
@@ -93,7 +95,7 @@ public class TestBox {
         Box box1 = new Box(0, 1, this.lines);
         Box box2 = new Box(0, 1, this.lines);
         Box box3 = new Box(1, 1, this.lines);
-        Assert.assertEquals(box1, box2);
-        Assert.assertNotEquals(box1, box3);
+        assertEquals(box1, box2);
+        assertNotEquals(box1, box3);
     }
 }
