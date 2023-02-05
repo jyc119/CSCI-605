@@ -19,10 +19,13 @@ public class GameBoard {
 
     private int counter;
 
+    private boolean change;
+
     public GameBoard(int rows, int columns) {
         rowVals = rows;
         colVals = columns;
         counter = 0;
+        change = false;
     }
 
     public boolean gameOver() {
@@ -32,12 +35,24 @@ public class GameBoard {
         return false;
     }
 
-    public Player whoseTurn() {
+    public Player whoseTurn(){
+        if (change == false){
+            if(counter % 2 == 0){
+                return Player.RED;
+            }
+            return Player.BLUE;
+        }
+        else{
+            if(counter % 2 == 0){
+                return Player.BLUE;
+            }
+            return Player.RED;
+        }
     }
 
     public boolean isLineValid(int row1, int column1, int row2, int column2) {
     }
-
+//* increment counter and switch boolean if box is made
     public void makeMove(int row1, int column1, int row2, int column2) {
 
     }
