@@ -52,6 +52,7 @@ public class TestLinesAndBoxes {
     public void claimBox() {
         Box box1 = new Box(0, 0, this.lines);
         box1.getTopLine().claim(Player.RED);
+        System.out.println(box1.getTopLine().getOwner());
         assertEquals(Player.NONE, box1.getOwner());
         box1.getRightLine().claim(Player.BLUE);
         assertEquals(Player.NONE, box1.getOwner());

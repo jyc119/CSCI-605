@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+
 /**
  * Represents a single line in the game of Dots and Boxes.
  * <pre>
@@ -15,6 +17,7 @@ public class Line {
     private Dot firstDot;
     private Dot secondDot;
     private Player player;
+    private ArrayList<Box> boxes;
     public static final String EMPTY = " ";
     public static final String HORI_LINE = "-";
     public static final String VERT_LINE = "|";
@@ -22,11 +25,20 @@ public class Line {
     public Line(Dot firstDotVal, Dot secondDotVal) {
         if(firstDotVal.getColumn() > secondDotVal.getColumn() || firstDotVal.getRow() > secondDotVal.getRow()){
             throw new AssertionError();
-        } else {
-
+        }
+        /*
+        else if(this.toString() == HORI_LINE && this.firstDot.getRow() - 1 > 0 && this.firstDot.getRow() + 1 > 0 ||
+                  this.toString() == VERT_LINE && this.firstDot.getColumn() - 1 > 0 && this.firstDot.getColumn() + 1 > 0) {
             firstDot = firstDotVal;
             secondDot = secondDotVal;
             player = Player.NONE;
+        }
+         */
+        else{
+            firstDot = firstDotVal;
+            secondDot = secondDotVal;
+            player = Player.NONE;
+            boxes =  new ArrayList<Box>();
         }
     }
 
@@ -56,8 +68,16 @@ public class Line {
         return false;
     }
 
+    public ArrayList<Box> getBoxes(){
+        return boxes;
+    }
+
     public void claim(Player owner){
-        player = owner;
+            player = owner;
+    }
+
+    public void setBox(Box box){
+        boxes.add(box);
     }
 
     public String toString() {

@@ -47,13 +47,9 @@ public class Lines {
         for (int row=0; row<=rows; row++) {
             for (int column=0; column<=columns; column++) {
                 if (column < columns && row == row1 && column == column1 && row == row2 && column+1 == column2){
-                    System.out.println(horiLines[row][column].getFirst().getColumn());
-                    System.out.println(horiLines[row][column].getFirst().getRow());
                     return horiLines[row][column];
                 }
                 else if (row <  rows && row == row1 && column == column1 && row+1 == row2 && column == column2){
-                    System.out.println(vertLines[row][column].getFirst().getColumn());
-                    System.out.println(vertLines[row][column].getFirst().getRow());
                     return vertLines[row][column];
                 }
             }
