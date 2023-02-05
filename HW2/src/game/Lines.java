@@ -33,10 +33,10 @@ public class Lines {
 
         for (int row=0; row<=rows; row++) {
             for (int column=0; column<=columns; column++) {
-                if (column < columns && dots[row][column].getColumn() == column1 && dots[row][column].getRow() == row1 && dots[row][column+1].getColumn() == column2 && dots[row][column+1].getRow() == row2){
+                if (column < columns && dots[row][column].equals(new Dot(row1, column1)) && dots[row][column+1].equals(new Dot(row2,column2))){
                     return new Line(dots[row][column] , dots[row][column+1]);
                 }
-                else if (row <  rows && dots[row][column].getColumn() == column1 && dots[row][column].getRow() == row1 && dots[row+1][column].getColumn() == column2 && dots[row+1][column].getRow() == row2){
+                else if (row <  rows && dots[row][column].equals(new Dot(row1,column1)) && dots[row+1][column].equals(new Dot(row2,column2))){
                     return new Line(dots[row][column] , dots[row+1][column]);
                 }
             }
