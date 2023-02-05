@@ -74,10 +74,6 @@ public class Line {
 
     public boolean equals(Object other){
         Line line = (Line) other;
-        System.out.println(line.firstDot.getRow());
-        System.out.println(line.firstDot.getColumn());
-        System.out.println(this.firstDot.getRow());
-        System.out.println(this.firstDot.getColumn());
         if (line.firstDot.getColumn() == this.firstDot.getColumn() && line.firstDot.getRow() == this.firstDot.getRow() && line.secondDot.getColumn() == this.secondDot.getColumn() && line.secondDot.getRow() == line.secondDot.getRow()){
             return true;
         }

@@ -12,12 +12,7 @@ package game;
  */
 
 public enum Player {
-    NONE("N"), RED("R"), BLUE("B");
-
-    private String player;
-    Player(String  player){
-        this.player = player;
-    }
+    NONE, RED, BLUE;
     /*
     public static game.Player[] values(){
         game.Player[] player = {NONE, RED, BLUE};

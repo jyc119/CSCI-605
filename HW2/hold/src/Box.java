@@ -15,6 +15,8 @@ public class Box {
     private int column;
     private Lines lines;
 
+    private Player player;
+
     public Box(int upperLeftrow, int upperLeftcolumn, Lines allLines) {
         row = upperLeftrow;
         column = upperLeftcolumn;
@@ -30,8 +32,10 @@ public class Box {
     }
 
     public void claim(Player player) {
-
+        player = this.player;
     }
+
+    public void 
 
     public Line getTopLine() {
         return new Line(new Dot(row, column), new Dot(row, column + 1));
@@ -49,10 +53,6 @@ public class Box {
 
     public Line getLeftLine() {
         return new Line(new Dot(row, column), new Dot(row + 1, column));
-    }
-
-    public void claim(Player owner){
-
     }
 
     public String toString(){
