@@ -30,10 +30,12 @@ public class Lines {
         for (int row=0; row<=rowsVal; row++) {
             for (int column=0; column<=columnsVal; column++) {
                 if (column < columnsVal){
-                    horiLines[row][column] = new Line(dots[row][column], dots[row][column+1]);
+                    horiLines[row][column] = new Line(dots[row][column],
+                            dots[row][column+1]);
                 }
                 if (row < rowsVal){
-                    vertLines[row][column] = new Line(dots[row][column], dots[row+1][column]);
+                    vertLines[row][column] = new Line(dots[row][column],
+                            dots[row+1][column]);
                 }
             }
         }
@@ -46,10 +48,12 @@ public class Lines {
 
         for (int row=0; row<=rows; row++) {
             for (int column=0; column<=columns; column++) {
-                if (column < columns && row == row1 && column == column1 && row == row2 && column+1 == column2){
+                if (column < columns && row == row1 && column == column1 && row
+                        == row2 && column+1 == column2){
                     return horiLines[row][column];
                 }
-                else if (row <  rows && row == row1 && column == column1 && row+1 == row2 && column == column2){
+                else if (row <  rows && row == row1 && column == column1 &&
+                        row+1 == row2 && column == column2){
                     return vertLines[row][column];
                 }
             }

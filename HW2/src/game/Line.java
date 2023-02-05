@@ -23,7 +23,8 @@ public class Line {
     public static final String VERT_LINE = "|";
 
     public Line(Dot firstDotVal, Dot secondDotVal) {
-        if(firstDotVal.getColumn() > secondDotVal.getColumn() || firstDotVal.getRow() > secondDotVal.getRow()){
+        if(firstDotVal.getColumn() > secondDotVal.getColumn() ||
+                firstDotVal.getRow() > secondDotVal.getRow()){
             throw new AssertionError();
         }
         /*
@@ -53,13 +54,6 @@ public class Line {
     public Player getOwner(){
         return player;
     }
-    /*
-    public ArrayList<Box> getBoxes(){
-        if(firstDot.getRow() == secondDot.getRow()){
-
-        }
-    }
-    */
 
     public boolean hasOwner(){
         if(player == Player.RED || player == Player.BLUE ){
@@ -84,7 +78,8 @@ public class Line {
         if(firstDot.getRow() == secondDot.getRow() && player != Player.NONE){
             return HORI_LINE;
         }
-        else if(firstDot.getColumn() == secondDot.getColumn() && player != Player.NONE){
+        else if(firstDot.getColumn() == secondDot.getColumn() && player
+                != Player.NONE){
             return VERT_LINE;
         }
         else{
@@ -94,7 +89,8 @@ public class Line {
 
     public boolean equals(Object other){
         Line line = (Line) other;
-        if (line.firstDot.equals(this.firstDot) && line.secondDot.equals(this.secondDot)){
+        if (line.firstDot.equals(this.firstDot) &&
+                line.secondDot.equals(this.secondDot)){
             return true;
         }
         System.out.println("ggg");

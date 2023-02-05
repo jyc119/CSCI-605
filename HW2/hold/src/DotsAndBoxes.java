@@ -22,5 +22,9 @@ public class DotsAndBoxes {
 }
 
     public static void main(String[] args){
+        Scanner move = new Scanner(System.in);
+        System.out.println(">");
+        String gameMove = move.nextLine();
+        System.out.println(gameMove);
     }
 }

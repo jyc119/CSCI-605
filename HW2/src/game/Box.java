@@ -44,7 +44,8 @@ public class Box {
     }
 
     public Line getRightLine() {
-        return lines.getLine(row,column+1,row+1, column+1);
+        return lines.getLine(row,column+1,row+1,
+                column+1);
     }
 
     public Line getLeftLine() {
@@ -56,7 +57,9 @@ public class Box {
     }
 
     public void claim(Player owner) {
-        if(this.getTopLine().hasOwner() && this.getBottomLine().hasOwner() && this.getLeftLine().hasOwner() && this.getRightLine().hasOwner()){
+        if(this.getTopLine().hasOwner() && this.getBottomLine().hasOwner() &&
+                this.getLeftLine().hasOwner() &&
+                this.getRightLine().hasOwner()){
             player=owner;
         }
     }
