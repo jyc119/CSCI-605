@@ -69,8 +69,11 @@ public class Line {
     public void claim(Player owner){
         player = owner;
         for (int counter = 0; counter < boxes.size(); counter++){
-            if(boxes.get(counter).getTopLine().hasOwner() && boxes.get(counter).getBottomLine().hasOwner() && boxes.get(counter).getLeftLine().hasOwner() && boxes.get(counter).getRightLine().hasOwner()){
-                boxes.get(counter).claim(owner);
+            if(boxes.get(counter).getTopLine().hasOwner() &&
+                    boxes.get(counter).getBottomLine().hasOwner() &&
+                    boxes.get(counter).getLeftLine().hasOwner() &&
+                    boxes.get(counter).getRightLine().hasOwner()){boxes.get
+                    (counter).claim(owner);
             }
         }
     }

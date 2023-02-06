@@ -93,6 +93,14 @@ public class GameBoard {
         }
     }
 
+    public int getBlueBoxes() {
+        return blueBoxes;
+    }
+
+    public int getRedBoxes() {
+        return redBoxes;
+    }
+
     public String toString() {
 
         StringBuilder gameboard = new StringBuilder();

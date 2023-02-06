@@ -18,18 +18,42 @@ public class DotsAndBoxes {
 
     public static final String PROMPT = ">";
 
+    private int rowVals;
+
+    private int colVals;
+
+    private GameBoard board;
+
     public DotsAndBoxes(int rows, int columns){
-        rows = rowsTotal;
-        columns = columnsTotal;
+        rowVals = rows;
+        colVals = columns;
+        board = new GameBoard(rows, columns);
     }
 
     public void play() {
-}
+        Scanner dimensions = new Scanner(System.in);
+        System.out.println(">");
+        String gameMove = dimensions.nextLine();
+        while(board.gameOver() == false){
+        
+        }
+        if(board.getBlueBoxes() > board.getRedBoxes()){
+            System.out.println("BLUE wins " + board.getBlueBoxes() + " to "
+                    + board.getRedBoxes() + " !");
+        }
+        else if(board.getRedBoxes() > board.getBlueBoxes()){
+            System.out.println("RED wins " + board.getRedBoxes() + " to " +
+                    board.getBlueBoxes() + " !");
+        }
+        else {
+            System.out.println("TIE game " + board.getRedBoxes() + " to " +
+                    board.getBlueBoxes() + " !");
+        }
+    }
 
     public static void main(String[] args){
         Scanner move = new Scanner(System.in);
         System.out.println(">");
         String gameMove = move.nextLine();
-        System.out.println(gameMove);
     }
 }

@@ -1,7 +1,8 @@
 package game;
 
 /**
- * This class is an enumeration for representing the players in the Dots And Boxes game.
+ * This class is an enumeration for representing the players in the Dots And
+ * Boxes game.
  * <pre>
  * $ java DotsAndBoxes rows columns
  * Usage: java DotsAndBoxes rows columns
