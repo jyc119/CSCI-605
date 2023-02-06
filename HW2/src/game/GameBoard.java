@@ -45,7 +45,7 @@ public class GameBoard {
     }
 
     public boolean gameOver() {
-        if(counter == 2*(rowVals+1)*(colVals+1) - (rowVals+1) - (colVals+1)) {
+        if(counter == lines.size()) {
             return true;
         }
         return false;
@@ -56,7 +56,8 @@ public class GameBoard {
     }
 
     public boolean isLineValid(int row1, int column1, int row2, int column2) {
-        if(lines.getLine(row1,column1,row2,column2).hasOwner() || lines.getLine(row1,column1,row2,column2) == null){
+        if(lines.getLine(row1,column1,row2,column2).hasOwner() ||
+                lines.getLine(row1,column1,row2,column2) == null){
             return false;
         }
         return true;
@@ -68,16 +69,18 @@ public class GameBoard {
         if(row1 > 0 && row1 < rowVals){
             Box box2 = new Box(row1-1,column1,this.lines);
             lines.getLine(row1,column1,row2,column2).claim(curPlayer);
-            if(box1.getOwner() == Player.NONE && box2.getOwner() == Player.NONE){
-                curPlayer = (curPlayer == Player.RED) ? Player.BLUE : Player.RED;
+            if(box1.getOwner() == Player.NONE && box2.getOwner() ==
+                    Player.NONE){curPlayer = (curPlayer == Player.RED)
+                    ? Player.BLUE : Player.RED;
             }
         }
 
         else if(column1 > 0 && column1 < colVals){
             Box box2 = new Box(row1, column1-1,this.lines);
             lines.getLine(row1,column1,row2,column2).claim(curPlayer);
-            if(box1.getOwner() == Player.NONE && box2.getOwner() == Player.NONE){
-                curPlayer = (curPlayer == Player.RED) ? Player.BLUE : Player.RED;
+            if(box1.getOwner() == Player.NONE && box2.getOwner() ==
+                    Player.NONE){curPlayer = (curPlayer == Player.RED)
+                    ? Player.BLUE : Player.RED;
             }
         }
 
