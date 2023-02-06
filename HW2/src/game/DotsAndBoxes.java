@@ -31,11 +31,16 @@ public class DotsAndBoxes {
     }
 
     public void play() {
-        Scanner dimensions = new Scanner(System.in);
-        System.out.println(">");
-        String gameMove = dimensions.nextLine();
         while(board.gameOver() == false){
-        
+            GameBoard newboard = new GameBoard(3,4);
+            Scanner move = new Scanner(System.in);
+            System.out.println(">");
+            String gameMove = move.nextLine();
+            int row1 = Integer.parseInt(String.valueOf(gameMove.charAt(0)));
+            int col1 = Integer.parseInt(String.valueOf(gameMove.charAt(3)));
+            int row2 = Integer.parseInt(String.valueOf(gameMove.charAt(5)));
+            int col2 = Integer.parseInt(String.valueOf(gameMove.charAt(7)));
+            board.makeMove(row1, col1, row2, col2);
         }
         if(board.getBlueBoxes() > board.getRedBoxes()){
             System.out.println("BLUE wins " + board.getBlueBoxes() + " to "
@@ -52,8 +57,7 @@ public class DotsAndBoxes {
     }
 
     public static void main(String[] args){
-        Scanner move = new Scanner(System.in);
-        System.out.println(">");
-        String gameMove = move.nextLine();
+        DotsAndBoxes game = new DotsAndBoxes(3,4);
+        game.play();
     }
 }
