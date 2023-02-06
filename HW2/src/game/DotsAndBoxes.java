@@ -1,10 +1,12 @@
+package game;
+
 import java.util.Scanner;
 
 /**
  * The main program for the pen and paper game, Dots And Boxes.
  * <pre>
- * $ java DotsAndBoxes rows columns
- * Usage: java DotsAndBoxes rows columns
+ * $ java game.DotsAndBoxes rows columns
+ * Usage: java game.DotsAndBoxes rows columns
  *</pre>
  *
  * @author Jordan Chin, jc9627@rit.edu
@@ -12,6 +14,9 @@ import java.util.Scanner;
  */
 
 public class DotsAndBoxes {
+
+
+    public static final String PROMPT = ">";
 
     public DotsAndBoxes(int rows, int columns){
         rows = rowsTotal;
