@@ -104,9 +104,10 @@ public class GameBoard {
     public String toString() {
 
         StringBuilder gameboard = new StringBuilder();
-
+        gameboard.append(String.join(" ", " ", "0", " ", "1", " ", "2", " ", "3", "\n"));
         for(int row = 0; row < rowVals; row++){
             for(int col = 0; col < colVals; col++){
+                gameboard.append(" ");
                 if(row % 2 == 0){
                     if(col%2 == 0){
                         gameboard.append(" ");
@@ -128,7 +129,9 @@ public class GameBoard {
                     }
                 }
             }
+            gameboard.append("\n");
         }
+        gameboard.append(String.join("Turn: " + curPlayer, "Red: " + redBoxes, "Blue: " + blueBoxes, "Moves: "+counter));
 
         /*
         String[] gameboard = {
@@ -143,10 +146,6 @@ public class GameBoard {
 
          */
 
-        StringBuilder strBuilder = new StringBuilder();
-        for (int i = 0; i < gameboard.length; i++) {
-            strBuilder.append(gameboard[i]);
-        }
-        return strBuilder.toString();
+        return gameboard.toString();
     }
 }
