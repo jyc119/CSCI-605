@@ -27,6 +27,8 @@ public class Lines {
         dots = Dots;
         this.horiLines = new Line[rowsVal+1][columnsVal+1];
         this.vertLines = new Line[rowsVal+1][columnsVal+1];
+
+
         for (int row=0; row<=rowsVal; row++) {
             for (int column=0; column<=columnsVal; column++) {
                 if (column < columnsVal){

@@ -24,6 +24,11 @@ public class Box {
         column = upperLeftcolumn;
         lines = allLines;
         player = Player.NONE;
+
+        lines.getLine(upperLeftrow, upperLeftcolumn, upperLeftrow, upperLeftcolumn+1).setBox(this);
+        lines.getLine(upperLeftrow, upperLeftcolumn, upperLeftrow+1, upperLeftcolumn).setBox(this);
+        lines.getLine(upperLeftrow+1, upperLeftcolumn, upperLeftrow+1, upperLeftcolumn+1).setBox(this);
+        lines.getLine(upperLeftrow, upperLeftcolumn+1, upperLeftrow+1, upperLeftcolumn+1).setBox(this);
     }
 
     public int getRow() {

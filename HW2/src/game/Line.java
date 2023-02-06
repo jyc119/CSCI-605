@@ -39,7 +39,7 @@ public class Line {
             firstDot = firstDotVal;
             secondDot = secondDotVal;
             player = Player.NONE;
-            boxes =  new ArrayList<Box>();
+            boxes =  new ArrayList<>();
         }
     }
 
@@ -67,7 +67,12 @@ public class Line {
     }
 
     public void claim(Player owner){
-            player = owner;
+        player = owner;
+        for (int counter = 0; counter < boxes.size(); counter++){
+            if(boxes.get(counter).getTopLine().hasOwner() && boxes.get(counter).getBottomLine().hasOwner() && boxes.get(counter).getLeftLine().hasOwner() && boxes.get(counter).getRightLine().hasOwner()){
+                boxes.get(counter).claim(owner);
+            }
+        }
     }
 
     public void setBox(Box box){
