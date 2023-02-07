@@ -109,8 +109,10 @@ public class GameBoard {
      * @return whether the line is valid or not
      */
     public boolean isLineValid(int row1, int column1, int row2, int column2) {
-        if(lines.getLine(row1,column1,row2,column2).hasOwner() ||
-                lines.getLine(row1,column1,row2,column2) == null){
+        Line curLine = lines.getLine(row1,column1,row2,column2);
+        if(curLine == null || curLine.hasOwner() || curLine.getFirst().getColumn() > curLine.getSecond().getColumn() ||
+                curLine.getFirst().getRow() > curLine.getSecond().getRow()
+        ){
             return false;
         }
         return true;
