@@ -61,8 +61,11 @@ public class DotsAndBoxes {
             //Diagram has an arrow to the person figure. Not sure what that is supposed to be
             if(board.isLineValid(row1, col1, row2, col2)){
                 board.makeMove(row1, col1, row2, col2);
-            } else {
-                System.out.println("Invalid Move");
+            } else if(String.valueOf(gameMove) == "q"){
+                System.exit(0);
+            }
+            else {
+                System.out.println("Invalid line!");
             }
 
         }
