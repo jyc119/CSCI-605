@@ -83,7 +83,9 @@ public class GameBoard {
      * @return whether the game is over, man!
      */
     public boolean gameOver() {
-        if(counter == lines.size()) {
+        int m = (rowVals-1) + 1;
+        int n = (colVals-1) + 1;
+        if(counter == (2*m*n - m - n)) {
             return true;
         }
         return false;

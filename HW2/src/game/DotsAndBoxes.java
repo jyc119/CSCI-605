@@ -90,7 +90,7 @@ public class DotsAndBoxes {
      * @param args command line arguments
      */
     public static void main(String[] args){
-        DotsAndBoxes gb = new DotsAndBoxes(3,4);
+        DotsAndBoxes gb = new DotsAndBoxes(2,3);
         gb.play();
 
     }
