@@ -179,6 +179,8 @@ public class GameBoard {
             gameboard.append(" ");
         }
         gameboard.append("\n");
+        int blueboxes = 0;
+        int redboxes = 0;
         for(int row = 0; row < rowVals; row++){
 
             gameboard.append(row + " ");
@@ -196,15 +198,16 @@ public class GameBoard {
                 if(col != (colVals-1) && row != (rowVals-1)) {
                     gameboard.append(boxes[row][col].toString());
                     if(boxes[row][col].toString() ==  "B"){
-                        blueBoxes += 1;
+                        blueboxes += 1;
                     } else if(boxes[row][col].toString() == "R"){
-                        redBoxes += 1;
+                        redboxes += 1;
                     }
                 }
             }
-
             gameboard.append("\n");
         }
+        blueBoxes = blueboxes;
+        redBoxes = redboxes;
         gameboard.append(" Turn: " + curPlayer + " Red: " + redBoxes + " Blue: " + blueBoxes + " Moves: "+counter);
         return gameboard.toString();
     }
