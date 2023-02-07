@@ -50,15 +50,21 @@ public class DotsAndBoxes {
      */
     public void play() {
         while(board.gameOver() == false){
-            GameBoard newboard = new GameBoard(3,4);
+            System.out.println(board.toString());
             Scanner move = new Scanner(System.in);
             System.out.println(">");
             String gameMove = move.nextLine();
             int row1 = Integer.parseInt(String.valueOf(gameMove.charAt(0)));
-            int col1 = Integer.parseInt(String.valueOf(gameMove.charAt(3)));
-            int row2 = Integer.parseInt(String.valueOf(gameMove.charAt(5)));
-            int col2 = Integer.parseInt(String.valueOf(gameMove.charAt(7)));
-            board.makeMove(row1, col1, row2, col2);
+            int col1 = Integer.parseInt(String.valueOf(gameMove.charAt(2)));
+            int row2 = Integer.parseInt(String.valueOf(gameMove.charAt(4)));
+            int col2 = Integer.parseInt(String.valueOf(gameMove.charAt(6)));
+            //Diagram has an arrow to the person figure. Not sure what that is supposed to be
+            if(board.isLineValid(row1, col1, row2, col2)){
+                board.makeMove(row1, col1, row2, col2);
+            } else {
+                System.out.println("Invalid Move");
+            }
+
         }
         if(board.getBlueBoxes() > board.getRedBoxes()){
             System.out.println("BLUE wins " + board.getBlueBoxes() + " to "
@@ -81,21 +87,8 @@ public class DotsAndBoxes {
      * @param args command line arguments
      */
     public static void main(String[] args){
-        GameBoard newboard = new GameBoard(3, 4);
-
-        int count = 0;
-        while(count < 1){
-            newboard.makeMove(0,2,1,2);
-            newboard.makeMove(0,3,1,3);
-            newboard.makeMove(0,2,0,3);
-            newboard.makeMove(1,2,1,3);
-            newboard.makeMove(1,2,2,2);
-            newboard.makeMove(2,2,2,3);
-            newboard.makeMove(1,3,2,3);
-
-            System.out.println(newboard.toString());
-            count += 1;
-        }
+        DotsAndBoxes gb = new DotsAndBoxes(3,4);
+        gb.play();
 
     }
 }
