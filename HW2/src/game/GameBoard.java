@@ -224,7 +224,8 @@ public class GameBoard {
         }
         blueBoxes = blueboxes;
         redBoxes = redboxes;
-        gameboard.append(" Turn: " + curPlayer + " Red: " + redBoxes + " Blue: " + blueBoxes + " Moves: "+counter);
+        gameboard.append(" Turn: " + curPlayer + " Red: " + redBoxes +
+                " Blue: " + blueBoxes + " Moves: "+counter);
         return gameboard.toString();
     }
 }
