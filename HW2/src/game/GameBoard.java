@@ -182,13 +182,15 @@ public class GameBoard {
             gameboard.append(row + " ");
             for(int col = 0; col < colVals; col++){
                 gameboard.append(".");
-                gameboard.append(lines.getLine(row,col,row,col+1).toString());
+                gameboard.append(lines.getLine(row,col,row,
+                        col+1).toString());
             }
 
             gameboard.append("\n");
             gameboard.append("  ");
             for(int col = 0; col<colVals;col++){
-                gameboard.append(this.lines.getLine(row,col,row+1,col).toString());
+                gameboard.append(this.lines.getLine(row,col,
+                        row+1,col).toString());
                 if(col != (colVals-1) && row != (rowVals-1)) {
                     gameboard.append(boxes[row][col].toString());
                 }
@@ -196,21 +198,9 @@ public class GameBoard {
 
             gameboard.append("\n");
         }
-        gameboard.append(String.join("Turn: " + curPlayer, "Red: " + redBoxes, "Blue: " + blueBoxes, "Moves: "+counter));
-
-        /*
-        String[] gameboard = {
-                " ", " ", "0", " ", "1", " ", "2", " ", "3", "\n",
-                "0", " ", ".", " ", ".", " ", ".", " ", ".", "\n",
-                " ", " ", " ", " ", " ", " ", " ", " ", " ", "\n",
-                "1", " ", ".", " ", ".", " ", ".", " ", ".", "\n",
-                " ", " ", " ", " ", " ", " ", " ", " ", " ", "\n",
-                "2", " ", ".", " ", ".", " ", ".", " ", ".", "\n",
-                " ", " ", " ", " ", " ", " ", " ", " ", " ", "\n",
-                "Turn: ", "Red: #", "Blue: #", "Moves: #"};
-
-         */
-
+        gameboard.append(String.join("Turn: " + curPlayer,
+                "Red: " + redBoxes, "Blue: " + blueBoxes,
+                "Moves: "+counter));
         return gameboard.toString();
     }
 }
