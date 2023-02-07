@@ -193,6 +193,11 @@ public class GameBoard {
                         row+1,col).toString());
                 if(col != (colVals-1) && row != (rowVals-1)) {
                     gameboard.append(boxes[row][col].toString());
+                    if(boxes[row][col].toString() ==  "B"){
+                        blueBoxes += 1;
+                    } else if(boxes[row][col].toString() == "R"){
+                        redBoxes += 1;
+                    }
                 }
             }
 
