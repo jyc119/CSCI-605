@@ -120,8 +120,8 @@ public class Line {
             if(boxes.get(counter).getTopLine().hasOwner() &&
                     boxes.get(counter).getBottomLine().hasOwner() &&
                     boxes.get(counter).getLeftLine().hasOwner() &&
-                    boxes.get(counter).getRightLine().hasOwner()){boxes.get
-                    (counter).claim(owner);
+                    boxes.get(counter).getRightLine().hasOwner()){
+                boxes.get(counter).claim(owner);
             }
         }
     }

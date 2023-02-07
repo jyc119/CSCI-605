@@ -81,7 +81,17 @@ public class DotsAndBoxes {
      * @param args command line arguments
      */
     public static void main(String[] args){
-        DotsAndBoxes game = new DotsAndBoxes(3,4);
-        game.play();
+        GameBoard newboard = new GameBoard(3, 4);
+
+        int count = 0;
+        while(count < 1){
+            newboard.makeMove(0,2,1,2);
+            newboard.makeMove(0,3,1,3);
+            newboard.makeMove(0,2,0,3);
+            newboard.makeMove(1,2,1,3);
+            System.out.println(newboard.toString());
+            count += 1;
+        }
+
     }
 }
