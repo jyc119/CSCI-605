@@ -27,6 +27,7 @@ public class GameBoard {
     private Lines lines;
     /** the collection of dots */
     private Dot[][] dots;
+    private Box[][] boxes;
 
     public GameBoard(int rows, int columns) {
         rowVals = rows;
@@ -46,6 +47,13 @@ public class GameBoard {
 
         // create the lines
         this.lines = new Lines(rows, columns, this.dots);
+        this.boxes = new Box[rows-1][columns-1];
+        //create the boxes
+        for (int row=0; row<rows-1; ++row) {
+            for (int column=0; column<columns-1; ++column) {
+                this.boxes[row][column] = new Box(row, column,lines);
+            }
+        }
     }
 
     public boolean gameOver() {
@@ -71,9 +79,10 @@ public class GameBoard {
         if(isLineValid(row1,column1,row2,column2)){
             Box box1 = new Box(row1, column1, this.lines);
 
+            lines.getLine(row1,column1,row2,column2).claim(curPlayer);
+
             if(row1 > 0 && row1 < rowVals){
                 Box box2 = new Box(row1-1,column1,this.lines);
-                lines.getLine(row1,column1,row2,column2).claim(curPlayer);
                 if(box1.getOwner() == Player.NONE && box2.getOwner() ==
                         Player.NONE){curPlayer = (curPlayer == Player.RED)
                         ? Player.BLUE : Player.RED;
@@ -82,7 +91,6 @@ public class GameBoard {
 
             else if(column1 > 0 && column1 < colVals){
                 Box box2 = new Box(row1, column1-1,this.lines);
-                lines.getLine(row1,column1,row2,column2).claim(curPlayer);
                 if(box1.getOwner() == Player.NONE && box2.getOwner() ==
                         Player.NONE){curPlayer = (curPlayer == Player.RED)
                         ? Player.BLUE : Player.RED;
@@ -101,37 +109,39 @@ public class GameBoard {
         return redBoxes;
     }
 
+    public Lines getLines(){
+        return lines;
+    }
+
     public String toString() {
 
         StringBuilder gameboard = new StringBuilder();
-        gameboard.append(String.join(" ", " ", "0", " ", "1", " ", "2", " ", "3", "\n"));
+        gameboard.append("  ");
+        for(int col = 0; col < colVals; col++){
+            gameboard.append(col);
+            gameboard.append(" ");
+        }
+        gameboard.append("\n");
         for(int row = 0; row < rowVals; row++){
+
+            gameboard.append(row + " ");
             for(int col = 0; col < colVals; col++){
-                gameboard.append(" ");
-                if(row % 2 == 0){
-                    if(col%2 == 0){
-                        gameboard.append(" ");
-                    } else{
-                        gameboard.append(lines.getLine(row,col,row,col+1).toString());
-                    }
-                }else{
-                    if(col%2 == 0){
-                        gameboard.append(lines.getLine(row,col,row+1,col).toString());
-                    }
-                    else{
-                        Box curbox = new Box(row-1,col-1,lines);
-                        if(curbox.getOwner() == Player.RED){
-                            redBoxes += 1;
-                        }else if(curbox.getOwner() == Player.BLUE){
-                            blueBoxes += 1;
-                        }
-                        gameboard.append(curbox.toString());
-                    }
+                gameboard.append(".");
+                gameboard.append(lines.getLine(row,col,row,col+1).toString());
+            }
+
+            gameboard.append("\n");
+            gameboard.append("  ");
+            for(int col = 0; col<colVals;col++){
+                gameboard.append(this.lines.getLine(row,col,row+1,col).toString());
+                if(col != (colVals-1) && row != (rowVals-1)) {
+                    gameboard.append(boxes[row][col].toString());
                 }
             }
+
             gameboard.append("\n");
         }
-        gameboard.append(String.join("Turn: " + curPlayer, "Red: " + redBoxes, "Blue: " + blueBoxes, "Moves: "+counter));
+        gameboard.append("Turn: " + curPlayer + " Red: " + redBoxes + " Blue: " + blueBoxes + " Moves: "+counter);
 
         /*
         String[] gameboard = {

@@ -16,7 +16,6 @@ public class Box {
     private int row;
     private int column;
     private Lines lines;
-
     private Player player;
 
     public Box(int upperLeftrow, int upperLeftcolumn, Lines allLines) {

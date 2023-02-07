@@ -57,7 +57,15 @@ public class DotsAndBoxes {
     }
 
     public static void main(String[] args){
-        DotsAndBoxes game = new DotsAndBoxes(3,4);
-        game.play();
+        GameBoard newgameboard = new GameBoard(3,4);
+        newgameboard.makeMove(0,2,1,2);
+        newgameboard.makeMove(0,2,0,3);
+        newgameboard.makeMove(0,3,1,3);
+        newgameboard.makeMove(1,2,1,3);
+        newgameboard.makeMove(1,2,2,2);
+        newgameboard.makeMove(2,2,2,3);
+        newgameboard.makeMove(1,3,2,3);
+        System.out.println(newgameboard.toString());
+
     }
 }
