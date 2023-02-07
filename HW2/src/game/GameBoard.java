@@ -143,29 +143,6 @@ public class GameBoard {
                 }
             }
             counter += 1;
-            /*
-            if(lines.getLine(row1,column1,row2,column2).getBoxes().get(0).getOwner() == Player.NONE){
-                curPlayer = (curPlayer == Player.RED) ? Player.BLUE : Player.RED;
-            }
-             */
-            /*
-            if(row1 > 0 && row1 < rowVals){
-                Box box2 = new Box(row1-1,column1,this.lines);
-                if(box1.getOwner() == Player.NONE && box2.getOwner() ==
-                        Player.NONE){curPlayer = (curPlayer == Player.RED)
-                        ? Player.BLUE : Player.RED;
-                }
-            }
-            else if(column1 > 0 && column1 < colVals){
-                Box box2 = new Box(row1, column1-1,this.lines);
-                if(box1.getOwner() == Player.NONE && box2.getOwner() ==
-                        Player.NONE){curPlayer = (curPlayer == Player.RED)
-                        ? Player.BLUE : Player.RED;
-                }
-            }
-            counter += 1;
-
-             */
         }
     }
 

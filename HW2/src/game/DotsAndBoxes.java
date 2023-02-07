@@ -63,6 +63,7 @@ public class DotsAndBoxes {
             int col1 = Integer.parseInt(String.valueOf(gameMove.charAt(1)));
             int row2 = Integer.parseInt(String.valueOf(gameMove.charAt(2)));
             int col2 = Integer.parseInt(String.valueOf(gameMove.charAt(3)));
+
             if(board.isLineValid(row1, col1, row2, col2)){
                 board.makeMove(row1, col1, row2, col2);
             }
@@ -70,6 +71,7 @@ public class DotsAndBoxes {
                 System.out.println("Invalid line!");
             }
         }
+        System.out.println(board.toString());
         if(board.getBlueBoxes() > board.getRedBoxes()){
             System.out.println("BLUE wins " + board.getBlueBoxes() + " to "
                     + board.getRedBoxes() + " !");
@@ -91,7 +93,13 @@ public class DotsAndBoxes {
      * @param args command line arguments
      */
     public static void main(String[] args){
-        DotsAndBoxes gb = new DotsAndBoxes(2,3);
+        Scanner move = new Scanner(System.in);
+        System.out.println("Input Game Dimensions >");
+        String setup = move.nextLine();
+        setup = setup.replaceAll("\\s", "");
+        int rows = Integer.parseInt(String.valueOf(setup.charAt(0)));
+        int cols = Integer.parseInt(String.valueOf(setup.charAt(1)));
+        DotsAndBoxes gb = new DotsAndBoxes(rows,cols);
         gb.play();
 
     }
