@@ -1,3 +1,9 @@
+/*
+ * HW2: Dots and Boxes
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package game;
 
 /**
@@ -11,27 +17,14 @@ package game;
  * @author Jordan Chin, jc9627@rit.edu
  * @author Charlie Leyens, cal3368@rit.edu
  */
-
 public enum Player {
     NONE, RED, BLUE;
-    /*
-    public static game.Player[] values(){
-        game.Player[] player = {NONE, RED, BLUE};
-        return player;
-    }
 
-    public static game.Player valueOf(String name){
-        if (name == null){
-            throw NullPointerException;
-        }
-        else if (name != "BLUE" || name != "RED" || name != "NONE"){
-            throw IllegalArgumentException;
-        }
-        else
-        }
-    }
+    /**
+     * Get the player's label.
+     *
+     * @return the string label
      */
-
     public String getLabel() {
         switch (this){
             case NONE:
@@ -44,5 +37,3 @@ public enum Player {
         return null;
     }
 }
-
-
