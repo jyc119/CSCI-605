@@ -198,9 +198,7 @@ public class GameBoard {
 
             gameboard.append("\n");
         }
-        gameboard.append(String.join("Turn: " + curPlayer,
-                "Red: " + redBoxes, "Blue: " + blueBoxes,
-                "Moves: "+counter));
+        gameboard.append(" Turn: " + curPlayer + " Red: " + redBoxes + " Blue: " + blueBoxes + " Moves: "+counter);
         return gameboard.toString();
     }
 }

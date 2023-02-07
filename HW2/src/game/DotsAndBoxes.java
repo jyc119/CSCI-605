@@ -89,6 +89,10 @@ public class DotsAndBoxes {
             newboard.makeMove(0,3,1,3);
             newboard.makeMove(0,2,0,3);
             newboard.makeMove(1,2,1,3);
+            newboard.makeMove(1,2,2,2);
+            newboard.makeMove(2,2,2,3);
+            newboard.makeMove(1,3,2,3);
+
             System.out.println(newboard.toString());
             count += 1;
         }
