@@ -6,6 +6,7 @@
 
 package game;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -54,20 +55,20 @@ public class DotsAndBoxes {
             Scanner move = new Scanner(System.in);
             System.out.println(">");
             String gameMove = move.nextLine();
+            gameMove = gameMove.replaceAll("\\s", "");
+            if(gameMove.equals("q")){
+                return;
+            }
             int row1 = Integer.parseInt(String.valueOf(gameMove.charAt(0)));
-            int col1 = Integer.parseInt(String.valueOf(gameMove.charAt(2)));
-            int row2 = Integer.parseInt(String.valueOf(gameMove.charAt(4)));
-            int col2 = Integer.parseInt(String.valueOf(gameMove.charAt(6)));
-            //Diagram has an arrow to the person figure. Not sure what that is supposed to be
+            int col1 = Integer.parseInt(String.valueOf(gameMove.charAt(1)));
+            int row2 = Integer.parseInt(String.valueOf(gameMove.charAt(2)));
+            int col2 = Integer.parseInt(String.valueOf(gameMove.charAt(3)));
             if(board.isLineValid(row1, col1, row2, col2)){
                 board.makeMove(row1, col1, row2, col2);
-            } else if(String.valueOf(gameMove) == "q"){
-                System.exit(0);
             }
             else {
                 System.out.println("Invalid line!");
             }
-
         }
         if(board.getBlueBoxes() > board.getRedBoxes()){
             System.out.println("BLUE wins " + board.getBlueBoxes() + " to "
