@@ -51,26 +51,26 @@ public class GameBoard {
      * @param columns number of columns
      */
     public GameBoard(int rows, int columns) {
-        rowVals = rows;
-        colVals = columns;
+        rowVals = rows+1;
+        colVals = columns+1;
         counter = 0;
         curPlayer = Player.RED;
         redBoxes = 0;
         blueBoxes = 0;
 
         // create the dots
-        this.dots = new Dot[rows+1][columns+1];
-        for (int row=0; row<=rows; ++row) {
-            for (int column=0; column<=columns; ++column) {
+        this.dots = new Dot[rowVals+1][colVals+1];
+        for (int row=0; row<=rowVals; ++row) {
+            for (int column=0; column<=colVals; ++column) {
                 this.dots[row][column] = new Dot(row, column);
             }
         }
         // create the lines
-        this.lines = new Lines(rows, columns, this.dots);
-        this.boxes = new Box[rows-1][columns-1];
+        this.lines = new Lines(rowVals, colVals, this.dots);
+        this.boxes = new Box[rowVals-1][colVals-1];
         //create the boxes
-        for (int row=0; row<rows-1; ++row) {
-            for (int column=0; column<columns-1; ++column) {
+        for (int row=0; row<rowVals-1; ++row) {
+            for (int column=0; column<colVals-1; ++column) {
                 this.boxes[row][column] = new Box(row, column,lines);
             }
         }
@@ -83,7 +83,9 @@ public class GameBoard {
      * @return whether the game is over, man!
      */
     public boolean gameOver() {
-        if(counter == lines.size()) {
+        int m = (rowVals-1) + 1;
+        int n = (colVals-1) + 1;
+        if(counter == (2*m*n - m - n)) {
             return true;
         }
         return false;
@@ -131,10 +133,22 @@ public class GameBoard {
      */
     public void makeMove(int row1, int column1, int row2, int column2) {
         if(isLineValid(row1,column1,row2,column2)){
-            Box box1 = new Box(row1, column1, this.lines);
-
+            Box[][] curboxes = boxes;
             lines.getLine(row1,column1,row2,column2).claim(curPlayer);
-
+            curPlayer = (curPlayer == Player.RED) ? Player.BLUE : Player.RED;
+            for(int i=0; i < lines.getLine(row1,column1,row2,column2).getBoxes().size(); i++){
+                if(lines.getLine(row1,column1,row2,column2).getBoxes().get(i).getOwner() != Player.NONE){
+                    curPlayer = (curPlayer == Player.RED) ? Player.BLUE : Player.RED;
+                    break;
+                }
+            }
+            counter += 1;
+            /*
+            if(lines.getLine(row1,column1,row2,column2).getBoxes().get(0).getOwner() == Player.NONE){
+                curPlayer = (curPlayer == Player.RED) ? Player.BLUE : Player.RED;
+            }
+             */
+            /*
             if(row1 > 0 && row1 < rowVals){
                 Box box2 = new Box(row1-1,column1,this.lines);
                 if(box1.getOwner() == Player.NONE && box2.getOwner() ==
@@ -150,6 +164,8 @@ public class GameBoard {
                 }
             }
             counter += 1;
+
+             */
         }
     }
 
