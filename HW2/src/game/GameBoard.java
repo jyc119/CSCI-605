@@ -112,7 +112,9 @@ public class GameBoard {
      */
     public boolean isLineValid(int row1, int column1, int row2, int column2) {
         Line curLine = lines.getLine(row1,column1,row2,column2);
-        if(curLine == null || curLine.hasOwner() || curLine.getFirst().getColumn() > curLine.getSecond().getColumn() ||
+        if(curLine == null || curLine.hasOwner() ||
+                curLine.getFirst().getColumn() >
+                        curLine.getSecond().getColumn() ||
                 curLine.getFirst().getRow() > curLine.getSecond().getRow()
         ){
             return false;
@@ -136,9 +138,12 @@ public class GameBoard {
             Box[][] curboxes = boxes;
             lines.getLine(row1,column1,row2,column2).claim(curPlayer);
             curPlayer = (curPlayer == Player.RED) ? Player.BLUE : Player.RED;
-            for(int i=0; i < lines.getLine(row1,column1,row2,column2).getBoxes().size(); i++){
-                if(lines.getLine(row1,column1,row2,column2).getBoxes().get(i).getOwner() != Player.NONE){
-                    curPlayer = (curPlayer == Player.RED) ? Player.BLUE : Player.RED;
+            for(int i=0; i < lines.getLine(row1,column1,row2,column2)
+                    .getBoxes().size(); i++){
+                if(lines.getLine(row1,column1,row2,column2).getBoxes().get(i).
+                        getOwner() != Player.NONE){
+                    curPlayer = (curPlayer == Player.RED) ? Player.BLUE :
+                            Player.RED;
                     break;
                 }
             }
@@ -175,7 +180,6 @@ public class GameBoard {
         int blueboxes = 0;
         int redboxes = 0;
         for(int row = 0; row < rowVals; row++){
-
             gameboard.append(row + " ");
             for(int col = 0; col < colVals; col++){
                 gameboard.append(".");

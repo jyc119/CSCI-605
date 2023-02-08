@@ -63,7 +63,6 @@ public class DotsAndBoxes {
             int col1 = Integer.parseInt(String.valueOf(gameMove.charAt(1)));
             int row2 = Integer.parseInt(String.valueOf(gameMove.charAt(2)));
             int col2 = Integer.parseInt(String.valueOf(gameMove.charAt(3)));
-
             if(board.isLineValid(row1, col1, row2, col2)){
                 board.makeMove(row1, col1, row2, col2);
             }

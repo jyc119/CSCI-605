@@ -77,7 +77,6 @@ public class Box {
      * @return top line
      */
     public Line getTopLine() {
-        //print(lines.getLine(row,column,row,column+1));
         return lines.getLine(row, column, row, column+1);
     }
 
