@@ -6,6 +6,28 @@ import java.util.Arrays;
 
 public class Interp implements Expression{
 
+    public Expression helper(ArrayList<String> tokenList){
+        if (tokenList.get(0) == "+"){
+
+            return new AddExpression(helper(tokenList.subList(1,tokenList.size())), helper(tokenList.subList(2,tokenList.size())));
+        }
+        else if(tokenList.get(0) == "-") {
+            return SubExp(helper(tokenList[1:]),helper(tokenList[2:]));
+        }
+        else if(tokenList.get(0) == "*") {
+            return MulExp(helper(tokenList[1:]),helper(tokenList[2:]));
+        }
+        else if(tokenList.get(0) == "/") {
+            return DivExp(helper(tokenList[1:]),helper(tokenList[2:]));
+        }
+        else if(tokenList.get(0) == "%") {
+            return ModExp(helper(tokenList[1:]),helper(tokenList[2:]));
+        }
+
+        Expression number = new IntExpression(Integer.parseInt(String.valueOf(tokenList.get(0))));
+        return number;
+    }
+
     public void readPrefix(){
         System.out.println("Welcome to your Arithmetic Interpreter v1.0 :)");
         Scanner interpreter = new Scanner(System.in);
