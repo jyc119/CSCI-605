@@ -1,4 +1,8 @@
+package hw3;
+
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Interp implements Expression{
 
@@ -8,6 +12,9 @@ public class Interp implements Expression{
         System.out.println(">");
         String expression = interpreter.nextLine();
         while(expression != "quit"){
+            String[] tokens = expression.split("");
+            ArrayList<String> tokenList = new ArrayList<String>
+                    (Arrays.asList(tokens));
 
         }
         System.out.println("Goodbye!");
