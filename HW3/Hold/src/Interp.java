@@ -1,5 +1,3 @@
-package Interpreter;
-
 import java.util.Scanner;
 
 public class Interp implements Expression{

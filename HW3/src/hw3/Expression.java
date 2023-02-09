@@ -1,4 +1,4 @@
-package Interpreter;
+package hw3;
 
 public interface Expression {
 

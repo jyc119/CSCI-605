@@ -1,4 +1,4 @@
-package hw3.test;
+package tests;
 
 import hw3.AddExpression;
 import hw3.Expression;

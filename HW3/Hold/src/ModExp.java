@@ -1,11 +1,9 @@
-package Interpreter;
-
-public class SubExp implements Expression{
+public class ModExp implements Expression{
 
     private Expression Left;
     private Expression Right;
 
-    public SubExp (Expression Left, Expression Right){
+    public ModExp (Expression Left, Expression Right){
         this.Left = Left;
         this.Right = Right;
     }

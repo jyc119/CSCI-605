@@ -1,10 +1,10 @@
-package Interpreter;
+package hw3;
 
-public class IntExp implements Expression{
+public class IntExpression implements Expression{
 
     private int value;
 
-    public IntExp(int value){
+    public IntExpression(int value){
         this.value = value;
     }
 
@@ -15,5 +15,4 @@ public class IntExp implements Expression{
     public String emit(){
         return String.valueOf(value);
     }
-
 }
