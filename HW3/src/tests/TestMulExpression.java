@@ -1,8 +1,8 @@
 package tests;
 
-import hw3.AddExpression;
 import hw3.Expression;
 import hw3.IntExpression;
+import hw3.MulExp;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -17,17 +17,20 @@ public class TestMulExpression {
 
     @Test
     public void testMulExpressionInt() {
-        Expression root = new AddExpression(new IntExpression(14), new IntExpression(10));
+        Expression root = new MulExp(new IntExpression(14),
+                new IntExpression(10));
         assertEquals(140, root.evaluate());
         assertEquals("(14 * 10)", root.emit());
     }
 
     @Test
     public void testMulExpressionComplex() {
-        Expression root = new AddExpression(
-                new AddExpression(new IntExpression(13), new IntExpression(20)),
-                new AddExpression(new IntExpression(2), new IntExpression(3)));
-        assertEquals(100, root.evaluate());
+        Expression root = new MulExp(
+                new MulExp(new IntExpression(13),
+                        new IntExpression(20)),
+                new MulExp(new IntExpression(2),
+                        new IntExpression(3)));
+        assertEquals(1560, root.evaluate());
         assertEquals("((13 * 20) * (2 * 3))", root.emit());
     }
 

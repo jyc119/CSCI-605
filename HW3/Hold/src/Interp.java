@@ -10,6 +10,7 @@ public class Interp implements Expression{
         while(expression != "quit"){
 
         }
+        System.out.println("Goodbye!");
         return;
     }
 
