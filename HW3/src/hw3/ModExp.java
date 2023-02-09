@@ -1,3 +1,5 @@
+package hw3;
+
 public class ModExp implements Expression{
 
     private Expression Left;
@@ -9,10 +11,10 @@ public class ModExp implements Expression{
     }
 
     public int evaluate(){
-
+        return Left.evaluate() % Right.evaluate();
     }
 
     public String emit(){
-        return
+        return "(" + Left.emit() + " % " + Right.emit() + ")";
     }
 }

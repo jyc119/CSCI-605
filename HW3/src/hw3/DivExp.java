@@ -1,3 +1,5 @@
+package hw3;
+
 public class DivExp implements Expression{
 
     private Expression Left;
@@ -9,12 +11,11 @@ public class DivExp implements Expression{
     }
 
     public int evaluate(){
-
+        return Left.evaluate() / Right.evaluate();
     }
 
     public String emit(){
-        return
+        return "(" + Left.emit() + " / " + Right.emit() + ")";
     }
-
 
 }

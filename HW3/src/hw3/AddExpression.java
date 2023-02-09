@@ -10,10 +10,11 @@ public class AddExpression implements Expression{
         this.Right = Right;
     }
     public int evaluate(){
-        return 
+        return Left.evaluate() + Right.evaluate();
     }
 
     public String emit(){
-        return
+        return "(" + Left.emit() + " + " + Right.emit() + ")";
+
     }
 }
