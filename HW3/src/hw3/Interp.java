@@ -7,26 +7,67 @@ import java.util.Arrays;
 
 public class Interp {
 
-    public Expression helper(ArrayList<String> tokenList){
-        if (tokenList.get(0).equals("+")){
+    public Expression helper(String[] tokenList){
 
-            return new AddExpression(helper((ArrayList<String>) tokenList.subList(1,tokenList.size())), helper((ArrayList<String>) tokenList.subList(2,tokenList.size())));
+        String[] leftExp;
+        String[] rightExp;
+
+        if (tokenList[0].equals("+")){
+            if(tokenList.length == 3){
+                leftExp = new String[]{tokenList[1]};
+                rightExp = new String[]{tokenList[2]};
+            }
+            else{
+                leftExp = Arrays.copyOfRange(tokenList, 1, tokenList.length - 3);
+                rightExp = Arrays.copyOfRange(tokenList, tokenList.length - 3, tokenList.length);
+            }
+            return new AddExpression(helper(leftExp), helper(rightExp));
         }
-        else if(tokenList.get(0) == "-") {
-            return new SubExp(helper((ArrayList<String>) tokenList.subList(1,tokenList.size())), helper((ArrayList<String>) tokenList.subList(2,tokenList.size())));
+        else if(tokenList[0].equals("-")) {
+            if(tokenList.length == 3){
+                leftExp = new String[]{tokenList[1]};
+                rightExp = new String[]{tokenList[2]};
+            }
+            else{
+                leftExp = Arrays.copyOfRange(tokenList, 1, tokenList.length - 3);
+                rightExp = Arrays.copyOfRange(tokenList, tokenList.length - 3, tokenList.length);
+            }
+            return new SubExp(helper(leftExp), helper(rightExp));
         }
-        else if(tokenList.get(0) == "*") {
-            return new MulExp(helper((ArrayList<String>) tokenList.subList(1,tokenList.size())), helper((ArrayList<String>) tokenList.subList(2,tokenList.size())));
+        else if(tokenList[0].equals("*")) {
+            if(tokenList.length == 3){
+                leftExp = new String[]{tokenList[1]};
+                rightExp = new String[]{tokenList[2]};
+            }
+            else{
+                leftExp = Arrays.copyOfRange(tokenList, 1, tokenList.length - 3);
+                rightExp = Arrays.copyOfRange(tokenList, tokenList.length - 3, tokenList.length);
+            }
+            return new MulExp(helper(leftExp), helper(rightExp));
         }
-        else if(tokenList.get(0) == "/") {
-            return new DivExp(helper((ArrayList<String>) tokenList.subList(1,tokenList.size())), helper((ArrayList<String>) tokenList.subList(2,tokenList.size())));
+        else if(tokenList[0].equals("/")) {
+            if(tokenList.length == 3){
+                leftExp = new String[]{tokenList[1]};
+                rightExp = new String[]{tokenList[2]};
+            }
+            else{
+                leftExp = Arrays.copyOfRange(tokenList, 1, tokenList.length - 3);
+                rightExp = Arrays.copyOfRange(tokenList, tokenList.length - 3, tokenList.length);
+            }
+            return new DivExp(helper(leftExp), helper(rightExp));
         }
-        else if(tokenList.get(0) == "%") {
-            return new ModExp(helper((ArrayList<String>) tokenList.subList(1,tokenList.size())), helper((ArrayList<String>) tokenList.subList(2,tokenList.size())));
+        else if(tokenList[0].equals("%")) {
+            if(tokenList.length == 3){
+                leftExp = new String[]{tokenList[1]};
+                rightExp = new String[]{tokenList[2]};
+            }
+            else{
+                leftExp = Arrays.copyOfRange(tokenList, 1, tokenList.length - 3);
+                rightExp = Arrays.copyOfRange(tokenList, tokenList.length - 3, tokenList.length);
+            }
+            return new ModExp(helper(leftExp), helper(rightExp));
         }
-        System.out.println(tokenList.get(0));
-        System.out.println("HERE");
-        Expression number = new IntExpression(Integer.parseInt(String.valueOf(tokenList.get(0))));
+        Expression number = new IntExpression(Integer.parseInt(String.valueOf(tokenList[0])));
         return number;
     }
 
@@ -41,7 +82,13 @@ public class Interp {
             ArrayList<String> tokenList = new ArrayList<String>
                     (Arrays.asList(tokens));
             System.out.println(tokenList);
-            Expression expression1 = helper(tokenList);
+
+            String[] arr = new String[tokenList.size()];
+
+            for (int i = 0; i < tokenList.size(); i++){
+                arr[i] = tokenList.get(i);
+            }
+            Expression expression1 = helper(arr);
             System.out.println(expression1.emit());
             System.out.println(expression1.evaluate());
         }
