@@ -1,3 +1,9 @@
+/*
+ * HW3: Arithmetic Interpreter
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package hw3;
 
 import java.util.Objects;
@@ -5,8 +11,24 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Create the arithmetic interpreter
+ * <pre>
+ * $ java Interp
+ * Usage: java Interp
+ *</pre>
+ *
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
 public class Interp {
 
+    /**
+     * Create a subarray of tokens from the math expression.
+     *
+     * @param
+     * @return
+     */
     public String[][] getSubArray(String[] tokenList){
         String[] leftExp;
         String[] rightExp;
@@ -24,6 +46,12 @@ public class Interp {
         return new String[][]{leftExp, rightExp};
     }
 
+    /**
+     *
+     *
+     * @param
+     * @return
+     */
     public Expression helper(String[] tokenList){
 
         int firstChar = tokenList[0].charAt(0);
@@ -55,6 +83,10 @@ public class Interp {
         return null;
     }
 
+    /**
+     * Reads in the expression in prefix form and prints the expression in
+     * infix form and the evaluation of the expression.
+     */
     public void readPrefix(){
         System.out.println("Welcome to your Arithmetic Interpreter v1.0 :)");
         while(true) {
@@ -79,6 +111,12 @@ public class Interp {
         }
     }
 
+    /**
+     * The main function for evaluating simple arithmetic
+     * expressions.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args){
         Interp test = new Interp();
         test.readPrefix();
