@@ -7,79 +7,52 @@ import java.util.Arrays;
 
 public class Interp {
 
-    public Expression helper(String[] tokenList){
-
+    public String[][] getSubArray(String[] tokenList){
         String[] leftExp;
         String[] rightExp;
 
+        if(tokenList.length == 3){
+            leftExp = new String[]{tokenList[1]};
+            rightExp = new String[]{tokenList[2]};
+        }
+        else{
+            leftExp = Arrays.copyOfRange(tokenList, 1,
+                    tokenList.length - 3);
+            rightExp = Arrays.copyOfRange(tokenList,
+                    tokenList.length - 3, tokenList.length);
+        }
+        return new String[][]{leftExp, rightExp};
+    }
+
+    public Expression helper(String[] tokenList){
+
+        int firstChar = tokenList[0].charAt(0);
+        if((int) firstChar > 47 || (int) firstChar < 37){
+            Expression number = new IntExpression(Integer.parseInt
+                (String.valueOf(tokenList[0])));
+            return number;
+        }
+
+        String[][] exp = getSubArray(tokenList);
+        String[] leftExp = exp[0];
+        String[] rightExp = exp[1];
+
         if (tokenList[0].equals("+")){
-            if(tokenList.length == 3){
-                leftExp = new String[]{tokenList[1]};
-                rightExp = new String[]{tokenList[2]};
-            }
-            else{
-                leftExp = Arrays.copyOfRange(tokenList, 1,
-                        tokenList.length - 3);
-                rightExp = Arrays.copyOfRange(tokenList,
-                        tokenList.length - 3, tokenList.length);
-            }
             return new AddExpression(helper(leftExp), helper(rightExp));
         }
         else if(tokenList[0].equals("-")) {
-            if(tokenList.length == 3){
-                leftExp = new String[]{tokenList[1]};
-                rightExp = new String[]{tokenList[2]};
-            }
-            else{
-                leftExp = Arrays.copyOfRange(tokenList, 1,
-                        tokenList.length - 3);
-                rightExp = Arrays.copyOfRange(tokenList,
-                        tokenList.length - 3, tokenList.length);
-            }
             return new SubExp(helper(leftExp), helper(rightExp));
         }
         else if(tokenList[0].equals("*")) {
-            if(tokenList.length == 3){
-                leftExp = new String[]{tokenList[1]};
-                rightExp = new String[]{tokenList[2]};
-            }
-            else{
-                leftExp = Arrays.copyOfRange(tokenList, 1,
-                        tokenList.length - 3);
-                rightExp = Arrays.copyOfRange(tokenList,
-                        tokenList.length - 3, tokenList.length);
-            }
             return new MulExp(helper(leftExp), helper(rightExp));
         }
         else if(tokenList[0].equals("/")) {
-            if(tokenList.length == 3){
-                leftExp = new String[]{tokenList[1]};
-                rightExp = new String[]{tokenList[2]};
-            }
-            else{
-                leftExp = Arrays.copyOfRange(tokenList, 1,
-                        tokenList.length - 3);
-                rightExp = Arrays.copyOfRange(tokenList,
-                        tokenList.length - 3, tokenList.length);
-            }
             return new DivExp(helper(leftExp), helper(rightExp));
         }
         else if(tokenList[0].equals("%")) {
-            if(tokenList.length == 3){
-                leftExp = new String[]{tokenList[1]};
-                rightExp = new String[]{tokenList[2]};
-            }
-            else{
-                leftExp = Arrays.copyOfRange(tokenList, 1,
-                        tokenList.length - 3);
-                rightExp = Arrays.copyOfRange(tokenList,
-                        tokenList.length - 3, tokenList.length);
-            }
             return new ModExp(helper(leftExp), helper(rightExp));
         }
-        Expression number = new IntExpression(Integer.parseInt
-                (String.valueOf(tokenList[0])));
-        return number;
+        return null;
     }
 
     public void readPrefix(){
