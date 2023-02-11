@@ -1,3 +1,9 @@
+/*
+ * HW3: Arithmetic Interpreter
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package tests;
 
 import hw3.AddExpression;

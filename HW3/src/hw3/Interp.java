@@ -48,14 +48,15 @@ public class Interp {
     }
 
     /**
-     * This recursive function takes the list of tokens as an argument
-     * and returns the Expression node for the token at the front of the list.
-     * If the token is an operator, we reached a base case where we use an expression
-     * class to calculate the result. If the token is a number, we return the integer
-     * expression representation.
+     * Takes the list of tokens as an argument and returns the Expression node
+     * for the token at the front of the list.
+     * If the token is an operand, we reached a base case where we use an
+     * expression class to calculate the result. If the token is a number,
+     * we return the integer expression representation.
      *
      * @param tokenList The array of tokens
-     * @return Expression The Expression node for the token at the front of the list
+     * @return Expression The Expression node for the token at the
+     * front of the list
      *
      */
     public Expression helper(String[] tokenList){
@@ -90,7 +91,7 @@ public class Interp {
     }
 
     /**
-     * This takes the arraylist of tokens and converts it to an array
+     * Takes the arraylist of tokens and converts it to an array
      *
      * @param tokenList The arraylist of tokens
      * @return String[] Returns the array of tokens
