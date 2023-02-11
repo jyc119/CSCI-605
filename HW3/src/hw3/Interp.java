@@ -24,10 +24,11 @@ import java.util.Arrays;
 public class Interp {
 
     /**
-     * Create a subarray of tokens from the math expression.
+     * Creates the left and right token array
+     * for the token at the front of the list
      *
-     * @param
-     * @return
+     * @param tokenList The array of tokens
+     * @return String[][] The left and right token array
      */
     public String[][] getSubArray(String[] tokenList){
         String[] leftExp;
@@ -47,10 +48,15 @@ public class Interp {
     }
 
     /**
+     * This recursive function takes the list of tokens as an argument
+     * and returns the Expression node for the token at the front of the list.
+     * If the token is an operator, we reached a base case where we use an expression
+     * class to calculate the result. If the token is a number, we return the integer
+     * expression representation.
      *
+     * @param tokenList The array of tokens
+     * @return Expression The Expression node for the token at the front of the list
      *
-     * @param
-     * @return
      */
     public Expression helper(String[] tokenList){
 
@@ -84,6 +90,20 @@ public class Interp {
     }
 
     /**
+     * This takes the arraylist of tokens and converts it to an array
+     *
+     * @param tokenList The arraylist of tokens
+     * @return String[] Returns the array of tokens
+     */
+    public String[] arrayListToArray(ArrayList<String> tokenList){
+        String[] arr = new String[tokenList.size()];
+        for (int i = 0; i < tokenList.size(); i++){
+            arr[i] = tokenList.get(i);
+        }
+        return arr;
+    }
+
+    /**
      * Reads in the expression in prefix form and prints the expression in
      * infix form and the evaluation of the expression.
      */
@@ -100,10 +120,7 @@ public class Interp {
                 String[] tokens = expression.split(" ");
                 ArrayList<String> tokenList = new ArrayList<String>
                         (Arrays.asList(tokens));
-                String[] arr = new String[tokenList.size()];
-                for (int i = 0; i < tokenList.size(); i++){
-                    arr[i] = tokenList.get(i);
-                }
+                String[] arr = arrayListToArray(tokenList);
                 Expression expression1 = helper(arr);
                 System.out.println("Emit: " + expression1.emit());
                 System.out.println("Evaluate: " + expression1.evaluate());
