@@ -46,7 +46,6 @@ public class Heroes {
      * Lion tank name
      */
     public final static String LION_TANK = "Aslan";
-
     /**
      * Get the name of the hero based on their role and team.
      *

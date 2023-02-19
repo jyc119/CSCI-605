@@ -1,5 +1,5 @@
 package hw4.heroes;
-import hw4.heroes.Heroes.Role
+import hw4.heroes.Heroes.Role;
 import hw4.game.Team;
 
 public abstract class Hero {
