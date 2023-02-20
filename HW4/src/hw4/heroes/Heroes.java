@@ -1,4 +1,5 @@
-package hw4.heroes;/*
+package hw4.heroes;
+/*
  * file: game.Heroes.java
  */
 
