@@ -12,11 +12,27 @@ public abstract class Hero {
 
     private Party party;
 
-    public Hero(String name, int heores){}
+    public Hero(String name, int health){}
+
+    public static int getHeroHealth(Role role){
+        if (role == Role.BERSERKER){
+            return 30;
+        }
+        else if (role == Role.HEALER){
+            return 35;
+        }
+        else{
+            return 40;
+        }
+    }
 
     public static Hero createHero(Role role, Team team, Party party){
         Heroes heroes = new Heroes();
         String heroName = Heroes.getName(team,role);
+        int heroHealth = getHeroHealth(role);
+
+        return new Hero(heroName, heroHealth);
+
     }
 
     public String getName(){return name;}
@@ -26,7 +42,6 @@ public abstract class Hero {
     public Role getRole(){return role;}
 
     public Party getParty(){return party;}
-
 
 
 
