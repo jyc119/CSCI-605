@@ -4,15 +4,17 @@ import hw4.game.Team;
 
 public abstract class Hero {
 
-    private String name;
-
     private Role role;
 
     private Team team;
 
     private Party party;
 
-    public Hero(String name, int health){}
+    private Heroes heroes;
+
+    public Hero(String name, int health){
+        this.heroes = new Heroes();
+    }
 
     public static int getHeroHealth(Role role){
         if (role == Role.BERSERKER){
@@ -35,7 +37,7 @@ public abstract class Hero {
 
     }
 
-    public String getName(){return name;}
+    public String getName(){return Heroes.getName(team,role);}
 
     public Team getTeam(){return team;}
 

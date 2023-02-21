@@ -1,7 +1,13 @@
 package hw4.game;
 
 import hw4.heroes.Hero;
+import hw4.heroes.Heroes;
 import hw4.heroes.Party;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class HeroParty implements Party {
 
@@ -10,6 +16,8 @@ public class HeroParty implements Party {
     private int seed;
 
     private Hero hero;
+
+    private List<Hero> heroes;
     /**
      * Create the party. Here we associate the team with the party.
      * We then add the heroes in the following order: Berserker,
@@ -23,6 +31,12 @@ public class HeroParty implements Party {
      * @param seed the random number generator seed
      */
     public HeroParty(Team team, int seed){
+        this.heroes = new LinkedList<>();
+        this.heroes.add(Hero.create(Heroes.Role.BERSERKER, team, this));
+        this.heroes.add(Hero.create(Heroes.Role.HEALER, team, this));
+        this.heroes.add(Hero.create(Heroes.Role.TANK, team, this));
+
+        Collections.shuffle(this.heroes, new Random(seed));
 
     }
     /**
@@ -33,7 +47,7 @@ public class HeroParty implements Party {
      */
     @Override
     public void addHero(Hero hero) {
-
+        heroes.add(hero);
     }
 
     /**
@@ -44,6 +58,7 @@ public class HeroParty implements Party {
      */
     @Override
     public Hero removeHero() {
+        heroes.pop();
     }
     /**
      * Description copied from interface: Party
@@ -53,6 +68,7 @@ public class HeroParty implements Party {
      */
     @Override
     public int numHeroes() {
+
     }
     /**
      * Description copied from interface: Party
