@@ -21,8 +21,8 @@ public class Berserker extends Hero{
     }
 
     @Override
-    public void attack() {
-
+    public void attack(Hero enemy) {
+        enemy.takeDamage(ATTACK_DAMAGE);
     }
 
     @Override

@@ -45,17 +45,15 @@ public abstract class Hero {
 
     public Party getParty(){return party;}
 
-    public abstract void takeDamage();
 
     public abstract void takeDamage(int damage);
 
-    public abstract void attack();
-
-    public abstract void heal();
+    public abstract void attack(Hero enemy);
 
     public abstract void heal(int heal);
 
     public String hasFallen(String hero){
         return hero + " has fallen!";
     }
+    public String attackMessage()
 }

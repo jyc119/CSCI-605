@@ -1,23 +1,34 @@
 package hw4.heroes;
 
 public class Healer extends Hero implements Party{
+    private static final int BASE_HP = 35;
     public int HIT_POINTS = 35;
     public static final int ATTACK_DAMAGE = 10;
     public static final int HEAL_AMOUNT = 10;
 
     @Override
-    public void takeDamage() {
+    public void takeDamage(int damage) {
+        this.HIT_POINTS -= damage;
+        if (this.HIT_POINTS <= 0){
+            super.hasFallen(getName());
+        }
+    }
+
+    @Override
+    public void attack(Hero enemy) {
+        heal(HEAL_AMOUNT);
+
+
+        enemy.takeDamage(ATTACK_DAMAGE);
 
     }
 
     @Override
-    public void attack() {
-
-    }
-
-    @Override
-    public void heal() {
-
+    public void heal(int heal) {
+        this.HIT_POINTS += heal;
+        if (this.HIT_POINTS > BASE_HP){
+            this.HIT_POINTS = BASE_HP;
+        }
     }
 
     @Override
