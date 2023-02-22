@@ -1,11 +1,17 @@
 package hw4.heroes;
 
+import hw4.game.*;
+
 public class Healer extends Hero implements Party{
     public static final int BASE_HP = 35;
     public int HIT_POINTS = 35;
     public static final int ATTACK_DAMAGE = 10;
     public static final int HEAL_AMOUNT = 10;
 
+
+    public Healer(Team team, Party party){
+
+    }
     @Override
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage;

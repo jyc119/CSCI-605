@@ -10,9 +10,13 @@ public abstract class Hero {
 
     private Party party;
 
-    private Heroes heroes;
+    private String name;
+
+    private int health;
 
     public Hero(String name, int health){
+        this.name = name;
+        this.health = health;
     }
 
     public static int getHeroHealth(Role role){
@@ -28,12 +32,19 @@ public abstract class Hero {
     }
 
     public static Hero createHero(Role role, Team team, Party party){
-        Heroes heroes = new Heroes();
         String heroName = Heroes.getName(team,role);
         int heroHealth = getHeroHealth(role);
 
         if (role == Role.BERSERKER){
             return new Berserker(team);
+        }
+
+        else if (role == Role.HEALER){
+            return new Healer(team, party);
+        }
+
+        else{
+            return new Tank(team);
         }
 
     }
