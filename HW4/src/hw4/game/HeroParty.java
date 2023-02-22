@@ -3,6 +3,7 @@ package hw4.game;
 import hw4.heroes.Hero;
 import hw4.heroes.Heroes;
 import hw4.heroes.Party;
+import java.util.Collections;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -37,7 +38,6 @@ public class HeroParty implements Party {
         this.heroes.add(Hero.create(Heroes.Role.TANK, team, this));
 
         Collections.shuffle(this.heroes, new Random(seed));
-
     }
     /**
      * Description copied from interface: Party
@@ -89,7 +89,7 @@ public class HeroParty implements Party {
     public List<Hero> getHeroes() {
     }
     /**
-     * Returns a string representation of th party.
+     * Returns a string representation of the party.
      *
      * {Dragons|Lions}:
      * Hero1, Role, currentHP/maxHP
@@ -100,7 +100,5 @@ public class HeroParty implements Party {
      * @return the string
      */
     @Override
-    public String toString(){
-
-    }
+    public String toString(){}
 }

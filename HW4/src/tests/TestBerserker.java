@@ -112,6 +112,5 @@ public class TestBerserker {
                 "Simba, BERSERKER, 0/30",
                 lionBerserker.toString());
         assertEquals("Lion Berserker has fallen", true, lionBerserker.hasFallen());
-
     }
 }

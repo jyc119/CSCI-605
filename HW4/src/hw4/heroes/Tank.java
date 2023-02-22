@@ -12,4 +12,19 @@ public class Tank extends Hero {
     public Tank(Team team){
 
     }
+
+    @Override
+    public void takeDamage() {
+
+    }
+
+    @Override
+    public void attack() {
+
+    }
+
+    @Override
+    public void heal() {
+
+    }
 }
