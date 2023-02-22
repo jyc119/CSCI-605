@@ -4,12 +4,12 @@ import hw4.game.Team;
 
 public class Berserker extends Hero{
 
-    private static final int BASE_HP = 30;
+    public static final int BASE_HP = 30;
     private int HIT_POINTS = 30;
     public static final int ATTACK_DAMAGE = 20;
-    private final Team team;
 
-    public Berserker(Team){
+    public Berserker(Team team){
+        super.
     }
 
     @Override

@@ -3,7 +3,7 @@ package hw4.heroes;
 import hw4.game.*;
 
 public class Tank extends Hero {
-    private static final int BASE_HP = 40;
+    public static final int BASE_HP = 40;
     public int HIT_POINTS = 40;
     public static final int ATTACK_DAMAGE = 15;
 
