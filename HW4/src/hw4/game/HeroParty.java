@@ -58,7 +58,9 @@ public class HeroParty implements Party {
      */
     @Override
     public Hero removeHero() {
-        heroes.pop();
+        Hero removedHero = heroes.get(0);
+        heroes.remove(0);
+        return removedHero;
     }
     /**
      * Description copied from interface: Party
@@ -68,7 +70,7 @@ public class HeroParty implements Party {
      */
     @Override
     public int numHeroes() {
-
+        return heroes.size();
     }
     /**
      * Description copied from interface: Party
@@ -78,6 +80,7 @@ public class HeroParty implements Party {
      */
     @Override
     public Team getTeam() {
+        return team;
     }
     /**
      * Description copied from interface: Party
@@ -87,6 +90,7 @@ public class HeroParty implements Party {
      */
     @Override
     public List<Hero> getHeroes() {
+        return heroes;
     }
     /**
      * Returns a string representation of the party.
