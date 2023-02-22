@@ -10,19 +10,21 @@ public abstract class Hero {
 
     private Party party;
 
-    public Hero(String name, int health){
+    private Heroes heroes;
 
+    public Hero(String name, int health){
+        this.heroes = new Heroes();
     }
 
     public static int getHeroHealth(Role role){
         if (role == Role.BERSERKER){
-            return Berserker.BASE_HP;
+            return 30;
         }
         else if (role == Role.HEALER){
-            return Healer.BASE_HP;
+            return 35;
         }
         else{
-            return Tank.BASE_HP;
+            return 40;
         }
     }
 
@@ -31,7 +33,7 @@ public abstract class Hero {
         String heroName = Heroes.getName(team,role);
         int heroHealth = getHeroHealth(role);
 
-        if 
+        return new Hero(heroName, heroHealth);
 
     }
 
@@ -50,14 +52,10 @@ public abstract class Hero {
 
     public abstract void heal(int heal);
 
-    public String hasFallen(){
-        return this + " has fallen!";
-    }
-    public String attackMessage(Hero hero, int damage){
-        return hero + "takes " + String.valueOf(damage) + " damage";
+    public String fellEnemy(String hero){
+        //party.removeHero(hero);
+        return hero + " has fallen!";
     }
 
-    public String toString(){
-        return getName();
-    }
+    public String
 }

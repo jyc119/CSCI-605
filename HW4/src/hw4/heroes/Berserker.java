@@ -4,7 +4,7 @@ import hw4.game.Team;
 
 public class Berserker extends Hero{
 
-    public static final int BASE_HP = 30;
+    private static final int BASE_HP = 30;
     private int HIT_POINTS = 30;
     public static final int ATTACK_DAMAGE = 20;
     private final Team team;
@@ -16,7 +16,7 @@ public class Berserker extends Hero{
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage;
         if (this.HIT_POINTS <= 0) {
-            super.hasFallen();
+            super.fellEnemy(getName());
         }
     }
 

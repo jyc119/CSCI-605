@@ -1,7 +1,7 @@
 package hw4.heroes;
 
 public class Healer extends Hero implements Party{
-    public static final int BASE_HP = 35;
+    private static final int BASE_HP = 35;
     public int HIT_POINTS = 35;
     public static final int ATTACK_DAMAGE = 10;
     public static final int HEAL_AMOUNT = 10;
@@ -10,7 +10,7 @@ public class Healer extends Hero implements Party{
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage;
         if (this.HIT_POINTS <= 0){
-            super.hasFallen();
+            super.fellEnemy(getName());
         }
     }
 
