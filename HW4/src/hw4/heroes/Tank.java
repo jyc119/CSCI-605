@@ -3,7 +3,7 @@ package hw4.heroes;
 import hw4.game.*;
 
 public class Tank extends Hero {
-    private static final int BASE_HP = 40;
+    public static final int BASE_HP = 40;
     public int HIT_POINTS = 40;
     public static final int ATTACK_DAMAGE = 15;
 
@@ -18,7 +18,7 @@ public class Tank extends Hero {
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage * 0.9;
         if (this.HIT_POINTS <= 0) {
-            super.hasFallen(getName());
+            super.hasFallen();
         }
     }
 
