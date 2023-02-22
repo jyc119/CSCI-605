@@ -52,8 +52,10 @@ public abstract class Hero {
 
     public abstract void heal(int heal);
 
-    public String hasFallen(String hero){
+    public String fellEnemy(String hero){
+        //party.removeHero(hero);
         return hero + " has fallen!";
     }
-    public String attackMessage()
+
+    public String
 }

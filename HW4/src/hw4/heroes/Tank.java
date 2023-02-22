@@ -18,7 +18,7 @@ public class Tank extends Hero {
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage * 0.9;
         if (this.HIT_POINTS <= 0) {
-            super.hasFallen(getName());
+            super.fellEnemy(getName());
         }
     }
 

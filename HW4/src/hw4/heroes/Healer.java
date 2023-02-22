@@ -10,7 +10,7 @@ public class Healer extends Hero implements Party{
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage;
         if (this.HIT_POINTS <= 0){
-            super.hasFallen(getName());
+            super.fellEnemy(getName());
         }
     }
 
