@@ -16,16 +16,22 @@ public class Healer extends Hero implements Party{
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage;
         if (this.HIT_POINTS <= 0){
-            super.fellEnemy(getName());
+            super.hasFallen(getName());
         }
+    }
+
+    public String getHealMessage(String hero, int heal){
+        return hero + " heals " + heal + " points";
     }
 
     @Override
     public void attack(Hero enemy) {
-        heal(HEAL_AMOUNT);
+        // heal remaining
 
 
         enemy.takeDamage(ATTACK_DAMAGE);
+        // Heal message for each remaining player on team
+        super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
 
     }
 

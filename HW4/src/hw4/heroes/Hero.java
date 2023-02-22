@@ -68,9 +68,13 @@ public abstract class Hero {
         //party.removeHero(hero);
         return this + " has fallen!";
     }
-
     @Override
     public String toString() {
         return getName();
+    }
+
+    public String getAttackMessage(String hero, int damage){
+        return hero + " takes " + damage + " damage";
+
     }
 }

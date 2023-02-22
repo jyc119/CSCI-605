@@ -16,13 +16,14 @@ public class Berserker extends Hero{
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage;
         if (this.HIT_POINTS <= 0) {
-            super.fellEnemy(getName());
+            super.hasFallen(getName());
         }
     }
 
     @Override
     public void attack(Hero enemy) {
         enemy.takeDamage(ATTACK_DAMAGE);
+        super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
     }
 
     @Override
