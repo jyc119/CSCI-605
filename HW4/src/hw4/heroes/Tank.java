@@ -11,7 +11,7 @@ public class Tank extends Hero {
 
     private Team team;
     public Tank(Team team){
-
+        super(Heroes.getName(team, Heroes.Role.HEALER), BASE_HP);
     }
 
     @Override

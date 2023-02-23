@@ -14,6 +14,7 @@ public abstract class Hero {
 
     private int health;
 
+    public Hero(){}
     public Hero(String name, int health){
         this.name = name;
         this.health = health;

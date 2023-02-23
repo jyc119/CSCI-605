@@ -12,7 +12,7 @@ public class Healer extends Hero{
 
 
     public Healer(Team team, Party party){
-        this.team = team;
+        super(Heroes.getName(team, Heroes.Role.HEALER), BASE_HP);
         this.party = party;
     }
     @Override

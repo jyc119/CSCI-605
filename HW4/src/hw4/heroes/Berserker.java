@@ -9,7 +9,7 @@ public class Berserker extends Hero{
     public static final int ATTACK_DAMAGE = 20;
 
     public Berserker(Team team){
-        super
+        super(Heroes.getName(team, Heroes.Role.BERSERKER), BASE_HP);
     }
 
     @Override
