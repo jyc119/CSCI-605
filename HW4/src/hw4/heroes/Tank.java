@@ -4,20 +4,19 @@ import hw4.game.*;
 
 public class Tank extends Hero {
     public static final int BASE_HP = 40;
-    public int HIT_POINTS = 40;
     public static final int ATTACK_DAMAGE = 15;
-
     public static final int DEFENSE = 10;
 
     private Team team;
     public Tank(Team team){
         super(Heroes.getName(team, Heroes.Role.HEALER), BASE_HP);
+        super.health = BASE_HP;
     }
 
     @Override
     public void takeDamage(int damage) {
-        this.HIT_POINTS -= damage * 0.9;
-        if (this.HIT_POINTS <= 0) {
+        super.health -= damage * 0.9;
+        if (super.health <= 0) {
             super.hasFallen();
         }
     }
@@ -30,9 +29,9 @@ public class Tank extends Hero {
 
     @Override
     public void heal(int heal) {
-        this.HIT_POINTS += heal;
-        if (this.HIT_POINTS > BASE_HP){
-            this.HIT_POINTS = BASE_HP;
+        super.health += heal;
+        if (super.health > BASE_HP){
+            super.health = BASE_HP;
         }
     }
 }
