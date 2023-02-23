@@ -4,7 +4,6 @@ import hw4.game.*;
 
 public class Healer extends Hero{
     public static final int BASE_HP = 35;
-    public int HIT_POINTS = 35;
     public static final int ATTACK_DAMAGE = 10;
     public static final int HEAL_AMOUNT = 10;
     private Team team;
@@ -14,11 +13,12 @@ public class Healer extends Hero{
     public Healer(Team team, Party party){
         super(Heroes.getName(team, Heroes.Role.HEALER), BASE_HP);
         this.party = party;
+        super.health = BASE_HP;
     }
     @Override
     public void takeDamage(int damage) {
-        this.HIT_POINTS -= damage;
-        if (this.HIT_POINTS <= 0){
+        super.health -= damage;
+        if (super.health <= 0){
             super.hasFallen();
         }
     }
@@ -41,9 +41,9 @@ public class Healer extends Hero{
 
     @Override
     public void heal(int heal) {
-        this.HIT_POINTS += heal;
-        if (this.HIT_POINTS > BASE_HP){
-            this.HIT_POINTS = BASE_HP;
+        super.health += heal;
+        if (super.health > BASE_HP){
+            super.health = BASE_HP;
         }
     }
 

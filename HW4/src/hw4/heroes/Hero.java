@@ -65,10 +65,12 @@ public abstract class Hero {
 
     public abstract void heal(int heal);
 
-    public String hasFallen(){
-        //party.removeHero(hero);
-        if
-        return this + " has fallen!";
+    public boolean hasFallen(){
+        if(health <= 0) {
+            return true;
+        }else{
+            return false;
+        }
     }
     @Override
     public String toString() {
