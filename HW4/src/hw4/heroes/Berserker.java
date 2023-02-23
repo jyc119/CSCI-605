@@ -16,7 +16,7 @@ public class Berserker extends Hero{
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage;
         if (this.HIT_POINTS <= 0) {
-            super.hasFallen(getName());
+            super.hasFallen();
         }
     }
 

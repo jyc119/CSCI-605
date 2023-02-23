@@ -2,21 +2,24 @@ package hw4.heroes;
 
 import hw4.game.*;
 
-public class Healer extends Hero implements Party{
+public class Healer extends Hero{
     public static final int BASE_HP = 35;
     public int HIT_POINTS = 35;
     public static final int ATTACK_DAMAGE = 10;
     public static final int HEAL_AMOUNT = 10;
+    private Team team;
+    private Party party;
 
 
     public Healer(Team team, Party party){
-
+        this.team = team;
+        this.party = party;
     }
     @Override
     public void takeDamage(int damage) {
         this.HIT_POINTS -= damage;
         if (this.HIT_POINTS <= 0){
-            super.hasFallen(getName());
+            super.hasFallen();
         }
     }
 
@@ -26,11 +29,12 @@ public class Healer extends Hero implements Party{
 
     @Override
     public void attack(Hero enemy) {
-        // heal remaining
-
-
+        for (int i = 0; i < party.getHeroes().size(); i++) {
+            party.getHeroes().get(i).heal(HEAL_AMOUNT);
+            System.out.println(party.getHeroes().get(i) + " heals " +
+                    HEAL_AMOUNT + " points");
+        }
         enemy.takeDamage(ATTACK_DAMAGE);
-        // Heal message for each remaining player on team
         super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
 
     }
