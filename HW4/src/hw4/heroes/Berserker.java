@@ -10,6 +10,8 @@ public class Berserker extends Hero{
 
     public Berserker(Team team){
         super(Heroes.getName(team, Heroes.Role.BERSERKER), BASE_HP);
+        super.role = Heroes.Role.BERSERKER;
+        super.team = team;
     }
 
     @Override

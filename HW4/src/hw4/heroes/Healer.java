@@ -47,23 +47,4 @@ public class Healer extends Hero{
         }
     }
 
-    @Override
-    public void addHero(Hero hero) {
-
-    }
-
-    @Override
-    public Hero removeHero() {
-        return null;
-    }
-
-    @Override
-    public int numHeroes() {
-        return 0;
-    }
-
-    @Override
-    public List<Hero> getHeroes() {
-        return null;
-    }
 }

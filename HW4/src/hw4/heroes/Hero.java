@@ -4,15 +4,15 @@ import hw4.game.Team;
 
 public abstract class Hero {
 
-    private Role role;
+    protected Role role;
 
-    private Team team;
+    protected Team team;
 
     private Party party;
 
     private String name;
 
-    private int health;
+    protected int health;
 
     public Hero(){}
     public Hero(String name, int health){
@@ -67,6 +67,7 @@ public abstract class Hero {
 
     public String hasFallen(){
         //party.removeHero(hero);
+        if
         return this + " has fallen!";
     }
     @Override

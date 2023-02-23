@@ -1,10 +1,7 @@
 package hw4.heroes;
 /*
- * file: game.Heroes.java
+ * file: game.hw4.heroes.Heroes.java
  */
-
-import hw4.game.Team;
-import hw4.game.Team.*;
 
 /**
  * Public data about all the heroes including the roles and unique names
@@ -12,6 +9,7 @@ import hw4.game.Team.*;
  *
  * @author RIT CS
  */
+import hw4.game.Team;
 public class Heroes {
     /**
      * The three kinds of heroes

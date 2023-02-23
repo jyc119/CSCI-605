@@ -1,11 +1,7 @@
-package hw4.game;
-
 import hw4.heroes.Hero;
-import hw4.heroes.Heroes;
-import hw4.heroes.Party;
-import java.util.Collections;
 
 import java.util.Collections;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -22,7 +18,7 @@ public class HeroParty implements Party {
     /**
      * Create the party. Here we associate the team with the party.
      * We then add the heroes in the following order: Berserker,
-     * Healer and Tank. The collection is then shuffled using the random number
+     * hw4.heroes.Healer and hw4.heroes.Tank. The collection is then shuffled using the random number
      * generator seed value. To shuffle the collection of heroes (assumed to be
      * either an ArrayList or LinkedList):
      *
@@ -40,7 +36,7 @@ public class HeroParty implements Party {
         Collections.shuffle(this.heroes, new Random(seed));
     }
     /**
-     * Description copied from interface: Party
+     * Description copied from interface: hw4.heroes.Party
      * Add a hero to the back of the collection.
      *
      * @param hero the new hero
@@ -51,7 +47,7 @@ public class HeroParty implements Party {
     }
 
     /**
-     * Description copied from interface: Party
+     * Description copied from interface: hw4.heroes.Party
      * Remove the hero at the front of the collection.
      *
      * @return the hero at the front
@@ -63,7 +59,7 @@ public class HeroParty implements Party {
         return removedHero;
     }
     /**
-     * Description copied from interface: Party
+     * Description copied from interface: hw4.heroes.Party
      * Get the number of fallen heroes.
      *
      * @return the number of heroes in the party
@@ -73,7 +69,7 @@ public class HeroParty implements Party {
         return heroes.size();
     }
     /**
-     * Description copied from interface: Party
+     * Description copied from interface: hw4.heroes.Party
      * The team which this party is affiliated with.
      *
      * @return the team
@@ -83,7 +79,7 @@ public class HeroParty implements Party {
         return team;
     }
     /**
-     * Description copied from interface: Party
+     * Description copied from interface: hw4.heroes.Party
      * Get all the undefeated heroes in the party.
      *
      * @return the party

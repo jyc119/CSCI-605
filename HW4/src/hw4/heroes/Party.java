@@ -1,7 +1,7 @@
 package hw4.heroes;
 
-import hw4.game.Team;
 import java.util.List;
+import hw4.game.Team;
 
 public interface Party {
 

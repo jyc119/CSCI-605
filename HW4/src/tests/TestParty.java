@@ -24,9 +24,9 @@ public class TestParty implements Party {
 
     public TestParty(Team team) {
         this.heroes = new LinkedList<>();
-        this.heroes.add(Hero.create(Role.BERSERKER, team, this));
-        this.heroes.add(Hero.create(Role.HEALER, team, this));
-        this.heroes.add(Hero.create(Role.TANK, team, this));
+        this.heroes.add(Hero.createHero(Role.BERSERKER, team, this));
+        this.heroes.add(Hero.createHero(Role.HEALER, team, this));
+        this.heroes.add(Hero.createHero(Role.TANK, team, this));
     }
 
     @Override
