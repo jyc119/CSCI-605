@@ -36,14 +36,15 @@ public class Healer extends Hero{
 
     @Override
     public void attack(Hero enemy) {
-        ArrayList<Integer> partyList = getSeedOrder(0);
-        for(int i=0; i<party.getHeroes().size(); i++) {
-            party.getHeroes().get(partyList.get(i)).heal(HEAL_AMOUNT);
+        //ArrayList<Integer> partyList = getSeedOrder(0);
+        for(int i = 0; i < party.getHeroes().size(); i++) {
+            //party.getHeroes().get(partyList.get(i)).heal(HEAL_AMOUNT);
+            party.getHeroes().get(i).heal(HEAL_AMOUNT);
         }
         enemy.takeDamage(ATTACK_DAMAGE);
     }
 
-    public ArrayList<Integer> getSeedOrder(int seed){
+    /*public ArrayList<Integer> getSeedOrder(int seed){
         ArrayList<Integer> l1 = new ArrayList<Integer>();
         switch (seed){
             case 0,3:
@@ -65,7 +66,7 @@ public class Healer extends Hero{
                 return l1;
         }
         return l1;
-    }
+    }*/
 
     @Override
     public void heal(int heal) {

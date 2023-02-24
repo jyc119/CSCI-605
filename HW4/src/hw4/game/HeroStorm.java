@@ -26,10 +26,28 @@ public class HeroStorm {
      * outputs for details on the output formatting.
      */
     public void play(){
-        HeroParty party1 = new HeroParty(Team.DRAGON, 1);
-        HeroParty party2 = new HeroParty(Team.LION, 2);
-        System.out.println(party1);
-        System.out.println(party2);
+        HeroParty party1 = new HeroParty(Team.DRAGON, 0);
+        HeroParty party2 = new HeroParty(Team.LION, 1);
+        int battle = 1;
+        while (party1.numHeroes() != 0 & party2.numHeroes() != 0){
+            System.out.println("Battle #" + battle);
+            System.out.println("==========");
+            System.out.println(party1);
+            System.out.println(party2);
+            System.out.println("*** " + party1.getHeroes().get(0).getName() +
+                    " vs " + party2.getHeroes().get(0).getName() + "!\n");
+            party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
+            if (!party2.getHeroes().get(0).hasFallen()){
+                party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
+            } else {
+                party2.removeHero();
+            }
+            if (party1.getHeroes().get(0).hasFallen()){
+                party1.removeHero();
+            }
+            System.out.println();
+            battle++;
+        }
     }
     /**
      * The main method. It checks the number of command line arguments,

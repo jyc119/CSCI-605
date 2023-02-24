@@ -61,7 +61,7 @@ public class HeroParty implements Party {
     public Hero removeHero() {
         Hero removedHero = heroes.get(0);
         heroes.remove(0);
-        return removedHero;
+        return heroes.get(0);
     }
     /**
      * Description copied from interface: hw4.heroes.Party
@@ -106,14 +106,11 @@ public class HeroParty implements Party {
      */
     @Override
     public String toString(){
-        int counter = 1;
         StringBuilder partyRepresentation = new StringBuilder();
-        partyRepresentation.append("Battle #" + counter + "\n");
-        partyRepresentation.append("==========\n");
         partyRepresentation.append(getTeam() + ":\n");
         partyRepresentation.append(getHeroes().get(0).toString() + "\n");
         partyRepresentation.append(getHeroes().get(1).toString() + "\n");
-        partyRepresentation.append(getHeroes().get(2).toString() + "\n" + "\n");
+        partyRepresentation.append(getHeroes().get(2).toString() + "\n");
         return partyRepresentation.toString();
     }
 }
