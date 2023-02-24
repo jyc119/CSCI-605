@@ -21,14 +21,39 @@ import hw4.game.Team;
  */
 public interface Party {
 
+    /**
+     * Add a hero to the back of the collection.
+     *
+     * @param hero the new hero
+     */
     void addHero(Hero hero);
 
+    /**
+     * Remove the hero at the front of the collection.
+     *
+     * @return the hero at the front that was removed
+     */
     Hero removeHero();
 
+    /**
+     * Get the number of fallen heroes.
+     *
+     * @return the number of heroes in the party
+     */
     int numHeroes();
 
+    /**
+     * The team which this party is affiliated with.
+     *
+     * @return the team
+     */
     Team getTeam();
 
+    /**
+     * Get all the undefeated heroes in the party.
+     *
+     * @return the party
+     */
     List<Hero> getHeroes();
 
 }

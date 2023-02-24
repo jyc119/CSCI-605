@@ -65,7 +65,7 @@ public class HeroParty implements Party {
      * Description copied from interface: hw4.heroes.Party
      * Remove the hero at the front of the collection.
      *
-     * @return the hero at the front
+     * @return the hero at the front that was removed
      */
     @Override
     public Hero removeHero() {
@@ -73,6 +73,7 @@ public class HeroParty implements Party {
         heroes.remove(0);
         return removedHero;
     }
+
     /**
      * Description copied from interface: hw4.heroes.Party
      * Get the number of fallen heroes.
@@ -83,6 +84,7 @@ public class HeroParty implements Party {
     public int numHeroes() {
         return heroes.size();
     }
+
     /**
      * Description copied from interface: hw4.heroes.Party
      * The team which this party is affiliated with.
@@ -93,6 +95,7 @@ public class HeroParty implements Party {
     public Team getTeam() {
         return team;
     }
+
     /**
      * Description copied from interface: hw4.heroes.Party
      * Get all the undefeated heroes in the party.
