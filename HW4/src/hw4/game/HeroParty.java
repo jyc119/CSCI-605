@@ -4,11 +4,7 @@ import hw4.heroes.Hero;
 import hw4.heroes.Heroes;
 import hw4.heroes.Party;
 
-import java.util.Collections;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class HeroParty implements Party {
 
@@ -32,7 +28,7 @@ public class HeroParty implements Party {
      * @param seed the random number generator seed
      */
     public HeroParty(Team team, int seed){
-        this.heroes = new LinkedList<>();
+        this.heroes = new ArrayList<>();
         this.heroes.add(Hero.createHero(Heroes.Role.BERSERKER, team, this));
         this.heroes.add(Hero.createHero(Heroes.Role.HEALER, team, this));
         this.heroes.add(Hero.createHero(Heroes.Role.TANK, team, this));
@@ -112,5 +108,9 @@ public class HeroParty implements Party {
         partyRepresentation.append(getHeroes().get(1).toString() + "\n");
         partyRepresentation.append(getHeroes().get(2).toString() + "\n");
         return partyRepresentation.toString();
+    }
+    public void getNextRotation(){
+        Hero hero = removeHero();
+        addHero(hero);
     }
 }

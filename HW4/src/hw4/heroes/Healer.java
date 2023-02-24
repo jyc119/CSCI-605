@@ -29,17 +29,20 @@ public class Healer extends Hero{
         System.out.println(getName()
                 + " takes " + damage + " damage");
     }
-
-    public String getHealMessage(String hero, int heal){
-        return hero + " heals " + heal + " points";
-    }
-
     @Override
     public void attack(Hero enemy) {
         //ArrayList<Integer> partyList = getSeedOrder(0);
-        for(int i = 0; i < party.getHeroes().size(); i++) {
-            //party.getHeroes().get(partyList.get(i)).heal(HEAL_AMOUNT);
-            party.getHeroes().get(i).heal(HEAL_AMOUNT);
+        if (this.party.getHeroes().get(0).getRole() != Heroes.Role.HEALER){
+            this.heal(HEAL_AMOUNT);
+            for(int i = 0; i < party.getHeroes().size(); i++) {
+                //party.getHeroes().get(partyList.get(i)).heal(HEAL_AMOUNT);
+                party.getHeroes().get(i).heal(HEAL_AMOUNT);
+            }
+        } else {
+            for (int i = 0; i < party.getHeroes().size(); i++) {
+                //party.getHeroes().get(partyList.get(i)).heal(HEAL_AMOUNT);
+                party.getHeroes().get(i).heal(HEAL_AMOUNT);
+            }
         }
         enemy.takeDamage(ATTACK_DAMAGE);
     }

@@ -73,7 +73,7 @@ public class TestHealer {
     public void test2Attack() {
         dragonHealer.attack(lionHealer);
         assertEquals("Dragon Healer attacks Lion Healer",
-                //"Spyro heals 10 points" + System.getProperty("line.separator")
+                "Spyro heals 10 points" + System.getProperty("line.separator") +
                 "Trogdor heals 10 points" + System.getProperty("line.separator") +
                 "Spyro heals 10 points" + System.getProperty("line.separator") +
                 "Smaug heals 10 points" + System.getProperty("line.separator") +

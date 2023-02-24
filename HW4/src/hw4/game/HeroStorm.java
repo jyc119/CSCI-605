@@ -34,16 +34,36 @@ public class HeroStorm {
             System.out.println("==========");
             System.out.println(party1);
             System.out.println(party2);
-            System.out.println("*** " + party1.getHeroes().get(0).getName() +
-                    " vs " + party2.getHeroes().get(0).getName() + "!\n");
-            party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
-            if (!party2.getHeroes().get(0).hasFallen()){
-                party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
+            if (battle % 2 != 0){
+                System.out.println("*** " + party1.getHeroes().get(0).getName() +
+                        " vs " + party2.getHeroes().get(0).getName() + "!\n");
+                party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
+                if (!party2.getHeroes().get(0).hasFallen()){
+                    party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
+                    party1.getNextRotation();
+                } else {
+                    party2.removeHero();
+                }
+                if (party1.getHeroes().get(0).hasFallen()){
+                    party1.removeHero();
+                } else {
+                    party2.getNextRotation();
+                }
             } else {
-                party2.removeHero();
-            }
-            if (party1.getHeroes().get(0).hasFallen()){
-                party1.removeHero();
+                System.out.println("*** " + party2.getHeroes().get(0).getName() +
+                        " vs " + party1.getHeroes().get(0).getName() + "!\n");
+                party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
+                if (!party1.getHeroes().get(0).hasFallen()) {
+                    party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
+                    party2.getNextRotation();
+                } else {
+                    party1.removeHero();
+                }
+                if (party2.getHeroes().get(0).hasFallen()) {
+                    party2.removeHero();
+                } else {
+                    party1.getNextRotation();
+                }
             }
             System.out.println();
             battle++;
