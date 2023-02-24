@@ -104,9 +104,9 @@ public class HeroParty implements Party {
     public String toString(){
         StringBuilder partyRepresentation = new StringBuilder();
         partyRepresentation.append(getTeam() + ":\n");
-        partyRepresentation.append(getHeroes().get(0).toString() + "\n");
-        partyRepresentation.append(getHeroes().get(1).toString() + "\n");
-        partyRepresentation.append(getHeroes().get(2).toString() + "\n");
+        for(int i=0; i<numHeroes();i++){
+            partyRepresentation.append(getHeroes().get(i).toString() + "\n");
+        }
         return partyRepresentation.toString();
     }
     public void getNextRotation(){
