@@ -2,9 +2,8 @@ package hw4.game;
 
 public class HeroStorm {
 
-    private int dragonSeed;
-
-    private int lionSeed;
+    private static int dragonSeed;
+    private static int lionSeed;
     /**
      * Create the parties and initialize the round counter.
      *
@@ -27,7 +26,10 @@ public class HeroStorm {
      * outputs for details on the output formatting.
      */
     public void play(){
-
+        HeroParty party1 = new HeroParty(Team.DRAGON, 1);
+        HeroParty party2 = new HeroParty(Team.LION, 2);
+        System.out.println(party1);
+        System.out.println(party2);
     }
     /**
      * The main method. It checks the number of command line arguments,
@@ -37,6 +39,14 @@ public class HeroStorm {
      * lion random number generator seeds
      */
     public static void main(String[] args){
+        //if (args.length != 3) {
+        //    System.out.println("Usage: java HeroStorm " +
+        //            "dragon_seed_# lion_seed_#");
+        //} else {
+        HeroStorm startGame = new HeroStorm(dragonSeed, lionSeed);
+        startGame.play();
 
+
+        //}
     }
 }

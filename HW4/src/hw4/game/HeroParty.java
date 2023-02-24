@@ -22,7 +22,7 @@ public class HeroParty implements Party {
     /**
      * Create the party. Here we associate the team with the party.
      * We then add the heroes in the following order: Berserker,
-     * hw4.heroes.Healer and hw4.heroes.Tank. The collection is then shuffled using the random number
+     * Healer and Tank. The collection is then shuffled using the random number
      * generator seed value. To shuffle the collection of heroes (assumed to be
      * either an ArrayList or LinkedList):
      *
@@ -36,6 +36,7 @@ public class HeroParty implements Party {
         this.heroes.add(Hero.createHero(Heroes.Role.BERSERKER, team, this));
         this.heroes.add(Hero.createHero(Heroes.Role.HEALER, team, this));
         this.heroes.add(Hero.createHero(Heroes.Role.TANK, team, this));
+        this.team = team;
 
         Collections.shuffle(this.heroes, new Random(seed));
     }
@@ -103,6 +104,16 @@ public class HeroParty implements Party {
      *
      * @return the string
      */
-    //@Override
-    //public String toString(){}
+    @Override
+    public String toString(){
+        int counter = 1;
+        StringBuilder partyRepresentation = new StringBuilder();
+        partyRepresentation.append("Battle #" + counter + "\n");
+        partyRepresentation.append("==========\n");
+        partyRepresentation.append(getTeam() + ":\n");
+        partyRepresentation.append(getHeroes().get(0).toString() + "\n");
+        partyRepresentation.append(getHeroes().get(1).toString() + "\n");
+        partyRepresentation.append(getHeroes().get(2).toString() + "\n" + "\n");
+        return partyRepresentation.toString();
+    }
 }
