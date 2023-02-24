@@ -7,13 +7,8 @@ public abstract class Hero {
     protected Role role;
 
     protected Team team;
-
-    private Party party;
-
-    private String name;
-
+    protected String name;
     protected int health;
-
     public Hero(){}
     public Hero(String name, int health){
         this.name = name;
@@ -53,9 +48,6 @@ public abstract class Hero {
 
     public Role getRole(){return role;}
 
-    public Party getParty(){return party;}
-
-
     public abstract void takeDamage(int damage);
 
     public abstract void attack(Hero enemy);
@@ -64,7 +56,7 @@ public abstract class Hero {
 
     public boolean hasFallen(){
         if(health <= 0) {
-            System.out.println(getName() + " has fallen");
+            System.out.println(getName() + " has fallen!");
             return true;
         }else{
             return false;

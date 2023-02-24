@@ -9,11 +9,6 @@ import java.util.*;
 public class HeroParty implements Party {
 
     private Team team;
-
-    private int seed;
-
-    private Hero hero;
-
     private List<Hero> heroes;
     /**
      * Create the party. Here we associate the team with the party.

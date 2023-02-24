@@ -1,7 +1,6 @@
 package hw4.heroes;
 
-import hw4.game.Team;
-
+import hw4.game.*;
 
 public class Berserker extends Hero{
 
@@ -21,7 +20,7 @@ public class Berserker extends Hero{
         if (super.health <= 0) {
             super.health = 0;
         }
-        System.out.println(getName()
+        System.out.println(super.name
                 + " takes " + damage + " damage");
     }
 
@@ -36,6 +35,6 @@ public class Berserker extends Hero{
         if (super.health > BASE_HP){
             super.health = BASE_HP;
         }
-        System.out.println(getName() + " heals " + heal + " points");
+        System.out.println(super.name + " heals " + heal + " points");
     }
 }

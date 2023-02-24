@@ -11,6 +11,8 @@ public class HeroStorm {
      * @param lionSeed the seed for the lion random number generator
      */
     public HeroStorm(int dragonSeed, int lionSeed){
+        this.dragonSeed = dragonSeed;
+        this.lionSeed = lionSeed;
     }
 
     /**
@@ -26,8 +28,8 @@ public class HeroStorm {
      * outputs for details on the output formatting.
      */
     public void play(){
-        HeroParty party1 = new HeroParty(Team.DRAGON, 0);
-        HeroParty party2 = new HeroParty(Team.LION, 1);
+        HeroParty party1 = new HeroParty(Team.DRAGON, dragonSeed);
+        HeroParty party2 = new HeroParty(Team.LION, lionSeed );
         int battle = 1;
         while (party1.numHeroes() != 0 & party2.numHeroes() != 0){
             System.out.println("Battle #" + battle);
@@ -35,8 +37,8 @@ public class HeroStorm {
             System.out.println(party1);
             System.out.println(party2);
             if (battle % 2 != 0){
-                System.out.println("*** " + party1.getHeroes().get(0).getName() +
-                        " vs " + party2.getHeroes().get(0).getName() + "!\n");
+                System.out.println("*** " + party1.getHeroes().get(0).getName()
+                        + " vs " + party2.getHeroes().get(0).getName() + "!\n");
                 party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
                 if (!party2.getHeroes().get(0).hasFallen()){
                     party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
@@ -82,14 +84,16 @@ public class HeroStorm {
      * lion random number generator seeds
      */
     public static void main(String[] args){
-        //if (args.length != 3) {
-        //    System.out.println("Usage: java HeroStorm " +
-        //            "dragon_seed_# lion_seed_#");
-        //} else {
-        HeroStorm startGame = new HeroStorm(dragonSeed, lionSeed);
+        if (args.length != 2) {
+            System.out.println("Usage: java HeroStorm " +
+                    "dragon_seed_# lion_seed_#");
+        } else {
+        int dragSeed = Integer.parseInt(args[0]);
+        int lSeed = Integer.parseInt(args[1]);
+        HeroStorm startGame = new HeroStorm(dragSeed, lSeed);
         startGame.play();
 
 
-        //}
+        }
     }
 }
