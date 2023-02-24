@@ -1,8 +1,27 @@
+/*
+ * HW3: Arithmetic Interpreter
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package hw4.game;
 
+/**
+ * Main class, takes in seed parameters and produces gameplay
+ * <pre>
+ * $ java HeroStorm dragon_seed_# lion_seed_#
+ * Usage: java HeroStorm dragon_seed_# lion_seed_#
+ *</pre>
+ *
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
 public class HeroStorm {
 
+    /** Seed for dragon random number generator */
     private static int dragonSeed;
+
+    /** Seed for lion random number generator */
     private static int lionSeed;
     /**
      * Create the parties and initialize the round counter.

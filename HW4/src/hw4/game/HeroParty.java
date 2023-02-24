@@ -1,3 +1,9 @@
+/*
+ * HW3: Arithmetic Interpreter
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package hw4.game;
 
 import hw4.heroes.Hero;
@@ -6,9 +12,22 @@ import hw4.heroes.Party;
 
 import java.util.*;
 
+/**
+ * Creates the arraylist of heroes
+ * <pre>
+ * $ java HeroStorm dragon_seed_# lion_seed_#
+ * Usage: java HeroStorm dragon_seed_# lion_seed_#
+ *</pre>
+ *
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
 public class HeroParty implements Party {
 
+    /** Team associated with hero */
     private Team team;
+
+    /** List of heroes in party */
     private List<Hero> heroes;
     /**
      * Create the party. Here we associate the team with the party.
@@ -104,6 +123,11 @@ public class HeroParty implements Party {
         }
         return partyRepresentation.toString();
     }
+
+    /**
+     * Rotates the order of the heroes in arraylist by removing front hero
+     * and placing him at the end of the list
+     */
     public void getNextRotation(){
         Hero hero = removeHero();
         addHero(hero);
