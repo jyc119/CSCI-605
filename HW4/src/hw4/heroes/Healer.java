@@ -13,6 +13,8 @@ public class Healer extends Hero{
     public Healer(Team team, Party party){
         super(Heroes.getName(team, Heroes.Role.HEALER), BASE_HP);
         this.party = party;
+        super.role = Heroes.Role.HEALER;
+        super.team = team;
         super.health = BASE_HP;
     }
     @Override
@@ -28,15 +30,14 @@ public class Healer extends Hero{
     }
 
     @Override
-    public void attack(Hero enemy) {
+    public String attack(Hero enemy) {
         for (int i = 0; i < party.getHeroes().size(); i++) {
             party.getHeroes().get(i).heal(HEAL_AMOUNT);
             System.out.println(party.getHeroes().get(i) + " heals " +
                     HEAL_AMOUNT + " points");
         }
         enemy.takeDamage(ATTACK_DAMAGE);
-        super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
-
+        return enemy + " takes " + ATTACK_DAMAGE + " damage";//super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
     }
 
     @Override

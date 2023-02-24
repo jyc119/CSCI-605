@@ -33,9 +33,6 @@ public abstract class Hero {
     }
 
     public static Hero createHero(Role role, Team team, Party party){
-        String heroName = Heroes.getName(team,role);
-        int heroHealth = getHeroHealth(role);
-
         if (role == Role.BERSERKER){
             return new Berserker(team);
         }
@@ -61,7 +58,7 @@ public abstract class Hero {
 
     public abstract void takeDamage(int damage);
 
-    public abstract void attack(Hero enemy);
+    public abstract String attack(Hero enemy);
 
     public abstract void heal(int heal);
 
@@ -74,11 +71,12 @@ public abstract class Hero {
     }
     @Override
     public String toString() {
-        return getName();
+        return getName() + ", " + getRole() + ", " +
+                this.health + "/" + getHeroHealth(getRole());
     }
 
-    public String getAttackMessage(String hero, int damage){
-        return hero + " takes " + damage + " damage";
+    //public String getAttackMessage(String hero, int damage){
+      //  return hero + " takes " + damage + " damage";
 
-    }
+   // }
 }

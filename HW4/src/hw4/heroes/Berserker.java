@@ -23,9 +23,10 @@ public class Berserker extends Hero{
     }
 
     @Override
-    public void attack(Hero enemy) {
+    public String attack(Hero enemy) {
         enemy.takeDamage(ATTACK_DAMAGE);
-        super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
+        return enemy.getName() + " takes " + ATTACK_DAMAGE + " damage"; //super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE) + "\n"
+                //+ enemy.toString();
     }
 
     @Override
