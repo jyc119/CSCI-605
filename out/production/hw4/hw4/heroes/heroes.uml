@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>hw4.heroes</OriginalElement>
+  <nodes>
+    <node x="346.092742146356" y="350.0584071755409">hw4.heroes.Party</node>
+    <node x="-11.867876627152498" y="350.3033163049994">hw4.heroes.Heroes</node>
+    <node x="-60.958252399066055" y="165.73714304504392">hw4.heroes.Healer</node>
+    <node x="100.01163109248903" y="-13.333439678152786">hw4.heroes.Hero</node>
+    <node x="181.62036443282102" y="192.86586828138002">hw4.heroes.Tank</node>
+    <node x="424.02138947020313" y="61.00910533655528">hw4.heroes.Berserker</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="hw4.heroes.Berserker" target="hw4.heroes.Hero" relationship="GENERALIZATION">
+      <point x="-91.00038947020312" y="-0.342105336555278" />
+      <point x="240.512" y="98.167" />
+      <point x="240.512" y="136.0" />
+      <point x="161.512" y="136.0" />
+      <point x="3.689075109747364E-4" y="59.50043967815279" />
+    </edge>
+    <edge source="hw4.heroes.Tank" target="hw4.heroes.Hero" relationship="GENERALIZATION">
+      <point x="-3.6443282100151464E-4" y="-48.49986828138003" />
+      <point x="272.62" y="136.0" />
+      <point x="161.512" y="136.0" />
+      <point x="3.689075109747364E-4" y="59.50043967815279" />
+    </edge>
+    <edge source="hw4.heroes.Healer" target="hw4.heroes.Hero" relationship="GENERALIZATION">
+      <point x="2.523990660563413E-4" y="-59.50014304504392" />
+      <point x="30.042" y="136.0" />
+      <point x="161.512" y="136.0" />
+      <point x="3.689075109747364E-4" y="59.50043967815279" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7116788321167883" showDependencies="false" x="282.99999999999994" y="260.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

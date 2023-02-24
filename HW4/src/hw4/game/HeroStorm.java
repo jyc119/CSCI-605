@@ -23,6 +23,7 @@ public class HeroStorm {
 
     /** Seed for lion random number generator */
     private static int lionSeed;
+
     /**
      * Create the parties and initialize the round counter.
      *
@@ -111,8 +112,6 @@ public class HeroStorm {
         int lSeed = Integer.parseInt(args[1]);
         HeroStorm startGame = new HeroStorm(dragSeed, lSeed);
         startGame.play();
-
-
         }
     }
 }

@@ -43,7 +43,8 @@ public class HeroParty implements Party {
      */
     public HeroParty(Team team, int seed){
         this.heroes = new ArrayList<>();
-        this.heroes.add(Hero.createHero(Heroes.Role.BERSERKER, team, this));
+        this.heroes.add(Hero.createHero(Heroes.Role.BERSERKER, team,
+                this));
         this.heroes.add(Hero.createHero(Heroes.Role.HEALER, team, this));
         this.heroes.add(Hero.createHero(Heroes.Role.TANK, team, this));
         this.team = team;
