@@ -40,6 +40,7 @@ public class HeroStorm {
                 party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
                 if (!party2.getHeroes().get(0).hasFallen()){
                     party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
+                    party2.getNextRotation();
                 } else {
                     party2.removeHero();
                 }
@@ -47,7 +48,6 @@ public class HeroStorm {
                     party1.removeHero();
                 } else {
                     party1.getNextRotation();
-                    party2.getNextRotation();
                 }
             } else {
                 System.out.println("*** " + party2.getHeroes().get(0).getName() +
@@ -55,18 +55,23 @@ public class HeroStorm {
                 party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
                 if (!party1.getHeroes().get(0).hasFallen()) {
                     party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
+                    party1.getNextRotation();
                 } else {
                     party1.removeHero();
                 }
                 if (party2.getHeroes().get(0).hasFallen()) {
                     party2.removeHero();
                 } else {
-                    party1.getNextRotation();
                     party2.getNextRotation();
                 }
             }
             System.out.println();
             battle++;
+        }
+        if (party1.numHeroes() > 0){
+            System.out.println("Team Dragon wins!");
+        } else {
+            System.out.println("Team Lion wins!");
         }
     }
     /**
