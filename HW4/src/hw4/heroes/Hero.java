@@ -64,6 +64,7 @@ public abstract class Hero {
 
     public boolean hasFallen(){
         if(health <= 0) {
+            System.out.println(team + " Berserker has fallen");
             return true;
         }else{
             return false;
@@ -74,9 +75,4 @@ public abstract class Hero {
         return getName() + ", " + getRole() + ", " +
                 this.health + "/" + getHeroHealth(getRole());
     }
-
-    //public String getAttackMessage(String hero, int damage){
-      //  return hero + " takes " + damage + " damage";
-
-   // }
 }

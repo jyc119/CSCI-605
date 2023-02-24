@@ -17,16 +17,18 @@ public class Tank extends Hero {
 
     @Override
     public void takeDamage(int damage) {
-        super.health -= damage * 0.9;
+        int shieldedDamage = (int) (damage * 0.9);
+        super.health -= shieldedDamage;
         if (super.health <= 0) {
-            super.hasFallen();
+            super.health = 0;
         }
+        System.out.println(getName()
+                + " takes " + shieldedDamage + " damage");
     }
 
     @Override
     public void attack(Hero enemy) {
         enemy.takeDamage(ATTACK_DAMAGE);
-        System.out.println(); //super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
     }
 
     @Override
@@ -35,5 +37,6 @@ public class Tank extends Hero {
         if (super.health > BASE_HP){
             super.health = BASE_HP;
         }
+        System.out.println(getName() + " heals " + heal + " points");
     }
 }

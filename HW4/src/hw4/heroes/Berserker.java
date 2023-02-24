@@ -2,6 +2,7 @@ package hw4.heroes;
 
 import hw4.game.Team;
 
+
 public class Berserker extends Hero{
 
     public static final int BASE_HP = 30;
@@ -18,16 +19,15 @@ public class Berserker extends Hero{
     public void takeDamage(int damage) {
         super.health -= damage;
         if (super.health <= 0) {
-            super.hasFallen();
-            System.out.println(team + " Berserker has fallen");
+            super.health = 0;
         }
+        System.out.println(getName()
+                + " takes " + damage + " damage");
     }
 
     @Override
     public void attack(Hero enemy) {
         enemy.takeDamage(ATTACK_DAMAGE);
-        System.out.println(enemy.getName()
-                + " takes " + ATTACK_DAMAGE + " damage");
     }
 
     @Override
