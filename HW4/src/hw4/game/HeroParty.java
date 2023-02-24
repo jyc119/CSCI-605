@@ -57,7 +57,7 @@ public class HeroParty implements Party {
     public Hero removeHero() {
         Hero removedHero = heroes.get(0);
         heroes.remove(0);
-        return heroes.get(0);
+        return removedHero;
     }
     /**
      * Description copied from interface: hw4.heroes.Party

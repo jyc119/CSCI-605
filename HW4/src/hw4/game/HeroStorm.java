@@ -40,13 +40,13 @@ public class HeroStorm {
                 party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
                 if (!party2.getHeroes().get(0).hasFallen()){
                     party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
-                    party1.getNextRotation();
                 } else {
                     party2.removeHero();
                 }
                 if (party1.getHeroes().get(0).hasFallen()){
                     party1.removeHero();
                 } else {
+                    party1.getNextRotation();
                     party2.getNextRotation();
                 }
             } else {
