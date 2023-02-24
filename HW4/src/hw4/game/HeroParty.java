@@ -1,4 +1,8 @@
+package hw4.game;
+
 import hw4.heroes.Hero;
+import hw4.heroes.Heroes;
+import hw4.heroes.Party;
 
 import java.util.Collections;
 
@@ -29,9 +33,9 @@ public class HeroParty implements Party {
      */
     public HeroParty(Team team, int seed){
         this.heroes = new LinkedList<>();
-        this.heroes.add(Hero.create(Heroes.Role.BERSERKER, team, this));
-        this.heroes.add(Hero.create(Heroes.Role.HEALER, team, this));
-        this.heroes.add(Hero.create(Heroes.Role.TANK, team, this));
+        this.heroes.add(Hero.createHero(Heroes.Role.BERSERKER, team, this));
+        this.heroes.add(Hero.createHero(Heroes.Role.HEALER, team, this));
+        this.heroes.add(Hero.createHero(Heroes.Role.TANK, team, this));
 
         Collections.shuffle(this.heroes, new Random(seed));
     }
@@ -99,6 +103,6 @@ public class HeroParty implements Party {
      *
      * @return the string
      */
-    @Override
-    public String toString(){}
+    //@Override
+    //public String toString(){}
 }

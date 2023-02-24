@@ -19,14 +19,15 @@ public class Berserker extends Hero{
         super.health -= damage;
         if (super.health <= 0) {
             super.hasFallen();
+            System.out.println(team + " Berserker has fallen");
         }
     }
 
     @Override
-    public String attack(Hero enemy) {
+    public void attack(Hero enemy) {
         enemy.takeDamage(ATTACK_DAMAGE);
-        return enemy.getName() + " takes " + ATTACK_DAMAGE + " damage"; //super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE) + "\n"
-                //+ enemy.toString();
+        System.out.println(enemy.getName()
+                + " takes " + ATTACK_DAMAGE + " damage");
     }
 
     @Override
@@ -35,5 +36,6 @@ public class Berserker extends Hero{
         if (super.health > BASE_HP){
             super.health = BASE_HP;
         }
+        System.out.println(getName() + " heals " + heal + " points");
     }
 }

@@ -24,9 +24,9 @@ public class Tank extends Hero {
     }
 
     @Override
-    public String attack(Hero enemy) {
+    public void attack(Hero enemy) {
         enemy.takeDamage(ATTACK_DAMAGE);
-        return enemy + " takes " + ATTACK_DAMAGE + " damage";//super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
+        System.out.println(); //super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
     }
 
     @Override
