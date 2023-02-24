@@ -55,7 +55,6 @@ public class HeroStorm {
                 party2.getHeroes().get(0).attack(party1.getHeroes().get(0));
                 if (!party1.getHeroes().get(0).hasFallen()) {
                     party1.getHeroes().get(0).attack(party2.getHeroes().get(0));
-                    party2.getNextRotation();
                 } else {
                     party1.removeHero();
                 }
@@ -63,6 +62,7 @@ public class HeroStorm {
                     party2.removeHero();
                 } else {
                     party1.getNextRotation();
+                    party2.getNextRotation();
                 }
             }
             System.out.println();
