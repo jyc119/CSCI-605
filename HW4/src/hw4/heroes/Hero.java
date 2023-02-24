@@ -58,7 +58,7 @@ public abstract class Hero {
 
     public abstract void takeDamage(int damage);
 
-    public abstract String attack(Hero enemy);
+    public abstract void attack(Hero enemy);
 
     public abstract void heal(int heal);
 

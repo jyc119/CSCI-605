@@ -30,14 +30,20 @@ public class Healer extends Hero{
     }
 
     @Override
-    public String attack(Hero enemy) {
+    public void attack(Hero enemy) {
         for (int i = 0; i < party.getHeroes().size(); i++) {
             party.getHeroes().get(i).heal(HEAL_AMOUNT);
             System.out.println(party.getHeroes().get(i) + " heals " +
                     HEAL_AMOUNT + " points");
         }
-        enemy.takeDamage(ATTACK_DAMAGE);
-        return enemy + " takes " + ATTACK_DAMAGE + " damage";//super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
+        if(enemy.getRole() == Heroes.Role.TANK){
+            int damage = (int) (ATTACK_DAMAGE * 0.9);
+            enemy.takeDamage(damage);
+            System.out.println(enemy.getName() + " takes " + damage + " damage");//super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
+        }else{
+            enemy.takeDamage(ATTACK_DAMAGE);
+            System.out.println(enemy.getName() + " takes " + ATTACK_DAMAGE + " damage");//super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
+        }//super.getAttackMessage(enemy.getName(), ATTACK_DAMAGE);
     }
 
     @Override
