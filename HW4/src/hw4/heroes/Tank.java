@@ -29,6 +29,11 @@ public class Tank extends Hero {
     /** Percentage of damage shielded by tank */
     public static final int DEFENSE = 10;
 
+    /**
+     * The constructor calls the hero constructor using the Heroes.getName() function and the BASE_HP constant variable.
+     * The role, team and health is passed to the hero class using the super keyword.
+     * @param team
+     */
     public Tank(Team team){
         super(Heroes.getName(team, Heroes.Role.TANK), BASE_HP);
         super.role = Heroes.Role.TANK;

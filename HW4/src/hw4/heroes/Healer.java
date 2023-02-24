@@ -33,7 +33,9 @@ public class Healer extends Hero{
     private Party party;
 
     /**
-     *
+     * The constructor calls the hero constructor using the Heroes.getName() function and the BASE_HP constant variable.
+     * It also assigns the party parameter to the party field in this class. The role, team and health is passed to the
+     * hero class using the super keyword.
      *
      * @param team the team of hero
      * @param party the party of hero

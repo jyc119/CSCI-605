@@ -26,6 +26,12 @@ public class Berserker extends Hero{
     /** Attack damage of berserker */
     public static final int ATTACK_DAMAGE = 20;
 
+    /**
+     * The constructor calls the hero constructor using the Heroes.getName() function and the BASE_HP constant variable.
+     * The role, team and health is passed to the hero class using the super keyword.
+     *
+     * @param team the team of the hero
+     */
     public Berserker(Team team){
         super(Heroes.getName(team, Heroes.Role.BERSERKER), BASE_HP);
         super.role = Heroes.Role.BERSERKER;

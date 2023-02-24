@@ -56,7 +56,7 @@ public abstract class Hero {
 
     /**
      * Gets the base health points of a hero based on the role.
-     * 
+     *
      * @param role The role of the hero
      * @return The health points
      */
