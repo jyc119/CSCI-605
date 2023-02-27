@@ -2,11 +2,12 @@
  * file: TestHealer.java
  */
 
-package tests;
+package hw4.tests;
 
 import hw4.game.Team;
 import hw4.heroes.Hero;
 import hw4.heroes.Heroes.Role;
+import hw4.tests.TestParty;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 

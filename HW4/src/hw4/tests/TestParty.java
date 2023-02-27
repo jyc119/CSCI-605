@@ -2,7 +2,7 @@
  * file: TestParty.java
  */
 
-package tests;
+package hw4.tests;
 
 import java.util.LinkedList;
 import java.util.List;

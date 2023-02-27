@@ -2,7 +2,7 @@
  * file: TestBerserker.java
  */
 
-package tests;
+package hw4.tests;
 
 import hw4.game.Team;
 import hw4.heroes.Hero;
