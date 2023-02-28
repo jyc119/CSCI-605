@@ -8,7 +8,7 @@ public class GateKeeper {
     public void play(){
         PriorityQueue<Patron> hq = new HeapQueue<Patron>();
         int choice = 0;
-        while (choice != 3) {
+        while (true) {
             System.out.println("""
                     Enter an option
                     1 to Add a patron to the queue
@@ -24,7 +24,7 @@ public class GateKeeper {
                 continue;
             }
             if (choice == 1) {
-                boolean regularity = true;
+                boolean regularity;
                 System.out.print("Patron name: ");
                 String name = giveInput.nextLine();
                 System.out.print("Coolness (1-10): ");
@@ -47,8 +47,7 @@ public class GateKeeper {
                             admittedPatron.getCoolness() + " gets in!!!");
                 }
             }
-            else if (choice == 3) {
-            }
+            else if (choice == 3) return;
             else {
                 System.out.println("Error: Invalid input");
             }
