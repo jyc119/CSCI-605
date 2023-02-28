@@ -21,7 +21,7 @@ public class LinkedQueue<T> implements PriorityQueue<T> {
         if (this.front == null){
             this.back = null;
         }
-        return (T) this.front;
+        return (T) this.front.key;
     }
 
     public void enqueue(T toInsert) {

@@ -1,7 +1,7 @@
 package hw5.simulation;
 
 public class QueueNode<T> {
-    private T key;
+    protected T key;
 
     protected QueueNode next;
 
