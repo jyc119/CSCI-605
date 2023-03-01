@@ -1,10 +1,13 @@
+/*
+ * HW5: Studio 54 Queue Simulation
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package hw5.tests;
 
-import hw5.simulation.HeapQueue;
 import hw5.simulation.Patron;
-import hw5.simulation.PriorityQueue;
 import org.junit.*;
-import org.junit.runners.MethodSorters;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -19,12 +22,16 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestPatron {
 
+    /** first testPatron */
     private static Patron testPatron1;
 
+    /** second testPatron */
     private static Patron testPatron2;
 
+    /** third testPatron */
     private static Patron testPatron3;
 
+    /** Used to test that expected System.out print's happen */
     private final ByteArrayOutputStream outContent =
             new ByteArrayOutputStream();
 
@@ -75,6 +82,10 @@ public class TestPatron {
                 -1, testPatron1.compareTo(testPatron2));
         assertEquals("testPatron3 compared to testPatron2",
                 1, testPatron3.compareTo(testPatron2));
+        assertEquals("testPatron2 compared to testPatron1",
+                1, testPatron2.compareTo(testPatron1));
+        assertEquals("testPatron2 compared to testPatron3",
+                -1, testPatron2.compareTo(testPatron3));
     }
 
 }

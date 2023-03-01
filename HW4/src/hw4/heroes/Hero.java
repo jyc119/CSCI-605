@@ -1,3 +1,10 @@
+/*
+ * HW4: HeroStorm
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
+
 package hw4.heroes;
 
 import hw4.heroes.Heroes.Role;
