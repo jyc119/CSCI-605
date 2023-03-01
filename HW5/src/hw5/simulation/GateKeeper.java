@@ -8,6 +8,8 @@ public class GateKeeper {
     public void play(){
         PriorityQueue<Patron> hq = new HeapQueue<Patron>();
         int choice = 0;
+        int coolness = 0;
+        boolean regularity;
         while (true) {
             System.out.println("""
                     Enter an option
@@ -15,20 +17,29 @@ public class GateKeeper {
                     2 to Admit a patron
                     3 to Close for the night (quit)""");
             Scanner giveInput = new Scanner(System.in);
-            System.out.print("Your choice: ");
-            if (giveInput.hasNextInt()) {
-                choice = Integer.parseInt(giveInput.nextLine());
-            }
-            else {
-                System.out.println("Error: Invalid input");
-                continue;
+            while (true) {
+                try {
+                    System.out.print("Your choice: ");
+                    choice = Integer.parseInt(giveInput.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Choice must be an integer");
+                    continue;
+                }
+                break;
             }
             if (choice == 1) {
-                boolean regularity;
                 System.out.print("Patron name: ");
                 String name = giveInput.nextLine();
-                System.out.print("Coolness (1-10): ");
-                int coolness = Integer.parseInt(giveInput.nextLine());
+                while (true) {
+                    try {
+                        System.out.print("Coolness (1-10): ");
+                        coolness = Integer.parseInt(giveInput.nextLine());
+                    } catch (Exception e) {
+                        System.out.println("Coolness must be an integer");
+                        continue;
+                    }
+                    break;
+                }
                 System.out.print("Regular (y/n): ");
                 if (giveInput.nextLine().equals("y")) {
                     regularity = true;
