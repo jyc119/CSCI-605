@@ -90,8 +90,4 @@ public class Patron implements Comparable<Patron>{
             return Boolean.compare(this.regularity, patron.regularity);
         }
     }
-
-    public String toString() {
-        return getName() + "," + getCoolness();
-    }
 }
