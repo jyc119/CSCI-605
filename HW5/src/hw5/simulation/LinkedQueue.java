@@ -32,7 +32,7 @@ public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
 
     public void enqueue(T toInsert) {
         QueueNode<T> newNode = new QueueNode<>(toInsert);
-        System.out.println(newNode.getKey());
+        //System.out.println(newNode.getKey());
         if (this.back == null){
             this.front = newNode;
             this.back = newNode;
@@ -40,15 +40,15 @@ public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
         }
 
         QueueNode<T> curr = this.front;
-        System.out.println("NEWNODE COMPARE:");
-        System.out.println(newNode.getKey());
-        System.out.println("CURRNODE COMPARE:");
-        System.out.println(curr.getKey());
-        System.out.println("CURRNODE NEXT COMPARE:");
+//        System.out.println("NEWNODE COMPARE:");
+//        System.out.println(newNode.getKey());
+//        System.out.println("CURRNODE COMPARE:");
+//        System.out.println(curr.getKey());
+//        System.out.println("CURRNODE NEXT COMPARE:");
 
         while (curr.next != null && (newNode.getKey().compareTo((T) curr.next.getKey())) > 0){
-            System.out.println("YOOOOO");
-            System.out.println(curr.getKey());
+//            System.out.println("YOOOOO");
+//            System.out.println(curr.getKey());
             curr = curr.next;
         }
 

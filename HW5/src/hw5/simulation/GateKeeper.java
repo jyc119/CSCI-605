@@ -72,9 +72,9 @@ public class GateKeeper {
                     System.out.println("Queue is empty");
                 } else {
                     Patron admittedPatron = hq.dequeue();
-                    System.out.println(admittedPatron.getName() +
-                            " with coolness factor " +
-                            admittedPatron.getCoolness() + " gets in!!!");
+                    System.out.println(admittedPatron.getRegularity() +
+                            admittedPatron.getName() + " with coolness factor "
+                            + admittedPatron.getCoolness() + " gets in!!!");
                 }
             }
             else if (choice == 3) return;

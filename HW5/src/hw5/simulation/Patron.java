@@ -55,6 +55,21 @@ public class Patron implements Comparable<Patron>{
     public int getCoolness() {return coolness;}
 
     /**
+     * Get the regularity of the patron.
+     *
+     * @return the string representation of regularity.
+     * "Regular " if regularity is true, "" if not
+     */
+    public String getRegularity() {
+        if (regularity) {
+            return "Regular ";
+        }
+        else {
+            return "";
+        }
+    }
+
+    /**
      * Compare the patron to another patron.
      *
      * @param patron the patron being compared with

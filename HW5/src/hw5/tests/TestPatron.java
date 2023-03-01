@@ -41,7 +41,7 @@ public class TestPatron {
                 true);
         testPatron2 = new Patron("Jane Doe", 8,
                 false);
-        testPatron3 = new Patron("Charlie", 8, true);
+        testPatron3 = new Patron("Jupiter", 8, true);
     }
 
     @Before
@@ -62,18 +62,24 @@ public class TestPatron {
         assertEquals("testPatron2 name",
                 "Jane Doe",
                 testPatron2.getName());
+        assertEquals("testPatron3 name",
+                "Jupiter",
+                testPatron3.getName());
         assertEquals("testPatron1 coolness",
                 4,
                 testPatron1.getCoolness());
         assertEquals("testPatron2 coolness",
                 8,
                 testPatron2.getCoolness());
-        assertEquals("testPatron3 name",
-                "Charlie",
-                testPatron3.getName());
         assertEquals("testPatron3 coolness",
                 8,
                 testPatron3.getCoolness());
+        assertEquals("testPatron1 regularity", "Regular ",
+                testPatron1.getRegularity());
+        assertEquals("testPatron2 regularity", "",
+                testPatron2.getRegularity());
+        assertEquals("testPatron3 regularity", "Regular ",
+                testPatron3.getRegularity());
     }
 
     @Test
