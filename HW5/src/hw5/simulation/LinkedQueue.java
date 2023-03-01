@@ -6,7 +6,7 @@
 
 package hw5.simulation;
 
-public class LinkedQueue<T> implements PriorityQueue<T> {
+public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
 
     QueueNode front;
     QueueNode back;
@@ -27,7 +27,7 @@ public class LinkedQueue<T> implements PriorityQueue<T> {
         if (this.front == null){
             this.back = null;
         }
-        return (T) this.front.key;
+        return (T) tmp.key;
     }
 
     public void enqueue(T toInsert) {
@@ -38,8 +38,17 @@ public class LinkedQueue<T> implements PriorityQueue<T> {
             this.back = newNode;
         }
 
-        this.front.next = newNode;
-        this.front = newNode;
+        QueueNode<T> curr = this.front;
+        QueueNode<T> prev = null;
+
+        while (curr.next != null && (newNode.getKey().compareTo((T) curr.next.getKey())) < 0){
+            System.out.println(curr.getKey().getName());
+            curr = curr.next;
+        }
+
+        QueueNode<T> tmp = curr.next;
+        curr.next = newNode;
+        newNode.next = tmp;
     }
 
     public boolean isEmpty(){

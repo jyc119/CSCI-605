@@ -25,7 +25,7 @@ public class GateKeeper {
      * LinkedQueue depending on which class is initialized.
      */
     public void play(){
-        PriorityQueue<Patron> hq = new HeapQueue<Patron>();
+        PriorityQueue<Patron> hq = new LinkedQueue<>();
         int choice = 0;
         int coolness = 0;
         boolean regularity;

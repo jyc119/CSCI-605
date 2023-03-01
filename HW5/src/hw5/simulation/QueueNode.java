@@ -15,4 +15,8 @@ public class QueueNode<T> {
         this.key = key;
         this.next = null;
     }
+
+    public T getKey() {
+        return key;
+    }
 }
