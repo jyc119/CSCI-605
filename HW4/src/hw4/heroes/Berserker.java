@@ -18,7 +18,7 @@ import hw4.game.*;
  * @author Jordan Chin, jc9627@rit.edu
  * @author Charlie Leyens, cal3368@rit.edu
  */
-public class Berserker extends Hero{
+public class Berserker extends Hero {
 
     /** Initial health points of berserker */
     public static final int BASE_HP = 30;
