@@ -8,9 +8,22 @@ package hw5.simulation;
 
 import java.util.Scanner;
 
-
+/**
+ * The main program for the queue simulation
+ * <pre>
+ * $ java GateKeeper
+ * Usage: java GateKeeper
+ *</pre>
+ *
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
 public class GateKeeper {
 
+    /**
+     * The game play loop. Implements simulation using either HeapQueue or
+     * LinkedQueue depending on which class is initialized.
+     */
     public void play(){
         PriorityQueue<Patron> hq = new HeapQueue<Patron>();
         int choice = 0;
@@ -71,6 +84,11 @@ public class GateKeeper {
         }
     }
 
+    /**
+     * Main function. Initiates the simulation and runs the simulation.
+     *
+     * @param args command line arguments. None passed.
+     */
     public static void main(String args[]){
         GateKeeper simulation = new GateKeeper();
         simulation.play();
