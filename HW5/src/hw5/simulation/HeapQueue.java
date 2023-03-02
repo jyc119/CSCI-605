@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A priority queue using a heap.  Assumes that larger numbers are higher
+ * A priority queue using a heap. Assumes that larger numbers are higher
  * priority and therefore this is a max-heap (largest value on top).
  *
  * @author CS RIT

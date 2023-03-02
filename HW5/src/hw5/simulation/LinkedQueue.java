@@ -6,16 +6,36 @@
 
 package hw5.simulation;
 
+/**
+ * A priority queue using a linked list. Links in descending order i.e. higher
+ * priority is at the front of the list.
+ *
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
 public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
 
+    /** queue node at the front of the list */
     QueueNode<T> front;
+
+    /** queue node at the end of the list */
     QueueNode<T> back;
 
+    /**
+     * The constructor for the hw5.simulation.LinkedQueue.
+     * Initializes the front and back of the list as null. (Queue is empty)
+     */
     public LinkedQueue(){
         this.front = null;
         this.back = null;
     }
 
+    /**
+     * Removes and returns the item at the front of the queue
+     *
+     * @return T the item at the front of the queue otherwise
+     * returns a null
+     */
     public T dequeue() {
         if (this.front == null){
             return null;
@@ -29,6 +49,12 @@ public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
         return (T) tmp.key;
     }
 
+    /**
+     * Add an item to the queue at the appropriate location
+     *
+     * @param toInsert the queueNode containing the
+     * patron to insert in the queue
+     */
     public void enqueue(T toInsert) {
         QueueNode<T> newNode = new QueueNode<>(toInsert);
         if (this.back == null){
@@ -57,6 +83,11 @@ public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
         }
     }
 
+    /**
+     * Determines if the queue is empty
+     *
+     * @return true if the queue is empty; otherwise returns false
+     */
     public boolean isEmpty(){
         return this.front == null && this.back == null;
     }
