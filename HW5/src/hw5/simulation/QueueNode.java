@@ -16,10 +16,10 @@ package hw5.simulation;
 public class QueueNode<T> {
 
     /** the node key containing the patron details */
-    protected T key;
+    public T key;
 
     /** the next queueNode in the list to point to */
-    protected QueueNode next;
+    public QueueNode next;
 
     /**
      * The constructor for the hw5.simulation.QueueNode.
@@ -38,4 +38,5 @@ public class QueueNode<T> {
     public T getKey() {
         return key;
     }
+
 }

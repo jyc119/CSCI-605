@@ -16,10 +16,10 @@ package hw5.simulation;
 public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
 
     /** queue node at the front of the list */
-    QueueNode<T> front;
+    private QueueNode<T> front;
 
     /** queue node at the end of the list */
-    QueueNode<T> back;
+    private QueueNode<T> back;
 
     /**
      * The constructor for the hw5.simulation.LinkedQueue.
@@ -36,6 +36,15 @@ public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
      * @return T the item at the front of the queue otherwise
      * returns a null
      */
+
+    public QueueNode<T> getFront(){
+        return front;
+    }
+
+    public QueueNode<T> getBack(){
+        return back;
+    }
+
     public T dequeue() {
         if (this.front == null){
             return null;
