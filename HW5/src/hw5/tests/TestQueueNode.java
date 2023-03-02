@@ -15,10 +15,10 @@ import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 
 /**
- * A test class for LinkedQueue class.
+ * A test class for QueueNode class.
  *
  * @author Jordan Chin, jc9627@rit.edu
  * @author Charlie Leyens, cal3368@rit.edu
  */
-public class TestLinkedQueue {
+public class TestQueueNode {
 }
