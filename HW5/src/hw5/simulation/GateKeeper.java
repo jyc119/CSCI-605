@@ -28,6 +28,7 @@ public class GateKeeper {
         PriorityQueue<Patron> hq = new LinkedQueue<>();
         int choice = 0;
         int coolness = 0;
+        String regular = null;
         boolean regularity;
         while (true) {
             System.out.println("""
@@ -53,17 +54,30 @@ public class GateKeeper {
                     try {
                         System.out.print("Coolness (1-10): ");
                         coolness = Integer.parseInt(giveInput.nextLine());
+                        if (1 <= coolness && coolness <= 10) {
+                            break;
+                        }
+                        else {
+                            System.out.println("Coolness must be (1-10)");
+                        }
                     } catch (Exception e) {
                         System.out.println("Coolness must be an integer");
-                        continue;
                     }
-                    break;
                 }
-                System.out.print("Regular (y/n): ");
-                if (giveInput.nextLine().equals("y")) {
-                    regularity = true;
-                } else {
-                   regularity = false;
+                while (true) {
+                    System.out.print("Regular (y/n): ");
+                    regular = giveInput.nextLine();
+                    if (regular.equals("y")) {
+                        regularity = true;
+                        break;
+                    }
+                    else if (regular.equals("n")) {
+                        regularity = false;
+                        break;
+                    }
+                    else {
+                        System.out.println("Input must be (y/n)");
+                    }
                 }
                 hq.enqueue(new Patron(name, coolness, regularity));
             }
