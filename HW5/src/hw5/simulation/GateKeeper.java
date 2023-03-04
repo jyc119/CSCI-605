@@ -83,7 +83,7 @@ public class GateKeeper {
             }
             else if (choice == 2) {
                 if (hq.isEmpty()) {
-                    System.out.println("Queue is empty");
+                    System.out.println("Queue is empty.");
                 } else {
                     Patron admittedPatron = hq.dequeue();
                     System.out.println(admittedPatron.getRegularity() +
