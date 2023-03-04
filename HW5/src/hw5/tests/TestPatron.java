@@ -9,8 +9,6 @@ package hw5.tests;
 import hw5.simulation.Patron;
 import org.junit.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
@@ -31,10 +29,6 @@ public class TestPatron {
     /** third testPatron */
     private static Patron testPatron3;
 
-    /** Used to test that expected System.out print's happen */
-    private final ByteArrayOutputStream outContent =
-            new ByteArrayOutputStream();
-
     @BeforeClass
     public static void init() {
         testPatron1 = new Patron("John Doe", 4,
@@ -42,16 +36,6 @@ public class TestPatron {
         testPatron2 = new Patron("Jane Doe", 8,
                 false);
         testPatron3 = new Patron("Jupiter", 8, true);
-    }
-
-    @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @After
-    public void restoreStreams() {
-        System.setOut(System.out);
     }
 
     @Test
