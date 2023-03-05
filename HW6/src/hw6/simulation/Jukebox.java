@@ -14,7 +14,7 @@ public class Jukebox {
         BufferedReader reader;
         reader = new BufferedReader(new FileReader(file));
         String line = reader.readLine();
-        Set<Song> songs = new HashSet<Song>();
+        Set<Song> songs = new LinkedHashSet<Song>();
         while (line != null) {
             String[] testLine = line.split("<SEP>", 4);
             songs.add(new Song(testLine[2], testLine[3]));
@@ -25,15 +25,18 @@ public class Jukebox {
 
     public void runSimulation(Set<Song> songs) {
         int runs = 50000;
+        Random rand = new Random();
         System.out.println("Jukebox of " + songs.size() +
                 " songs starts rockin'...");
-//        long startTime = System.nanoTime();
-//        for(int i = 0; i < runs; i++) {
-//
-//        }
-//        long endTime = System.nanoTime();
-//        long runTime = endTime - startTime;
-        //System.out.println("Simulation took " + Long.toString(runTime) + " second/s");
+        long startTime = System.currentTimeMillis();
+        while (runs > 0) {
+            // while loop until a song is repeated
+            // int nextSong = rand.nextInt(songs.size());
+            runs --;
+        }
+        long endTime = System.currentTimeMillis();
+        long runTime = endTime - startTime;
+        System.out.println("Simulation took " + Long.toString(runTime) + " second/s");
         System.out.println(songs);
         System.out.println("Number of simulations run: " + Integer.toString(runs));
         System.out.println("Total number of songs played: "); // Add songs played component

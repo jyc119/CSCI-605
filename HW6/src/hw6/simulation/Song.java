@@ -20,6 +20,10 @@ public class Song implements Comparable<Song> {
         return artist;
     }
 
+    public void play(Song song) {
+
+    }
+
     @Override
     public String toString() {
         return "Artist: " + artist + ", Song: " + name;
