@@ -1,5 +1,7 @@
 package hw6.simulation;
 
+import java.util.Objects;
+
 public class Song implements Comparable<Song> {
 
     private String name;
@@ -25,13 +27,17 @@ public class Song implements Comparable<Song> {
         return "Artist: " + artist + ", Song: " + name;
     }
 
-    public boolean equals(Song song2) {
-        return name.equals(song2.name) && artist.equals(song2.artist);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song2 = (Song) o;
+        return Objects.equals(name, song2.name) &&
+                Objects.equals(artist, song2.artist);
     }
 
     @Override
-    public final int hashCode() {
-        return name.hashCode() + artist.hashCode();
+    public int hashCode() {
+        return this.name.hashCode() + this.artist.hashCode();
     }
 
     @Override
