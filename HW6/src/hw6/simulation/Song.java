@@ -20,17 +20,13 @@ public class Song implements Comparable<Song> {
         return artist;
     }
 
-    public void play(Song song) {
-
-    }
-
     @Override
     public String toString() {
         return "Artist: " + artist + ", Song: " + name;
     }
 
     public boolean equals(Song song2) {
-        return name.equals(song2.getName()) && artist.equals(song2.getArtist());
+        return name.equals(song2.name) && artist.equals(song2.artist);
     }
 
     @Override
