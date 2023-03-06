@@ -18,7 +18,7 @@ public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
     /** queue node at the front of the list */
     private QueueNode<T> front;
 
-    /** queue node at the end of the list */
+    /** queue node at the back of the list */
     private QueueNode<T> back;
 
     /**
@@ -31,9 +31,9 @@ public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
     }
 
     /**
-     * Removes and returns the item at the front of the queue
+     * Returns the node at the front of the queue
      *
-     * @return T the item at the front of the queue otherwise
+     * @return T the node at the front of the queue otherwise
      * returns a null
      */
 
@@ -41,9 +41,24 @@ public class LinkedQueue<T extends Comparable<T>> implements PriorityQueue<T> {
         return front;
     }
 
+    /**
+     * Returns the node at the back of the linked queue.
+     *
+     * @return T the node at the back of the queue otherwise
+     * returns a null
+     */
+
     public QueueNode<T> getBack(){
         return back;
     }
+
+    /**
+     * Removes and returns the item at the front of the
+     * queue.
+     *
+     * @return T the item at the front of the queue otherwise
+     * returns a null
+     */
 
     public T dequeue() {
         if (this.front == null){
