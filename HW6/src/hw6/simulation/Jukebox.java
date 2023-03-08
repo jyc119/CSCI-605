@@ -1,5 +1,10 @@
-package hw6.simulation;
+/*
+ * HW6: Jukebox
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
 
+package hw6.simulation;
 
 import java.io.File;
 import java.io.BufferedReader;
@@ -10,12 +15,26 @@ import java.util.*;
 
 public class Jukebox {
 
+    /** The seed to for the random number generator */
     private static int seed;
 
+    /**
+     * Create the jukebox
+     *
+     * @param seed the seed for the random number generator
+     */
     public Jukebox(int seed) {
         this.seed = seed;
     }
 
+    /**
+     * Reads in the lines from a file and creates a song from each line.
+     * The songs aare added to a hash set and the set is then converted
+     * to an arraylist.
+     *
+     * @param file the file object to get the songs from
+     * @return the arraylist songs
+     */
     public ArrayList<Song> createSongs(File file) throws IOException {
         BufferedReader reader;
         reader = new BufferedReader(new FileReader(file));
@@ -31,6 +50,12 @@ public class Jukebox {
         return songs;
     }
 
+    /**
+     * Uses the arraylist of songs to simulate the Birthday Paradox and print
+     * various statistics relating to the simulation.
+     *
+     * @param songs the arraylist of the songs
+     */
     public void runSimulation(ArrayList<Song> songs) {
         ArrayList<Song> first5Songs = new ArrayList<>();
         HashMap<Song, Integer> allSongs = new HashMap<>();
@@ -108,6 +133,13 @@ public class Jukebox {
     }
 
 
+    /**
+     * Main function. Checks the number of commandline arguments and displays a
+     * usage statement and exits the program if not equal to two. If equal to
+     * two, the simulation is initialized and run.
+     *
+     * @param args the file name and seed number as command line arguments
+     */
     public static void main(String args[]) throws IOException {
         if (args.length != 2) {
             System.out.println("Usage: java Jukebox filename seed");

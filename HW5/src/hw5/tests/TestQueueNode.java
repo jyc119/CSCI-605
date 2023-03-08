@@ -23,16 +23,16 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestQueueNode {
 
-    /*** first testPatron */
+    /** first testPatron */
     private static Patron testPatron1;
 
-    /*** second testPatron */
+    /** second testPatron */
     private static Patron testPatron2;
 
-    /*** first testNode */
+    /** first testNode */
     private static QueueNode<Patron> testNode1;
 
-    /*** second testNode */
+    /** second testNode */
     private static QueueNode<Patron> testNode2;
 
     /** Used to test that expected System.out print's happen */
