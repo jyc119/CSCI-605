@@ -20,74 +20,90 @@ public class Jukebox {
         BufferedReader reader;
         reader = new BufferedReader(new FileReader(file));
         String line = reader.readLine();
-        ArrayList<Song> songs = new ArrayList<>();
+        HashSet<Song> songSet = new HashSet<>();
         while (line != null) {
             String[] testLine = line.split("<SEP>", 4);
             Song newSong = new Song(testLine[3], testLine[2]);
-            if (!songs.contains(newSong)) {
-                songs.add(newSong);
-            }
+            songSet.add(newSong);
             line = reader.readLine();
         }
+        ArrayList<Song> songs = new ArrayList<Song>(songSet);
         return songs;
     }
 
     public void runSimulation(ArrayList<Song> songs) {
         ArrayList<Song> first5Songs = new ArrayList<>();
-        TreeMap<Song, Integer> allSongs = new TreeMap<>();
+        HashMap<Song, Integer> allSongs = new HashMap<>();
         int runs = 50000;
         Random rand = new Random(seed);
         long startTime = System.currentTimeMillis();
         int totalSongs = 0;
+        System.out.println("Jukebox of " + songs.size() +
+                " songs starts rockin'...");
         while (runs > 0) {
             int numberOfSongs = 0;
             Set<Song> songsPlayed = new HashSet<>();
-            //Iterator<Song> itr = songs.iterator();
             while (true) {
                 Song nextSong = songs.get(rand.nextInt(songs.size()));
-                if (first5Songs.size() < 5) {
-                    first5Songs.add(nextSong);
-                }
                 if (songsPlayed.add(nextSong)) {
                     songsPlayed.add(nextSong);
+                    if (first5Songs.size() < 5) {
+                        first5Songs.add(nextSong);
+                    }
                     if (allSongs.containsKey(nextSong)) {
                         allSongs.replace(nextSong, allSongs.get(nextSong) + 1);
-                    }
-                    else {
+                    } else {
                         allSongs.put(nextSong, 1);
                     }
-                }
-                else {
+                } else {
                     break;
                 }
                 numberOfSongs += 1;
-        }
+            }
             totalSongs += numberOfSongs;
-            runs --;
+            runs--;
         }
         long endTime = System.currentTimeMillis();
         long runTime = endTime - startTime;
         runs = 50000;
+        int max = 0;
+        for (Integer value : allSongs.values()) {
+            if (value > max) {
+                max = value;
+            }
+        }
+        Song mostPlayed = null;
+        for (Song song : allSongs.keySet()) {
+            if (allSongs.get(song) == max) {
+                mostPlayed = song;
+            }
+        }
         TreeSet<Song> songsBymostPlayed = new TreeSet<>();
         for (Song song: songs) {
-            if (song.getArtist().equals(allSongs.lastEntry().getKey().getArtist())) {
+            if (song.getArtist().equals(mostPlayed.getArtist())) {
                 songsBymostPlayed.add(song);
             }
         }
-        System.out.println("Jukebox of " + songs.size() +
-                " songs starts rockin'...");
         System.out.println("Printing first 5 songs played...");
-        for (Song song: first5Songs) {
-            System.out.println("    " + song.toString());
+        for (Song first5 : first5Songs) {
+            System.out.println("    " + first5.toString());
         }
-        System.out.println("Simulation took " + Long.toString((long) (runTime * 0.001)) + " second/s");
-        System.out.println("Number of simulations run: " + Integer.toString(runs));
-        System.out.println("Total number of songs played: " + Integer.toString(totalSongs));
-        System.out.println("Average number of songs played per simulation to get duplicate: " + Integer.toString(totalSongs/runs));
-        System.out.println("Most played song: " + '"' + allSongs.lastEntry().getKey().getName() + '"' + " by " + '"' + allSongs.lastEntry().getKey().getArtist() + '"');
-        System.out.println("All songs alphabetically by " + '"' + allSongs.lastEntry().getKey().getArtist() + '"' + ":");
-        for (Song song: songsBymostPlayed) {
-            System.out.println("    " + '"' + song.getName() + '"' + " with " + allSongs.get(song) + " plays");
+        System.out.println("Simulation took " + Long.toString((long) (runTime
+                * 0.001)) + " second/s");
+        System.out.println("Number of simulations run: " +
+                Integer.toString(runs));
+        System.out.println("Total number of songs played: " +
+                Integer.toString(totalSongs));
+        System.out.println("Average number of songs played per simulation to " +
+                "get duplicate: " + Integer.toString(totalSongs / runs));
+        System.out.println("Most played song: " + '"' + mostPlayed.getName()
+                + '"' + " by " + '"'
+                + mostPlayed.getArtist() + '"');
+        System.out.println("All songs alphabetically by " + '"' +
+                mostPlayed.getArtist() + '"' + ":");
+        for (Song song : songsBymostPlayed) {
+            System.out.println("    " + '"' + song.getName() + '"' +
+                    " with " + allSongs.get(song) + " plays");
         }
     }
 

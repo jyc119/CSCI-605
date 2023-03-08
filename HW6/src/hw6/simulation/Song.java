@@ -31,8 +31,7 @@ public class Song implements Comparable<Song> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song2 = (Song) o;
-        return Objects.equals(name, song2.name) &&
-                Objects.equals(artist, song2.artist);
+        return Objects.equals(name, song2.name) && Objects.equals(artist, song2.artist);
     }
 
     @Override
@@ -42,6 +41,6 @@ public class Song implements Comparable<Song> {
 
     @Override
     public int compareTo(Song song2) {
-        return artist.compareTo(song2.artist);
+        return name.compareTo(song2.name);
     }
 }
