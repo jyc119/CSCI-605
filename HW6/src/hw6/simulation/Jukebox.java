@@ -46,6 +46,7 @@ public class Jukebox {
             songSet.add(newSong);
             line = reader.readLine();
         }
+        reader.close();
         ArrayList<Song> songs = new ArrayList<Song>(songSet);
         return songs;
     }
