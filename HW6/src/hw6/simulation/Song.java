@@ -24,13 +24,23 @@ public class Song implements Comparable<Song> {
         this.artist = artist;
     }
 
-    public int hashcode(){return this.name.hashCode() + this.artist.hashCode();}
-    public Boolean equals(Song song){return song.name == this.name && song.artist == this.artist;}
+    @Override
+    public int hashCode(){return this.name.hashCode() + this.artist.hashCode();}
 
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song2 = (Song) o;
+        return Objects.equals(name, song2.name) && Objects.equals
+                (artist, song2.artist);
+    }
+
+    @Override
     public String toString(){return "Artist: " + this.artist + ", Song: " + this.name;}
 
     @Override
     public int compareTo(Song o) {
-        return 0;
+        return this.name.compareTo(o.name);
     }
 }
