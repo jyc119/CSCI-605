@@ -27,6 +27,7 @@ public class Jukebox {
 
     /** The seed to for the random number generator */
     private static int seed;
+    private static final int SIM_RUNS = 50000;
 
     /**
      * Create the jukebox
@@ -56,7 +57,6 @@ public class Jukebox {
         ArrayList<Song> songs = new ArrayList<>(songSet);
         return songs;
 
-        //return songs;
     }
 
     public static void openingLine(int songs){
@@ -66,10 +66,11 @@ public class Jukebox {
 
     public void startSimulation(String filename, int seed){
         long startTime = System.currentTimeMillis();
-        int simulations = 1;
+        int simulations = 50000;
         Random rnd = new Random(seed);
         List<Song> newSongs = new ArrayList<>();
         List<Song> firstFiveSongs = new ArrayList<>();
+        HashMap<Song, Integer> songToPlays = new HashMap<>();
         newSongs = getSongs(filename);
         int songsInBox = newSongs.size();
         int numOfSongs = 0;
@@ -77,8 +78,19 @@ public class Jukebox {
         while(simulations > 0){
             Set<Song> songSet = new HashSet<>();
             int nextSong = rnd.nextInt(songsInBox);
-            firstFiveSongs.add(newSongs.get(nextSong));
+            if(firstFiveSongs.size() == 0){
+                firstFiveSongs.add(newSongs.get(nextSong));
+            }
+
+            // Adding to hashmap song to plays
             songSet.add(newSongs.get(nextSong));
+            Integer count = songToPlays.get(newSongs.get(nextSong));
+            if(count == null){
+                songToPlays.put(newSongs.get(nextSong),1);
+            }else{
+                songToPlays.put(newSongs.get(nextSong),count+1);
+            }
+
             numOfSongs += 1;
             nextSong = rnd.nextInt(songsInBox);
 
@@ -88,6 +100,12 @@ public class Jukebox {
                 }
                 numOfSongs += 1;
                 songSet.add(newSongs.get(nextSong));
+                count = songToPlays.get(newSongs.get(nextSong));
+                if(count == null){
+                    songToPlays.put(newSongs.get(nextSong),1);
+                }else{
+                    songToPlays.put(newSongs.get(nextSong),count+1);
+                }
                 nextSong = rnd.nextInt(songsInBox);
             }
 
@@ -96,9 +114,26 @@ public class Jukebox {
         openingLine(newSongs.size());
         for(Song x: firstFiveSongs)
             System.out.println("    " + x);
-        System.out.println("Number of songs played: " + numOfSongs);
+        //Iterate through songsToPlays
+
+        Iterator songToPlaysIterator = songToPlays.entrySet().iterator();
+        Song mostPlayedSong = null;
+        int mostPlays=0;
+        while(songToPlaysIterator.hasNext()){
+            Map.Entry mapElement = (Map.Entry)songToPlaysIterator.next();
+            int plays = (int)mapElement.getValue();
+            if(plays > mostPlays){
+                mostPlayedSong = (Song)mapElement.getKey();
+                mostPlays = plays;
+            }
+        }
+
         long endTime = System.currentTimeMillis();
         System.out.println("Simulation took " + (endTime-startTime)/1000 + " second/s: ");
+        System.out.println("Number of simulations run: " + SIM_RUNS);
+        System.out.println("Total number of songs played: " + numOfSongs);
+        System.out.println("Average number of songs played per simulation to get duplicate: " + numOfSongs/SIM_RUNS);
+        System.out.println("Most played song: " + "\"" + mostPlayedSong.getSong() + "\"" + " by " + "\"" + mostPlayedSong.getArtist() + "\":");
     }
 
     public static void main(String[] args){

@@ -23,7 +23,9 @@ public class Song implements Comparable<Song> {
         this.name = name;
         this.artist = artist;
     }
+    public String getSong(){return this.name;}
 
+    public String getArtist(){return this.artist;}
     @Override
     public int hashCode(){return this.name.hashCode() + this.artist.hashCode();}
 
