@@ -1,5 +1,3 @@
-package battleship;
-
 /**
  * The orientation of a ship.
  * The names of the enum values were chosen because they
