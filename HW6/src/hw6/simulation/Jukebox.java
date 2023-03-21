@@ -71,6 +71,7 @@ public class Jukebox {
         List<Song> newSongs = new ArrayList<>();
         List<Song> firstFiveSongs = new ArrayList<>();
         HashMap<Song, Integer> songToPlays = new HashMap<>();
+        TreeMap<String,HashSet<Song>> artistToSongs = new TreeMap<>();
         newSongs = getSongs(filename);
         int songsInBox = newSongs.size();
         int numOfSongs = 0;
@@ -91,6 +92,13 @@ public class Jukebox {
                 songToPlays.put(newSongs.get(nextSong),count+1);
             }
 
+            if(artistToSongs.containsKey(newSongs.get(nextSong).getArtist())){
+                artistToSongs.get(newSongs.get(nextSong).getArtist()).add(newSongs.get(nextSong));
+            }else{
+                HashSet<Song> songs = new HashSet<>();
+                artistToSongs.put(newSongs.get(nextSong).getArtist(),songs);
+            }
+
             numOfSongs += 1;
             nextSong = rnd.nextInt(songsInBox);
 
@@ -106,6 +114,14 @@ public class Jukebox {
                 }else{
                     songToPlays.put(newSongs.get(nextSong),count+1);
                 }
+
+                if(artistToSongs.containsKey(newSongs.get(nextSong).getArtist())){
+                    artistToSongs.get(newSongs.get(nextSong).getArtist()).add(newSongs.get(nextSong));
+                }else{
+                    HashSet<Song> songs = new HashSet<>();
+                    artistToSongs.put(newSongs.get(nextSong).getArtist(),songs);
+                }
+
                 nextSong = rnd.nextInt(songsInBox);
             }
 
@@ -128,6 +144,16 @@ public class Jukebox {
             }
         }
 
+        //Loop through songs
+        //HashSet<Song> highestKey = artistToSongs.get(artistToSongs.lastKey());
+
+        System.out.println("Printing list of songs");
+        /*
+        for(Song x: highestKey)
+            System.out.println(songToPlays.get(x));
+
+         */
+        System.out.println(artistToSongs.get(mostPlayedSong.getArtist()));
         long endTime = System.currentTimeMillis();
         System.out.println("Simulation took " + (endTime-startTime)/1000 + " second/s: ");
         System.out.println("Number of simulations run: " + SIM_RUNS);
