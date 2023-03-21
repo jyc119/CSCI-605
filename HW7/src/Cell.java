@@ -28,6 +28,37 @@ public class Cell implements Serializable {
      */
     public static final char HIDDEN_SHIP_SECTION = 'S';
 
-    //TODO YOUR CODE HERE
+    private final int row;
 
+    private final int column;
+
+    private Ship ship;
+
+    private Board board;
+
+    public Cell(int row, int column) {
+        this.row = row;
+        this.column = column;
+    }
+
+    public void putShip(Ship ship) {
+        this.ship = ship;
+    }
+
+//    public void hit() {
+//        if (!(this.ship == null)) {
+//            this.ship.hit();
+//        }
+//        else {
+//
+//        }
+//    }
+
+//    public char displayHitStatus() {
+//
+//    }
+
+    public char displayChar() {
+        return PRISTINE_WATER;
+    }
 }
