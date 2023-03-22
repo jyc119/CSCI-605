@@ -28,7 +28,7 @@ public class Cell implements Serializable {
      */
     public static final char HIDDEN_SHIP_SECTION = 'S';
 
-    private char CHARACTER_STATE = PRISTINE_WATER;
+    public char CHARACTER_STATE = PRISTINE_WATER;
 
     private final int row;
 
@@ -48,6 +48,7 @@ public class Cell implements Serializable {
 
     public void hit() {
         if (!(this.ship == null)) {
+            CHARACTER_STATE = HIT_SHIP_SECTION;
             this.ship.hit();
         }
         else {

@@ -22,8 +22,13 @@ public class Board implements Serializable {
                 this.cells[row][column] = new Cell(row, column);
             }
         }
+        this.ships = new ArrayList<>();
     }
 
+
+    public ArrayList<Ship> getShips(){
+        return ships;
+    }
     public int getHeight() {
         return rowDim;
     }
@@ -48,14 +53,14 @@ public class Board implements Serializable {
         ships.add(ship);
     }
 
-//    public boolean allSunk() {
-//        for (Ship ship : ships) {
-//            if (!ship.isSunk()) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
+    public boolean allSunk() {
+        for (Ship ship : ships) {
+            if (!ship.isSunk()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public String toString() {
         StringBuilder board = new StringBuilder();

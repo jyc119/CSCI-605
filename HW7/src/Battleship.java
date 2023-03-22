@@ -1,3 +1,4 @@
+import javax.print.DocFlavor;
 import java.io.*;
 
 
@@ -48,27 +49,51 @@ public class Battleship {
             String[] dimensions = line.split(WHITESPACE);
             Board board = new Board(Integer.valueOf(dimensions[0]), Integer.valueOf(dimensions[1]));
             line = newGame.readLine();
-            Cell cell;
             while (line != null) {
                 String[] shipInfo = line.split(WHITESPACE);
-                //try to add each ship to the board and catch error 5 and 6
-//                try {
-//                    board.addShip(new Ship(board, Integer.valueOf(shipInfo[0]),
-//                            Integer.valueOf(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
-//                            Integer.valueOf(shipInfo[3])));
-//                }
-//                catch (BattleshipException be) {
-//
-//                }
-                cell = board.getCell(Integer.valueOf(shipInfo[0]), Integer.valueOf(shipInfo[1]));
-                cell.putShip(new Ship(board, Integer.valueOf(shipInfo[0]),
+                board.addShip(new Ship(board, Integer.valueOf(shipInfo[0]),
                         Integer.valueOf(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
                         Integer.valueOf(shipInfo[3])));
                 line = newGame.readLine();
             }
-//            System.out.println(board.toString());
-//            board.getCell(0,0).hit();
-//            System.out.println(board.toString());
+            System.out.println(board.getShips());
+            while (!board.allSunk()) {
+                System.out.println();
+                System.out.println(board);
+                InputStreamReader test = new InputStreamReader(System.in);
+                BufferedReader br = new BufferedReader(test);
+                System.out.print(Prompt);
+                String move = br.readLine();
+                if (String.valueOf(move.charAt(0)).equals(HIT)) {
+                    String[] hit = move.split(WHITESPACE);
+                    if (hit.length == 3) {
+                        board.getCell(Integer.valueOf(hit[1]), Integer.valueOf(hit[2])).hit();
+                    }
+                    //else illegal argument exception
+                } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
+                    String[] save = move.split(WHITESPACE);
+                    if (save.length == 2) {
+                        //Save game as game.bin
+                    }
+                    //else illegal argument exception
+                } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
+                    String[] showBoard = move.split(WHITESPACE);
+                    if (showBoard.length == 1) {
+                        //Display board with ships
+                    }
+                    //else illegal argument exception
+                } else if (String.valueOf(move.charAt(0)).equals(QUIT)) {
+                    String[] quit = move.split(WHITESPACE);
+                    if (quit.length == 1) {
+                        return;
+                    }
+                    //else illegal argument exception
+                } else {
+                    //illegal argument exception
+                }
+            }
+            System.out.println(board);
+            System.out.println(ALL_SHIPS_SUNK);
         } catch (IOException fnfe){
             System.out.println("No File Found");
         }
