@@ -56,7 +56,6 @@ public class Battleship {
                         Integer.valueOf(shipInfo[3])));
                 line = newGame.readLine();
             }
-            System.out.println(board.getShips());
             while (!board.allSunk()) {
                 System.out.println();
                 System.out.println(board);

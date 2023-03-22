@@ -1,6 +1,5 @@
 import java.io.PrintStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Board implements Serializable {
 
@@ -10,7 +9,7 @@ public class Board implements Serializable {
 
     private Cell[][] cells;
 
-    private ArrayList<Ship> ships;
+    public int ships;
 
     public Board(int rowDim, int columnDim) {
         this.rowDim = rowDim;
@@ -22,13 +21,8 @@ public class Board implements Serializable {
                 this.cells[row][column] = new Cell(row, column);
             }
         }
-        this.ships = new ArrayList<>();
     }
 
-
-    public ArrayList<Ship> getShips(){
-        return ships;
-    }
     public int getHeight() {
         return rowDim;
     }
@@ -50,16 +44,16 @@ public class Board implements Serializable {
     }
 
     public void addShip(Ship ship) {
-        ships.add(ship);
+        ships++;
     }
 
     public boolean allSunk() {
-        for (Ship ship : ships) {
-            if (!ship.isSunk()) {
-                return false;
-            }
+        if (ships == 0) {
+            return true;
         }
-        return true;
+        else {
+            return false;
+        }
     }
 
     public String toString() {
