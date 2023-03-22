@@ -48,6 +48,7 @@ public class Battleship {
             String[] dimensions = line.split(WHITESPACE);
             Board board = new Board(Integer.valueOf(dimensions[0]), Integer.valueOf(dimensions[1]));
             line = newGame.readLine();
+            Cell cell;
             while (line != null) {
                 String[] shipInfo = line.split(WHITESPACE);
                 //try to add each ship to the board and catch error 5 and 6
@@ -59,13 +60,15 @@ public class Battleship {
 //                catch (BattleshipException be) {
 //
 //                }
-                Cell cell = board.getCell(Integer.valueOf(shipInfo[0]), Integer.valueOf(shipInfo[1]));
+                cell = board.getCell(Integer.valueOf(shipInfo[0]), Integer.valueOf(shipInfo[1]));
                 cell.putShip(new Ship(board, Integer.valueOf(shipInfo[0]),
-                            Integer.valueOf(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
-                            Integer.valueOf(shipInfo[3])));
+                        Integer.valueOf(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
+                        Integer.valueOf(shipInfo[3])));
                 line = newGame.readLine();
             }
-            System.out.println(board.toString());
+//            System.out.println(board.toString());
+//            board.getCell(0,0).hit();
+//            System.out.println(board.toString());
         } catch (IOException fnfe){
             System.out.println("No File Found");
         }

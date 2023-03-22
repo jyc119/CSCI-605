@@ -1,7 +1,8 @@
 import java.io.PrintStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Board {
+public class Board implements Serializable {
 
     private final int rowDim;
 

@@ -28,6 +28,8 @@ public class Cell implements Serializable {
      */
     public static final char HIDDEN_SHIP_SECTION = 'S';
 
+    private char CHARACTER_STATE = PRISTINE_WATER;
+
     private final int row;
 
     private final int column;
@@ -44,24 +46,19 @@ public class Cell implements Serializable {
         this.ship = ship;
     }
 
-//    public void hit() {
-//        if (!(this.ship == null)) {
-//            this.ship.hit();
-//        }
-//        else {
-//
-//        }
-//    }
+    public void hit() {
+        if (!(this.ship == null)) {
+            this.ship.hit();
+        }
+        else {
+            CHARACTER_STATE = HIT_WATER;
+        }
+    }
 
 //    public char displayHitStatus() {
 //    }
 
     public char displayChar() {
-        if (this.ship == null) {
-            return PRISTINE_WATER;
-        }
-        else {
-            return HIDDEN_SHIP_SECTION;
-        }
+        return CHARACTER_STATE;
     }
 }
