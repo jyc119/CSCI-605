@@ -50,11 +50,14 @@ public class Battleship {
             try (FileInputStream savedGame = new FileInputStream(args[0])) {
                 ObjectInputStream game = new ObjectInputStream(savedGame);
                 System.out.println("yes");
-            } catch (IOException ignored) {
-            }
+                Board board = new Board(4, 4);
+                System.out.println(board.toString());
+            } catch (IOException ignored) {}
             try (BufferedReader newGame = new BufferedReader(new FileReader(args[0]))) {
-                    System.out.println("no; will read as a text setup file.");
-                } catch (FileNotFoundException fnfe){
+                System.out.println("no; will read as a text setup file.");
+                Board board = new Board(4, 4);
+                System.out.println(board.toString());
+                } catch (Exception fnfe){
                 System.out.println("No File Found");
             }
         }
