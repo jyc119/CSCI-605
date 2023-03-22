@@ -1,4 +1,5 @@
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * The main class that runs the game
@@ -25,20 +26,37 @@ public class Battleship {
     public static final String SAVE = "s";
 
     public static final String WHITESPACE = "\\s+";
+    private int rows;
+
+    private int columns;
 
     private Board board;
 
 
     public Battleship(String filename) throws BattleshipException, IOException {
-
     }
 
-    public void play() {
-
-    }
+//    public void play() {
+//
+//        Board board = new Board()
+//        System.out.println(board.toString());
+//    }
 
     public static void main(String[] args) throws BattleshipException, IOException {
-        Board board = new Board(5, 5);
-        System.out.println(board.toString());
+        if (args.length != 1) {
+            System.out.println("Usage: java Battleship setup-file");
+        } else {
+            System.out.print("Checking if " + args[0] + " is a saved game file... ");
+            try (FileInputStream savedGame = new FileInputStream(args[0])) {
+                ObjectInputStream game = new ObjectInputStream(savedGame);
+                System.out.println("yes");
+            } catch (IOException ignored) {
+            }
+            try (BufferedReader newGame = new BufferedReader(new FileReader(args[0]))) {
+                    System.out.println("no; will read as a text setup file.");
+                } catch (FileNotFoundException fnfe){
+                System.out.println("No File Found");
+            }
+        }
     }
 }

@@ -72,23 +72,6 @@ public class Board {
             }
             board.append("\n");
         }
-//
-//            gameboard.append("\n");
-//            gameboard.append("  ");
-//            for(int col = 0; col<colVals;col++){
-//                gameboard.append(this.lines.getLine(row,col,
-//                        row+1,col).toString());
-//                if(col != (colVals-1) && row != (rowVals-1)) {
-//                    gameboard.append(boxes[row][col].toString());
-//                    if(boxes[row][col].toString() ==  "B"){
-//                        blueboxes += 1;
-//                    } else if(boxes[row][col].toString() == "R"){
-//                        redboxes += 1;
-//                    }
-//                }
-//            }
-//            gameboard.append("\n");
-//        }
         return board.toString();
     }
 }
