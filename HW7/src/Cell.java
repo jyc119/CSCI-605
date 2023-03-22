@@ -34,7 +34,6 @@ public class Cell implements Serializable {
 
     private Ship ship;
 
-    private Board board;
 
     public Cell(int row, int column) {
         this.row = row;
@@ -55,10 +54,14 @@ public class Cell implements Serializable {
 //    }
 
 //    public char displayHitStatus() {
-//
 //    }
 
     public char displayChar() {
-        return PRISTINE_WATER;
+        if (this.ship == null) {
+            return PRISTINE_WATER;
+        }
+        else {
+            return HIDDEN_SHIP_SECTION;
+        }
     }
 }
