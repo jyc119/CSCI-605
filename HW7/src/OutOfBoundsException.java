@@ -9,6 +9,6 @@ public class OutOfBoundsException extends BattleshipException{
     }
 
     public String toString(){
-        return "battleship.OutOfBoundsException: Coordinates are past board edge, row=" + row + " , column=" + column;
+        return "battleship.OutOfBoundsException: Coordinates are past board edge, row=" + row + ", column=" + column;
     }
 }
