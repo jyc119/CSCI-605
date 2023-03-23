@@ -67,7 +67,7 @@ public class Board implements Serializable {
         for(int row = 0; row < rowDim; row++) {
             board.append(row + " ");
             for (int col = 0; col < columnDim; col++) {
-                board.append(cells[row][col].displayChar());
+                board.append(cells[row][col].displayHitStatus());
                 board.append(" ");
             }
             board.append("\n");

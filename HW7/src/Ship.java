@@ -51,7 +51,7 @@ public class Ship implements Serializable {
     public void hit() {
         if (orientation == Orientation.HORIZONTAL) {
             for (int i = column; i < column + this.length; i++) {
-                if (board.getCell(row, i).displayChar() != Cell.HIT_SHIP_SECTION) {
+                if (board.getCell(row, i).displayHitStatus() != Cell.HIT_SHIP_SECTION) {
                     return;
                 }
             }
@@ -62,7 +62,7 @@ public class Ship implements Serializable {
             board.ships--;
         } else {
             for (int i = row; i < row + this.length; i++) {
-                if (board.getCell(i, column).displayChar() != Cell.HIT_SHIP_SECTION) {
+                if (board.getCell(i, column).displayHitStatus() != Cell.HIT_SHIP_SECTION) {
                     return;
                 }
             }
@@ -77,7 +77,7 @@ public class Ship implements Serializable {
     public boolean isSunk() {
         if (this.orientation == Orientation.HORIZONTAL) {
             for (int i = column; i < column + this.length; i++) {
-                if (board.getCell(row, i).displayChar() == Cell.SUNK_SHIP_SECTION) {
+                if (board.getCell(row, i).displayHitStatus() == Cell.SUNK_SHIP_SECTION) {
                     return true;
                 } else {
                     return false;
@@ -86,7 +86,7 @@ public class Ship implements Serializable {
         }
         else {
             for (int i = row; i < row + this.length; i++) {
-                if (board.getCell(i, column).displayChar() == Cell.SUNK_SHIP_SECTION) {
+                if (board.getCell(i, column).displayHitStatus() == Cell.SUNK_SHIP_SECTION) {
                     return true;
                 } else {
                     return false;

@@ -74,11 +74,11 @@ public class Battleship {
                         if (hit.length == 3) {
                             board.getCell(Integer.valueOf(hit[1]), Integer.valueOf(hit[2])).hit();
                         }
+                        else {
+                            System.out.println("Wrong number of arguments for command: " + HIT);
+                        }
                     } catch(BattleshipException e){
                         System.out.println(e);
-                    }
-                    else {
-                        System.out.println("Wrong number of arguments for command: " + HIT);
                     }
                 } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
                     String[] save = move.split(WHITESPACE);
@@ -92,7 +92,7 @@ public class Battleship {
                 } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
                     String[] showBoard = move.split(WHITESPACE);
                     if (showBoard.length == 1) {
-                        //Display board with ships
+
                     }
                     else {
                         System.out.println("Wrong number of arguments for command: " + REVEAL);

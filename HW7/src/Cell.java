@@ -1,3 +1,4 @@
+import java.io.PrintStream;
 import java.io.Serializable;
 
 /**
@@ -65,10 +66,14 @@ public class Cell implements Serializable {
         }
     }
 
-//    public char displayHitStatus() {
-//    }
+    public char displayHitStatus() {return CHARACTER_STATE;}
 
     public char displayChar() {
-        return CHARACTER_STATE;
+        if (this.ship == null) {
+            return PRISTINE_WATER;
+        }
+        else {
+            return HIDDEN_SHIP_SECTION;
+        }
     }
 }
