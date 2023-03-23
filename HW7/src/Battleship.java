@@ -77,27 +77,36 @@ public class Battleship {
                     } catch(BattleshipException e){
                         System.out.println(e);
                     }
-                    //else illegal argument exception
+                    else {
+                        System.out.println("Wrong number of arguments for command: " + HIT);
+                    }
                 } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
                     String[] save = move.split(WHITESPACE);
                     if (save.length == 2) {
-                        //Save game as game.bin
+                        try (FileOutputStream saveGame = new FileOutputStream(save[1])) {
+                        } catch (IOException ignored) {{System.out.print("Incorrect file name");}} // not sure if its right
                     }
-                    //else illegal argument exception
+                    else {
+                        System.out.println("Wrong number of arguments for command: " + SAVE);
+                    }
                 } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
                     String[] showBoard = move.split(WHITESPACE);
                     if (showBoard.length == 1) {
                         //Display board with ships
                     }
-                    //else illegal argument exception
+                    else {
+                        System.out.println("Wrong number of arguments for command: " + REVEAL);
+                    }
                 } else if (String.valueOf(move.charAt(0)).equals(QUIT)) {
                     String[] quit = move.split(WHITESPACE);
                     if (quit.length == 1) {
                         return;
                     }
-                    //else illegal argument exception
+                    else {
+                        System.out.println("Wrong number of arguments for command: " + QUIT);
+                    }
                 } else {
-                    //illegal argument exception
+                    System.out.println("Invalid command");
                 }
             }
             System.out.println(board);
