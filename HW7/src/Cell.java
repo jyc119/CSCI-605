@@ -50,7 +50,12 @@ public class Cell implements Serializable {
         return this.ship;
     }
 
-    public void hit() {
+    public void hit() throws CellPlayedException {
+        if(CHARACTER_STATE == HIT_WATER ||
+                CHARACTER_STATE == HIT_SHIP_SECTION ||
+                CHARACTER_STATE == SUNK_SHIP_SECTION){
+            throw new CellPlayedException(this.row, this.column, "Already hit!");
+        }
         if (!(this.ship == null)) {
             CHARACTER_STATE = HIT_SHIP_SECTION;
             this.ship.hit();

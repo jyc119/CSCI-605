@@ -70,8 +70,12 @@ public class Battleship {
                 String move = br.readLine();
                 if (String.valueOf(move.charAt(0)).equals(HIT)) {
                     String[] hit = move.split(WHITESPACE);
-                    if (hit.length == 3) {
-                        board.getCell(Integer.valueOf(hit[1]), Integer.valueOf(hit[2])).hit();
+                    try {
+                        if (hit.length == 3) {
+                            board.getCell(Integer.valueOf(hit[1]), Integer.valueOf(hit[2])).hit();
+                        }
+                    } catch(BattleshipException e){
+                        System.out.println(e);
                     }
                     //else illegal argument exception
                 } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
