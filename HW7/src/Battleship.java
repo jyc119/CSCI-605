@@ -8,7 +8,7 @@ public class Battleship {
     public static final String ALL_SHIPS_SUNK = "All ships sunk!";
 
     public static final String BAD_ARG_COUNT = "Wrong number of " +
-            "arguments for command";
+            "arguments for command ";
 
     public static final String DIM_TOO_BIG = "Board dimensions too big to " +
             "display";
@@ -68,14 +68,26 @@ public class Battleship {
                 BufferedReader br = new BufferedReader(test);
                 System.out.print(Prompt);
                 String move = br.readLine();
-                if (String.valueOf(move.charAt(0)).equals(HIT)) {
+                if (move.equals("help")) {
+                    String[] help = move.split(WHITESPACE);
+                    if (help.length == 1) {
+                        System.out.println("h row column - Hit a cell.\n" +
+                                "s file - Save game state to file. (Serialization process)\n" +
+                                "! - Reveal all ship locations.\n" +
+                                "q - Quit game.");
+                        continue;
+                    }
+                    else {
+                        System.out.println(BAD_ARG_COUNT + REVEAL);
+                    }
+                } else if (String.valueOf(move.charAt(0)).equals(HIT)) {
                     String[] hit = move.split(WHITESPACE);
                     try {
                         if (hit.length == 3) {
                             board.getCell(Integer.valueOf(hit[1]), Integer.valueOf(hit[2])).hit();
                         }
                         else {
-                            System.out.println("Wrong number of arguments for command: " + HIT);
+                            System.out.println(BAD_ARG_COUNT + HIT);
                         }
                     } catch(BattleshipException e){
                         System.out.println(e);
@@ -84,13 +96,11 @@ public class Battleship {
                     String[] save = move.split(WHITESPACE);
                     if (save.length == 2) {
                         try (FileOutputStream saveGame = new FileOutputStream(save[1])) {
-                            System.out.print(Prompt);
-                            move = br.readLine();
                             continue;
                         } catch (IOException ignored) {{System.out.print("Incorrect file name");}} // not sure if its right
                     }
                     else {
-                        System.out.println("Wrong number of arguments for command: " + SAVE);
+                        System.out.println(BAD_ARG_COUNT + SAVE);
                     }
                 } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
                     String[] showBoard = move.split(WHITESPACE);
@@ -99,7 +109,7 @@ public class Battleship {
                         continue;
                     }
                     else {
-                        System.out.println("Wrong number of arguments for command: " + REVEAL);
+                        System.out.println(BAD_ARG_COUNT + REVEAL);
                     }
                 } else if (String.valueOf(move.charAt(0)).equals(QUIT)) {
                     String[] quit = move.split(WHITESPACE);
@@ -107,7 +117,7 @@ public class Battleship {
                         return;
                     }
                     else {
-                        System.out.println("Wrong number of arguments for command: " + QUIT);
+                        System.out.println(BAD_ARG_COUNT + QUIT);
                     }
                 } else {
                     System.out.println("Invalid command");
