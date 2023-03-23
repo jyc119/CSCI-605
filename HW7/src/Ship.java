@@ -18,7 +18,14 @@ public class Ship implements Serializable {
     private final int length;
 
     public Ship(Board board, int row, int column, Orientation orientation,
-                int length) {
+                int length) throws BattleshipException  {
+        if(board.getCell(row,column).getShip() != null){
+            throw new OverlapException(row, column, "Cannot have another ship here!");
+        }
+        if(orientation == Orientation.VERTICAL && row + length > board.getHeight() ||
+                orientation == Orientation.HORIZONTAL && column+length > board.getWidth()){
+            throw new OutOfBoundsException("Out of bounds!", row,column);
+        }
         this.board = board;
         this.row = row;
         this.column = column;

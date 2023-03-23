@@ -34,7 +34,7 @@ public class Cell implements Serializable {
 
     private final int column;
 
-    private Ship ship;
+    public Ship ship;
 
 
     public Cell(int row, int column) {
@@ -44,6 +44,10 @@ public class Cell implements Serializable {
 
     public void putShip(Ship ship) {
         this.ship = ship;
+    }
+
+    public Ship getShip(){
+        return this.ship;
     }
 
     public void hit() {

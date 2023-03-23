@@ -1,4 +1,3 @@
-import javax.print.DocFlavor;
 import java.io.*;
 
 
@@ -50,11 +49,17 @@ public class Battleship {
             Board board = new Board(Integer.valueOf(dimensions[0]), Integer.valueOf(dimensions[1]));
             line = newGame.readLine();
             while (line != null) {
-                String[] shipInfo = line.split(WHITESPACE);
-                board.addShip(new Ship(board, Integer.valueOf(shipInfo[0]),
-                        Integer.valueOf(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
-                        Integer.valueOf(shipInfo[3])));
-                line = newGame.readLine();
+                try {
+                    String[] shipInfo = line.split(WHITESPACE);
+                    board.addShip(new Ship(board, Integer.valueOf(shipInfo[0]),
+                            Integer.valueOf(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
+                            Integer.valueOf(shipInfo[3])));
+                    line = newGame.readLine();
+                }
+                catch(BattleshipException e){
+                    System.out.println(e);
+                    return;
+                }
             }
             while (!board.allSunk()) {
                 System.out.println();
