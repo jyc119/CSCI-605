@@ -41,9 +41,9 @@ public class Battleship {
             System.out.println("yes");
             Board board = new Board(4, 4);
             System.out.println(board);
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {{System.out.print("no; ");}}
         try (BufferedReader newGame = new BufferedReader(new FileReader(filename))) {
-            System.out.println("no; will read as a text setup file.");
+            System.out.println("will read as a text setup file.");
             String line = newGame.readLine();
             String[] dimensions = line.split(WHITESPACE);
             Board board = new Board(Integer.valueOf(dimensions[0]), Integer.valueOf(dimensions[1]));
@@ -98,7 +98,7 @@ public class Battleship {
             }
             System.out.println(board);
             System.out.println(ALL_SHIPS_SUNK);
-        } catch (IOException fnfe){
+        } catch (IOException IO){
             System.out.println("No File Found");
         }
     }
