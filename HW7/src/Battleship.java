@@ -61,9 +61,9 @@ public class Battleship {
                     return;
                 }
             }
+            System.out.println();
+            System.out.println(board);
             while (!board.allSunk()) {
-                System.out.println();
-                System.out.println(board);
                 InputStreamReader test = new InputStreamReader(System.in);
                 BufferedReader br = new BufferedReader(test);
                 System.out.print(Prompt);
@@ -84,6 +84,9 @@ public class Battleship {
                     String[] save = move.split(WHITESPACE);
                     if (save.length == 2) {
                         try (FileOutputStream saveGame = new FileOutputStream(save[1])) {
+                            System.out.print(Prompt);
+                            move = br.readLine();
+                            continue;
                         } catch (IOException ignored) {{System.out.print("Incorrect file name");}} // not sure if its right
                     }
                     else {
@@ -92,7 +95,8 @@ public class Battleship {
                 } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
                     String[] showBoard = move.split(WHITESPACE);
                     if (showBoard.length == 1) {
-
+                        System.out.println(board.revealBoard());
+                        continue;
                     }
                     else {
                         System.out.println("Wrong number of arguments for command: " + REVEAL);
@@ -108,6 +112,8 @@ public class Battleship {
                 } else {
                     System.out.println("Invalid command");
                 }
+                System.out.println();
+                System.out.println(board);
             }
             System.out.println(board);
             System.out.println(ALL_SHIPS_SUNK);

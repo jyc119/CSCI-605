@@ -74,4 +74,23 @@ public class Board implements Serializable {
         }
         return board.toString();
     }
+
+    public String revealBoard() {
+        StringBuilder board = new StringBuilder();
+        board.append("  ");
+        for(int col = 0; col < columnDim; col++){
+            board.append(col);
+            board.append(" ");
+        }
+        board.append("\n");
+        for(int row = 0; row < rowDim; row++) {
+            board.append(row + " ");
+            for (int col = 0; col < columnDim; col++) {
+                board.append(cells[row][col].displayChar());
+                board.append(" ");
+            }
+            board.append("\n");
+        }
+        return board.toString();
+    }
 }
