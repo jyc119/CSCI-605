@@ -73,7 +73,10 @@ public class Cell implements Serializable {
     public char displayHitStatus() {return CHARACTER_STATE;}
 
     public char displayChar() {
-        if (this.ship == null) {
+        if (hitStatus) {
+            return CHARACTER_STATE;
+        }
+        else if (this.ship == null) {
             return PRISTINE_WATER;
         }
         else {

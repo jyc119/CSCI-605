@@ -23,8 +23,10 @@ public class Ship implements Serializable {
                 int length) throws OutOfBoundsException, OverlapException {
         if(row > board.getHeight() ||
                 column > board.getWidth() ||
-                orientation == Orientation.VERTICAL && row + length > board.getHeight() ||
-                orientation == Orientation.HORIZONTAL && column+length > board.getWidth()){
+                orientation == Orientation.VERTICAL && row + length >
+                        board.getHeight() ||
+                orientation == Orientation.HORIZONTAL && column+length >
+                        board.getWidth()){
             throw new OutOfBoundsException(row,column);
         }
         if(board.getCell(row,column).ship != null){
@@ -68,17 +70,14 @@ public class Ship implements Serializable {
                 }
             }
             for (int i = row; i < row + this.length; i++) {
-                board.getCell(i, column).CHARACTER_STATE = Cell.SUNK_SHIP_SECTION;
+                board.getCell(i, column).CHARACTER_STATE =
+                        Cell.SUNK_SHIP_SECTION;
             }
             System.out.println(SUNK_MESSAGE);
         }
     }
 
     public boolean isSunk() {
-        if (hits == length) {
-            return true;
-        } else {
-            return false;
-        }
+        return hits == length;
     }
 }

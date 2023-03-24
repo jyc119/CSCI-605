@@ -8,7 +8,7 @@ public class Battleship {
     public static final String ALL_SHIPS_SUNK = "All ships sunk!";
 
     public static final String BAD_ARG_COUNT = "Wrong number of " +
-            "arguments for command ";
+            "arguments for command: ";
 
     public static final String DIM_TOO_BIG = "Board dimensions too big to " +
             "display";
@@ -52,7 +52,7 @@ public class Battleship {
             if (Integer.parseInt(dimensions[0]) > MAX_DIM ||
                     Integer.parseInt(dimensions[1]) > MAX_DIM) {
                 System.out.println(DIM_TOO_BIG);
-                return;
+                System.exit(0);
             } else {
                 board = new Board(Integer.parseInt(dimensions[0]),
                         Integer.parseInt(dimensions[1]));
@@ -96,7 +96,9 @@ public class Battleship {
                     continue;
                 } else {
                     System.out.println(BAD_ARG_COUNT + REVEAL);
+                    continue;
                 }
+            }
                 if (String.valueOf(move.charAt(0)).equals(HIT)) {
                     String[] hit = move.split(WHITESPACE);
                     try {
@@ -105,9 +107,11 @@ public class Battleship {
                                     Integer.parseInt(hit[2])).hit();
                         } else {
                             System.out.println(BAD_ARG_COUNT + HIT);
+                            continue;
                         }
                     } catch (BattleshipException e) {
                         System.out.println(e);
+                        continue;
                     }
                 } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
                     String[] save = move.split(WHITESPACE);
@@ -124,6 +128,7 @@ public class Battleship {
                         }
                     } else {
                         System.out.println(BAD_ARG_COUNT + SAVE);
+                        continue;
                     }
                 } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
                     String[] showBoard = move.split(WHITESPACE);
@@ -139,14 +144,14 @@ public class Battleship {
                         return;
                     } else {
                         System.out.println(BAD_ARG_COUNT + QUIT);
+                        continue;
                     }
                 } else {
                     System.out.println("Invalid command");
                 }
                 board.display(System.out);
-            }
-            System.out.println(ALL_SHIPS_SUNK);
         }
+        System.out.println(ALL_SHIPS_SUNK);
     }
 
     public static void main(String[] args) {

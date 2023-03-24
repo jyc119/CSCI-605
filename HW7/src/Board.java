@@ -10,7 +10,7 @@ public class Board implements Serializable {
 
     private Cell[][] cells;
 
-    public ArrayList<Ship> ships;
+    private ArrayList<Ship> ships;
 
     public Board(int rowDim, int columnDim) {
         this.rowDim = rowDim;
