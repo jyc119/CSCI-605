@@ -47,7 +47,12 @@ public class Cell implements Serializable {
     }
 
     public void putShip(Ship ship) throws OverlapException{
-        this.ship = ship;
+        if (!(this.ship == null)) {
+            throw new OverlapException(row, column);
+        }
+        else {
+            this.ship = ship;
+        }
     }
 
     public void hit() throws CellPlayedException {

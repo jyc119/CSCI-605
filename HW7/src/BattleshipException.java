@@ -22,5 +22,4 @@ public class BattleshipException extends Exception {
         this.row = UNSET;
         this.column = UNSET;
     }
-
 }

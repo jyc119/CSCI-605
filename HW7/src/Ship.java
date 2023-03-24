@@ -29,7 +29,7 @@ public class Ship implements Serializable {
             throw new OutOfBoundsException(row,column);
         }
         if(board.getCell(row,column).ship != null){
-            throw new OverlapException(row, column, "Cannot have another ship here!");
+            throw new OverlapException(row, column);
         }
 
         this.board = board;
