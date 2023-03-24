@@ -66,6 +66,7 @@ public class Cell implements Serializable {
         }
         else {
             CHARACTER_STATE = HIT_WATER;
+            hitStatus = true;
         }
     }
 

@@ -27,58 +27,59 @@ public class Battleship {
 
     public static final String WHITESPACE = "\\s+";
 
-    private String filename;
+//    private String filename;
 
-//    private Board board;
+    private Board board;
 
 
     public Battleship(String filename) throws BattleshipException, IOException {
-        this.filename = filename;
-//        System.out.print("Checking if " + filename + " is a saved game file... ");
-//        try (ObjectInputStream game = new ObjectInputStream(new FileInputStream(filename))){
-//            System.out.println("yes");
-//            board = (Board) game.readObject();
-//            board.display(System.out);
-//        } catch (Exception e) {
-//            {System.out.print("no; ");}
-//            try (BufferedReader newGame = new BufferedReader(new FileReader(filename))) {
-//                System.out.println("will read as a text setup file.");
-//                String line = newGame.readLine();
-//                String[] dimensions = line.split(WHITESPACE);
-//                if (Integer.parseInt(dimensions[0]) > MAX_DIM || Integer.parseInt(dimensions[1]) > MAX_DIM) {
-//                    System.out.println(DIM_TOO_BIG);
-//                    return; // Not sure if were supposed to end the program
-//                }
-//                board = new Board(Integer.parseInt(dimensions[0]), Integer.parseInt(dimensions[1]));
-//                line = newGame.readLine();
-//                while (line != null) {
-//                    try {
-//                        String[] shipInfo = line.split(WHITESPACE);
-//                        board.addShip(new Ship(board, Integer.parseInt(shipInfo[0]),
-//                                Integer.parseInt(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
-//                                Integer.parseInt(shipInfo[3])));
-//                        line = newGame.readLine();
-//                    } catch (BattleshipException be) {
-//                        System.out.println(e);
-//                        return;
-//                    }
-//                }
-//                board.display(System.out);
-//            }
-//        }
+//        this.filename = filename;
+        System.out.print("Checking if " + filename + " is a saved game file... ");
+        try (ObjectInputStream game = new ObjectInputStream(new FileInputStream(filename))){
+            System.out.println("yes");
+            board = (Board) game.readObject();
+            board.display(System.out);
+        } catch (IOException | ClassNotFoundException e) {
+            {System.out.print("no; ");}
+        try (BufferedReader newGame = new BufferedReader(new FileReader(filename))) {
+            System.out.println("will read as a text setup file.");
+            String line = newGame.readLine();
+            String[] dimensions = line.split(WHITESPACE);
+            if (Integer.parseInt(dimensions[0]) > MAX_DIM || Integer.parseInt(dimensions[1]) > MAX_DIM) {
+                System.out.println(DIM_TOO_BIG);
+                return;
+            } else {
+                board = new Board(Integer.parseInt(dimensions[0]), Integer.parseInt(dimensions[1]));
+            }
+            line = newGame.readLine();
+            while (line != null) {
+                try {
+                    String[] shipInfo = line.split(WHITESPACE);
+                    board.addShip(new Ship(board, Integer.parseInt(shipInfo[0]),
+                            Integer.parseInt(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
+                            Integer.parseInt(shipInfo[3])));
+                    line = newGame.readLine();
+                } catch (BattleshipException be) {
+                    System.out.println(be);
+                    return;
+                }
+            }
+            board.display(System.out);
+            }
+        }
     }
 
     public void play() {
-        System.out.print("Checking if " + filename + " is a saved game file... ");
-        try (ObjectInputStream game = new ObjectInputStream(new FileInputStream(filename))) {
-            System.out.println("yes");
-            Board board = (Board) game.readObject();
-            board.display(System.out);
-            while (!board.allSunk()) {
-                InputStreamReader input = new InputStreamReader(System.in);
-                BufferedReader br = new BufferedReader(input);
-                System.out.print(Prompt);
-                String move = br.readLine();
+//        System.out.print("Checking if " + filename + " is a saved game file... ");
+//        try (ObjectInputStream game = new ObjectInputStream(new FileInputStream(filename))) {
+//            System.out.println("yes");
+//            Board board = (Board) game.readObject();
+//            board.display(System.out);
+//            while (!board.allSunk()) {
+//                InputStreamReader input = new InputStreamReader(System.in);
+//                BufferedReader br = new BufferedReader(input);
+//                System.out.print(Prompt);
+//                String move = br.readLine();
 //                if (move.equals("help")) {
 //                    String[] help = move.split(WHITESPACE);
 //                    if (help.length == 1) {
@@ -91,77 +92,77 @@ public class Battleship {
 //                    else {
 //                        System.out.println(BAD_ARG_COUNT + REVEAL);
 //                    }
-                if (String.valueOf(move.charAt(0)).equals(HIT)) {
-                    String[] hit = move.split(WHITESPACE);
-                    try {
-                        if (hit.length == 3) {
-                            board.getCell(Integer.parseInt(hit[1]), Integer.parseInt(hit[2])).hit();
-                        }
-                        else {
-                            System.out.println(BAD_ARG_COUNT + HIT);
-                        }
-                    } catch(BattleshipException e){
-                        System.out.println(e);
-                    }
-                } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
-                    String[] save = move.split(WHITESPACE);
-                    if (save.length == 2) {
-                        try (ObjectOutputStream saveGame = new ObjectOutputStream(new FileOutputStream(save[1]))) {
-                            saveGame.writeObject(save);
-                            continue;
-                        } catch (IOException ioe) {{System.out.print("Incorrect file name");}} // not sure if its right
-                    }
-                    else {
-                        System.out.println(BAD_ARG_COUNT + SAVE);
-                    }
-                } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
-                    String[] showBoard = move.split(WHITESPACE);
-                    if (showBoard.length == 1) {
-                        board.fullDisplay(System.out);
-                        continue;
-                    }
-                    else {
-                        System.out.println(BAD_ARG_COUNT + REVEAL);
-                    }
-                } else if (String.valueOf(move.charAt(0)).equals(QUIT)) {
-                    String[] quit = move.split(WHITESPACE);
-                    if (quit.length == 1) {
-                        return;
-                    }
-                    else {
-                        System.out.println(BAD_ARG_COUNT + QUIT);
-                    }
-                } else {
-                    System.out.println("Invalid command");
-                }
-                board.display(System.out);
-            }
-            System.out.println(ALL_SHIPS_SUNK);
-            return;
-        } catch (Exception e) {{System.out.print("no; ");}}
-        try (BufferedReader newGame = new BufferedReader(new FileReader(filename))) {
-            System.out.println("will read as a text setup file.");
-            String line = newGame.readLine();
-            String[] dimensions = line.split(WHITESPACE);
-            if (Integer.parseInt(dimensions[0]) > MAX_DIM || Integer.parseInt(dimensions[1]) > MAX_DIM) {
-                System.out.println(DIM_TOO_BIG);
-            }
-            Board board = new Board(Integer.parseInt(dimensions[0]), Integer.parseInt(dimensions[1]));
-            line = newGame.readLine();
-            while (line != null) {
-                try {
-                    String[] shipInfo = line.split(WHITESPACE);
-                    board.addShip(new Ship(board, Integer.parseInt(shipInfo[0]),
-                            Integer.parseInt(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
-                            Integer.parseInt(shipInfo[3])));
-                    line = newGame.readLine();
-                }
-                catch(BattleshipException e){
-                    System.out.println(e);
-                    return;
-                }
-            }
-            board.display(System.out);
+//                if (String.valueOf(move.charAt(0)).equals(HIT)) {
+//                    String[] hit = move.split(WHITESPACE);
+//                    try {
+//                        if (hit.length == 3) {
+//                            board.getCell(Integer.parseInt(hit[1]), Integer.parseInt(hit[2])).hit();
+//                        }
+//                        else {
+//                            System.out.println(BAD_ARG_COUNT + HIT);
+//                        }
+//                    } catch(BattleshipException e){
+//                        System.out.println(e);
+//                    }
+//                } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
+//                    String[] save = move.split(WHITESPACE);
+//                    if (save.length == 2) {
+//                        try (ObjectOutputStream saveGame = new ObjectOutputStream(new FileOutputStream(save[1]))) {
+//                            saveGame.writeObject(save);
+//                            continue;
+//                        } catch (IOException ioe) {{System.out.print("Incorrect file name");}} // not sure if its right
+//                    }
+//                    else {
+//                        System.out.println(BAD_ARG_COUNT + SAVE);
+//                    }
+//                } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
+//                    String[] showBoard = move.split(WHITESPACE);
+//                    if (showBoard.length == 1) {
+//                        board.fullDisplay(System.out);
+//                        continue;
+//                    }
+//                    else {
+//                        System.out.println(BAD_ARG_COUNT + REVEAL);
+//                    }
+//                } else if (String.valueOf(move.charAt(0)).equals(QUIT)) {
+//                    String[] quit = move.split(WHITESPACE);
+//                    if (quit.length == 1) {
+//                        return;
+//                    }
+//                    else {
+//                        System.out.println(BAD_ARG_COUNT + QUIT);
+//                    }
+//                } else {
+//                    System.out.println("Invalid command");
+//                }
+//                board.display(System.out);
+//            }
+//            System.out.println(ALL_SHIPS_SUNK);
+//            return;
+//        } catch (Exception e) {{System.out.print("no; ");}}
+//        try (BufferedReader newGame = new BufferedReader(new FileReader(filename))) {
+//            System.out.println("will read as a text setup file.");
+//            String line = newGame.readLine();
+//            String[] dimensions = line.split(WHITESPACE);
+//            if (Integer.parseInt(dimensions[0]) > MAX_DIM || Integer.parseInt(dimensions[1]) > MAX_DIM) {
+//                System.out.println(DIM_TOO_BIG);
+//            }
+//            Board board = new Board(Integer.parseInt(dimensions[0]), Integer.parseInt(dimensions[1]));
+//            line = newGame.readLine();
+//            while (line != null) {
+//                try {
+//                    String[] shipInfo = line.split(WHITESPACE);
+//                    board.addShip(new Ship(board, Integer.parseInt(shipInfo[0]),
+//                            Integer.parseInt(shipInfo[1]), Orientation.valueOf(shipInfo[2]),
+//                            Integer.parseInt(shipInfo[3])));
+//                    line = newGame.readLine();
+//                }
+//                catch(BattleshipException e){
+//                    System.out.println(e);
+//                    return;
+//                }
+//            }
+//        board.display(System.out);
         while (!board.allSunk()) {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.print(Prompt);
@@ -169,7 +170,7 @@ public class Battleship {
             try {
                 move = br.readLine();
             } catch (IOException IO) {
-                System.out.println("IO Exception");
+                System.out.println(IO.getMessage());
             }
 //                if (move.equals("help")) {
 //                    String[] help = move.split(WHITESPACE);
@@ -229,17 +230,21 @@ public class Battleship {
             board.display(System.out);
         }
         System.out.println(ALL_SHIPS_SUNK);
-        } catch (IOException IO){
-            System.out.println("No File Found");
-        }
+//        } catch (IOException IO) {
+//            System.out.println("No File Found");
+//        }
     }
 
-    public static void main(String[] args) throws BattleshipException, IOException {
+    public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("Usage: java Battleship setup-file");
         } else {
-            Battleship battleship = new Battleship(args[0]);
-            battleship.play();
+            try {
+                Battleship battleship = new Battleship(args[0]);
+                battleship.play();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
