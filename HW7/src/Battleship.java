@@ -39,8 +39,12 @@ public class Battleship {
             System.out.println("yes");
             board = (Board) game.readObject();
             board.display(System.out);
+            return;
         } catch (IOException | ClassNotFoundException e) {
-            {System.out.print("no; ");}
+            {
+                System.out.print("no; ");
+            }
+        }
         try (BufferedReader newGame = new BufferedReader(new FileReader(filename))) {
             System.out.println("will read as a text setup file.");
             String line = newGame.readLine();
@@ -61,13 +65,12 @@ public class Battleship {
                     line = newGame.readLine();
                 } catch (BattleshipException be) {
                     System.out.println(be);
-                    return;
+                    System.exit(0);
                 }
             }
             board.display(System.out);
             }
         }
-    }
 
     public void play() {
 //        System.out.print("Checking if " + filename + " is a saved game file... ");
@@ -172,67 +175,67 @@ public class Battleship {
             } catch (IOException IO) {
                 System.out.println(IO.getMessage());
             }
-//                if (move.equals("help")) {
-//                    String[] help = move.split(WHITESPACE);
-//                    if (help.length == 1) {
-//                        System.out.println("h row column - Hit a cell.\n" +
-//                                "s file - Save game state to file. (Serialization process)\n" +
-//                                "! - Reveal all ship locations.\n" +
-//                                "q - Quit game.");
-//                        continue;
-//                    }
-//                    else {
-//                        System.out.println(BAD_ARG_COUNT + REVEAL);
-//                    }
-            if (String.valueOf(move.charAt(0)).equals(HIT)) {
-                String[] hit = move.split(WHITESPACE);
-                try {
-                    if (hit.length == 3) {
-                        board.getCell(Integer.parseInt(hit[1]), Integer.parseInt(hit[2])).hit();
-                    } else {
-                        System.out.println(BAD_ARG_COUNT + HIT);
-                    }
-                } catch (BattleshipException e) {
-                    System.out.println(e);
-                }
-            } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
-                String[] save = move.split(WHITESPACE);
-                if (save.length == 2) {
-                    try (ObjectOutputStream saveGame = new ObjectOutputStream(new FileOutputStream(save[1]))) {
-                        saveGame.writeObject(board);
-                        continue;
-                    } catch (IOException ignored) {
-                        {
-                            System.out.print("Incorrect file name");
-                        }
-                    } // not sure if its right
-                } else {
-                    System.out.println(BAD_ARG_COUNT + SAVE);
-                }
-            } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
-                String[] showBoard = move.split(WHITESPACE);
-                if (showBoard.length == 1) {
-                    board.fullDisplay(System.out);
+            if (move.equals("help")) {
+                String[] help = move.split(WHITESPACE);
+                if (help.length == 1) {
+                    System.out.println("h row column - Hit a cell.\n" +
+                            "s file - Save game state to file. (Serialization process)\n" +
+                            "! - Reveal all ship locations.\n" +
+                            "q - Quit game.");
                     continue;
                 } else {
                     System.out.println(BAD_ARG_COUNT + REVEAL);
                 }
-            } else if (String.valueOf(move.charAt(0)).equals(QUIT)) {
-                String[] quit = move.split(WHITESPACE);
-                if (quit.length == 1) {
-                    return;
+                if (String.valueOf(move.charAt(0)).equals(HIT)) {
+                    String[] hit = move.split(WHITESPACE);
+                    try {
+                        if (hit.length == 3) {
+                            board.getCell(Integer.parseInt(hit[1]), Integer.parseInt(hit[2])).hit();
+                        } else {
+                            System.out.println(BAD_ARG_COUNT + HIT);
+                        }
+                    } catch (BattleshipException e) {
+                        System.out.println(e);
+                    }
+                } else if (String.valueOf(move.charAt(0)).equals(SAVE)) {
+                    String[] save = move.split(WHITESPACE);
+                    if (save.length == 2) {
+                        try (ObjectOutputStream saveGame = new ObjectOutputStream(new FileOutputStream(save[1]))) {
+                            saveGame.writeObject(board);
+                            continue;
+                        } catch (IOException ignored) {
+                            {
+                                System.out.print("Incorrect file name");
+                            }
+                        }
+                    } else {
+                        System.out.println(BAD_ARG_COUNT + SAVE);
+                    }
+                } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
+                    String[] showBoard = move.split(WHITESPACE);
+                    if (showBoard.length == 1) {
+                        board.fullDisplay(System.out);
+                        continue;
+                    } else {
+                        System.out.println(BAD_ARG_COUNT + REVEAL);
+                    }
+                } else if (String.valueOf(move.charAt(0)).equals(QUIT)) {
+                    String[] quit = move.split(WHITESPACE);
+                    if (quit.length == 1) {
+                        return;
+                    } else {
+                        System.out.println(BAD_ARG_COUNT + QUIT);
+                    }
                 } else {
-                    System.out.println(BAD_ARG_COUNT + QUIT);
+                    System.out.println("Invalid command");
                 }
-            } else {
-                System.out.println("Invalid command");
+                board.display(System.out);
             }
-            board.display(System.out);
-        }
-        System.out.println(ALL_SHIPS_SUNK);
+            System.out.println(ALL_SHIPS_SUNK);
 //        } catch (IOException IO) {
 //            System.out.println("No File Found");
 //        }
+        }
     }
 
     public static void main(String[] args) {
