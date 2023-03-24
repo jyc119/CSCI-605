@@ -52,7 +52,7 @@ public class Cell implements Serializable {
 
     public void hit() throws CellPlayedException {
         if(hitStatus) {
-            throw new CellPlayedException(this.row, this.column, "Already hit!");
+            throw new CellPlayedException(this.row, this.column);
         }
         if (!(this.ship == null)) {
             hitStatus = true;

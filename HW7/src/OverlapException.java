@@ -2,9 +2,10 @@ public class OverlapException extends BattleshipException{
 
     private int row;
     private int column;
+    private static String OVERLAP = "battleship.OverlapException: Ships placed in overlapping positions, ";
 
     public OverlapException(int row, int column, String message) {
-        super(row, column, message);
+        super(OVERLAP + "row=" + row + ", column=" + column);
         this.row = row;
         this.column = column;
     }

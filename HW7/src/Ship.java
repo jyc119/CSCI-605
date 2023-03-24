@@ -26,7 +26,7 @@ public class Ship implements Serializable {
                 column > board.getWidth() ||
                 orientation == Orientation.VERTICAL && row + length > board.getHeight() ||
                 orientation == Orientation.HORIZONTAL && column+length > board.getWidth()){
-            throw new OutOfBoundsException("Out of bounds!", row,column);
+            throw new OutOfBoundsException(row,column);
         }
         if(board.getCell(row,column).ship != null){
             throw new OverlapException(row, column, "Cannot have another ship here!");
