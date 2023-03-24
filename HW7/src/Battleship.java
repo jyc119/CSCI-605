@@ -103,6 +103,12 @@ public class Battleship {
                     String[] hit = move.split(WHITESPACE);
                     try {
                         if (hit.length == 3) {
+                            if (Integer.parseInt(hit[1]) > board.getHeight()
+                                    || Integer.parseInt(hit[2]) >
+                                    board.getWidth()) {
+                                throw new OutOfBoundsException(Integer.parseInt
+                                        (hit[1]), Integer.parseInt(hit[2]));
+                            }
                             board.getCell(Integer.parseInt(hit[1]),
                                     Integer.parseInt(hit[2])).hit();
                         } else {
