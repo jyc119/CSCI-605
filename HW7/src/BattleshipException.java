@@ -1,9 +1,8 @@
 /*
- * HW6: Battleship
+ * HW7: Battleship
  * Jordan Chin, jc9627@rit.edu
  * Charlie Leyens, cal3368@rit.edu
  */
-
 
 /**
  * A class to represent different violations of the game's rules.
@@ -11,7 +10,6 @@
  * @author Jordan Chin, jc9627@rit.edu
  * @author Charlie Leyens, cal3368@rit.edu
  */
-
 public class BattleshipException extends Exception {
 
     /** Unset default value for coordinates */

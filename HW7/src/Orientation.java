@@ -1,3 +1,9 @@
+/*
+ * HW7: Battleship
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 /**
  * The orientation of a ship.
  * The names of the enum values were chosen because they

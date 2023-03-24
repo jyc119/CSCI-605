@@ -1,5 +1,5 @@
 /*
- * HW6: Battleship
+ * HW7: Battleship
  * Jordan Chin, jc9627@rit.edu
  * Charlie Leyens, cal3368@rit.edu
  */
@@ -12,7 +12,6 @@ import java.io.Serializable;
  * @author Jordan Chin, jc9627@rit.edu
  * @author Charlie Leyens, cal3368@rit.edu
  */
-
 public class Ship implements Serializable {
 
     /** Message to display if ship has been sunk */
