@@ -39,26 +39,25 @@ public class Battleship {
         try (ObjectInputStream game = new ObjectInputStream(new FileInputStream(filename))) {
             System.out.println("yes");
             Board savedBoard = (Board) game.readObject();
-            System.out.println();
-            System.out.println(savedBoard);
+            savedBoard.display(System.out);
             while (!savedBoard.allSunk()) {
                 InputStreamReader test = new InputStreamReader(System.in);
                 BufferedReader br = new BufferedReader(test);
                 System.out.print(Prompt);
                 String move = br.readLine();
-                if (move.equals("help")) {
-                    String[] help = move.split(WHITESPACE);
-                    if (help.length == 1) {
-                        System.out.println("h row column - Hit a cell.\n" +
-                                "s file - Save game state to file. (Serialization process)\n" +
-                                "! - Reveal all ship locations.\n" +
-                                "q - Quit game.");
-                        continue;
-                    }
-                    else {
-                        System.out.println(BAD_ARG_COUNT + REVEAL);
-                    }
-                } else if (String.valueOf(move.charAt(0)).equals(HIT)) {
+//                if (move.equals("help")) {
+//                    String[] help = move.split(WHITESPACE);
+//                    if (help.length == 1) {
+//                        System.out.println("h row column - Hit a cell.\n" +
+//                                "s file - Save game state to file. (Serialization process)\n" +
+//                                "! - Reveal all ship locations.\n" +
+//                                "q - Quit game.");
+//                        continue;
+//                    }
+//                    else {
+//                        System.out.println(BAD_ARG_COUNT + REVEAL);
+//                    }
+                if (String.valueOf(move.charAt(0)).equals(HIT)) {
                     String[] hit = move.split(WHITESPACE);
                     try {
                         if (hit.length == 3) {
@@ -75,9 +74,8 @@ public class Battleship {
                     if (save.length == 2) {
                         try (ObjectOutputStream saveGame = new ObjectOutputStream(new FileOutputStream(save[1]))) {
                             saveGame.writeObject(save);
-//                            saveGame.close();
                             continue;
-                        } catch (IOException ignored) {{System.out.print("Incorrect file name");}} // not sure if its right
+                        } catch (IOException ioe) {{System.out.print("Incorrect file name");}} // not sure if its right
                     }
                     else {
                         System.out.println(BAD_ARG_COUNT + SAVE);
@@ -85,7 +83,7 @@ public class Battleship {
                 } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
                     String[] showBoard = move.split(WHITESPACE);
                     if (showBoard.length == 1) {
-                        System.out.println(savedBoard.revealBoard());
+                        savedBoard.fullDisplay(System.out);
                         continue;
                     }
                     else {
@@ -102,11 +100,10 @@ public class Battleship {
                 } else {
                     System.out.println("Invalid command");
                 }
-                System.out.println();
-                System.out.println(savedBoard);
+                savedBoard.display(System.out);
             }
-            System.out.println(savedBoard);
             System.out.println(ALL_SHIPS_SUNK);
+            return;
         } catch (Exception e) {{System.out.print("no; ");}}
         try (BufferedReader newGame = new BufferedReader(new FileReader(filename))) {
             System.out.println("will read as a text setup file.");
@@ -127,26 +124,25 @@ public class Battleship {
                     return;
                 }
             }
-            System.out.println();
-            System.out.println(board);
+            board.display(System.out);
             while (!board.allSunk()) {
                 InputStreamReader test = new InputStreamReader(System.in);
                 BufferedReader br = new BufferedReader(test);
                 System.out.print(Prompt);
                 String move = br.readLine();
-                if (move.equals("help")) {
-                    String[] help = move.split(WHITESPACE);
-                    if (help.length == 1) {
-                        System.out.println("h row column - Hit a cell.\n" +
-                                "s file - Save game state to file. (Serialization process)\n" +
-                                "! - Reveal all ship locations.\n" +
-                                "q - Quit game.");
-                        continue;
-                    }
-                    else {
-                        System.out.println(BAD_ARG_COUNT + REVEAL);
-                    }
-                } else if (String.valueOf(move.charAt(0)).equals(HIT)) {
+//                if (move.equals("help")) {
+//                    String[] help = move.split(WHITESPACE);
+//                    if (help.length == 1) {
+//                        System.out.println("h row column - Hit a cell.\n" +
+//                                "s file - Save game state to file. (Serialization process)\n" +
+//                                "! - Reveal all ship locations.\n" +
+//                                "q - Quit game.");
+//                        continue;
+//                    }
+//                    else {
+//                        System.out.println(BAD_ARG_COUNT + REVEAL);
+//                    }
+                if (String.valueOf(move.charAt(0)).equals(HIT)) {
                     String[] hit = move.split(WHITESPACE);
                     try {
                         if (hit.length == 3) {
@@ -163,7 +159,6 @@ public class Battleship {
                     if (save.length == 2) {
                         try (ObjectOutputStream saveGame = new ObjectOutputStream(new FileOutputStream(save[1]))) {
                             saveGame.writeObject(board);
-//                            saveGame.close();
                             continue;
                         } catch (IOException ignored) {{System.out.print("Incorrect file name");}} // not sure if its right
                     }
@@ -173,7 +168,7 @@ public class Battleship {
                 } else if (String.valueOf(move.charAt(0)).equals(REVEAL)) {
                     String[] showBoard = move.split(WHITESPACE);
                     if (showBoard.length == 1) {
-                        System.out.println(board.revealBoard());
+                        board.fullDisplay(System.out);
                         continue;
                     }
                     else {
@@ -190,10 +185,8 @@ public class Battleship {
                 } else {
                     System.out.println("Invalid command");
                 }
-                System.out.println();
-                System.out.println(board);
+                board.display(System.out);
             }
-            System.out.println(board);
             System.out.println(ALL_SHIPS_SUNK);
         } catch (IOException IO){
             System.out.println("No File Found");

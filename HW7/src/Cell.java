@@ -29,6 +29,8 @@ public class Cell implements Serializable {
      */
     public static final char HIDDEN_SHIP_SECTION = 'S';
 
+    public boolean hitStatus;
+
     public char CHARACTER_STATE = PRISTINE_WATER;
 
     private final int row;
@@ -41,23 +43,19 @@ public class Cell implements Serializable {
     public Cell(int row, int column) {
         this.row = row;
         this.column = column;
+        this.hitStatus = false;
     }
 
-    public void putShip(Ship ship) {
+    public void putShip(Ship ship) throws OverlapException{
         this.ship = ship;
     }
 
-    public Ship getShip(){
-        return this.ship;
-    }
-
     public void hit() throws CellPlayedException {
-        if(CHARACTER_STATE == HIT_WATER ||
-                CHARACTER_STATE == HIT_SHIP_SECTION ||
-                CHARACTER_STATE == SUNK_SHIP_SECTION){
+        if(hitStatus) {
             throw new CellPlayedException(this.row, this.column, "Already hit!");
         }
         if (!(this.ship == null)) {
+            hitStatus = true;
             CHARACTER_STATE = HIT_SHIP_SECTION;
             this.ship.hit();
         }

@@ -17,8 +17,10 @@ public class Ship implements Serializable {
 
     private final int length;
 
+    private int hits;
+
     public Ship(Board board, int row, int column, Orientation orientation,
-                int length) throws BattleshipException  {
+                int length) throws OutOfBoundsException, OverlapException {
 
         if(row > board.getHeight() ||
                 column > board.getWidth() ||
@@ -26,7 +28,7 @@ public class Ship implements Serializable {
                 orientation == Orientation.HORIZONTAL && column+length > board.getWidth()){
             throw new OutOfBoundsException("Out of bounds!", row,column);
         }
-        if(board.getCell(row,column).getShip() != null){
+        if(board.getCell(row,column).ship != null){
             throw new OverlapException(row, column, "Cannot have another ship here!");
         }
 
@@ -35,6 +37,7 @@ public class Ship implements Serializable {
         this.column = column;
         this.orientation = orientation;
         this.length = length;
+        this.hits = 0;
         if (orientation == Orientation.HORIZONTAL) {
             for (int i = column; i < column + this.length; i++) {
                 board.getCell(row, i).putShip(this);
@@ -48,9 +51,10 @@ public class Ship implements Serializable {
     }
 
     public void hit() {
+        hits++;
         if (orientation == Orientation.HORIZONTAL) {
             for (int i = column; i < column + this.length; i++) {
-                if (board.getCell(row, i).displayHitStatus() != Cell.HIT_SHIP_SECTION) {
+                if (!board.getCell(row, i).hitStatus) {
                     return;
                 }
             }
@@ -58,10 +62,9 @@ public class Ship implements Serializable {
                 board.getCell(row, i).CHARACTER_STATE = Cell.SUNK_SHIP_SECTION;
             }
             System.out.println(SUNK_MESSAGE);
-            board.ships--;
         } else {
             for (int i = row; i < row + this.length; i++) {
-                if (board.getCell(i, column).displayHitStatus() != Cell.HIT_SHIP_SECTION) {
+                if (!board.getCell(i, column).hitStatus) {
                     return;
                 }
             }
@@ -69,29 +72,14 @@ public class Ship implements Serializable {
                 board.getCell(i, column).CHARACTER_STATE = Cell.SUNK_SHIP_SECTION;
             }
             System.out.println(SUNK_MESSAGE);
-            board.ships--;
         }
     }
 
     public boolean isSunk() {
-        if (this.orientation == Orientation.HORIZONTAL) {
-            for (int i = column; i < column + this.length; i++) {
-                if (board.getCell(row, i).displayHitStatus() == Cell.SUNK_SHIP_SECTION) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+        if (hits == length) {
+            return true;
+        } else {
+            return false;
         }
-        else {
-            for (int i = row; i < row + this.length; i++) {
-                if (board.getCell(i, column).displayHitStatus() == Cell.SUNK_SHIP_SECTION) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-        return false;
     }
 }
