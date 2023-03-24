@@ -21,7 +21,6 @@ public class Ship implements Serializable {
 
     public Ship(Board board, int row, int column, Orientation orientation,
                 int length) throws OutOfBoundsException, OverlapException {
-
         if(row > board.getHeight() ||
                 column > board.getWidth() ||
                 orientation == Orientation.VERTICAL && row + length > board.getHeight() ||
