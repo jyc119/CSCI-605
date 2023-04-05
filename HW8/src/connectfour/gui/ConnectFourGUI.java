@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class ConnectFourGUI extends Application implements Observer<ConnectFourBoard> {
 
-//    private ConnectFourBoard board;
+    private ConnectFourBoard board;
 
     private Label moves;
 
@@ -45,10 +45,20 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
             new Background( new BackgroundFill(Color.GRAY, null, null));
 
     @Override
+    public void init() {
+        // create the model and add ourselves as an observer
+        this.board = new ConnectFourBoard();
+        this.currentPlayer = new Label("Current Player: " + this.board.getCurrentPlayer());
+        this.moves = new Label(this.board.getMovesMade() + " moves made");
+        this.status = new Label("Status: " + this.board.getGameStatus());
+        this.currentPlayer.setStyle("-fx-font: " + 20 + " arial;");
+        this.status.setStyle("-fx-font: " + 20 + " arial;");
+        this.moves.setStyle("-fx-font: " + 20 + " arial;");
+        board.addObserver(this);
+    }
+
+    @Override
     public void update(ConnectFourBoard connectFourBoard) {
-        this.currentPlayer = new Label("Current Player: " + connectFourBoard.getCurrentPlayer());
-        this.moves = new Label(connectFourBoard.getMovesMade() + " moves made");
-        this.status = new Label("Status: " + connectFourBoard.getGameStatus());
 
     }
 
@@ -60,12 +70,10 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
     private GridPane makeGridPane() {
         GridPane gridpane = new GridPane();
-
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col){
-                connectFourButton button = new connectFourButton(Player.None);
-
-//                button.setOnAction(event -> this.label.set);
+                connectFourButton button = new connectFourButton(Player.None, col);
+                button.setOnAction(event -> this.board.makeMove(button.col));
                 gridpane.add(button, col, row);
             }
         }
@@ -76,7 +84,10 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
         private Player player;
 
-        public connectFourButton(Player player) {
+        private int col;
+
+        public connectFourButton(Player player, int col) {
+            this.col = col;
             this.player = player;
             Image image;
             switch (player) {
@@ -99,21 +110,16 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ConnectFourBoard test = new ConnectFourBoard();
         BorderPane borderPane = new BorderPane();
         GridPane gridPane = makeGridPane();
         borderPane.setCenter(gridPane);
-        update(test);
-        this.currentPlayer.setStyle("-fx-font: " + 20 + " arial;");
-        this.status.setStyle("-fx-font: " + 20 + " arial;");
-        this.moves.setStyle("-fx-font: " + 20 + " arial;");
+        init();
+//        while (this.board.getGameStatus() == ConnectFourBoard.Status.NOT_OVER) {
+        update(board);
         HBox bottom = new HBox(this.moves, this.currentPlayer, this.status);
         bottom.setSpacing(40);
         bottom.setAlignment(Pos.CENTER);
         borderPane.setBottom(bottom);
-//        BorderPane.setAlignment(this.currentPlayer, Pos.BOTTOM_CENTER);
-//        BorderPane.setAlignment(this.moves, Pos.BOTTOM_LEFT);
-//        BorderPane.setAlignment(this.status, Pos.BOTTOM_RIGHT);
 
 
 
@@ -123,5 +129,9 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
         primaryStage.setResizable(false);
         primaryStage.show();
 
+    }
+
+    public static void main(String[] args) {
+        Application.launch(args);
     }
 }
