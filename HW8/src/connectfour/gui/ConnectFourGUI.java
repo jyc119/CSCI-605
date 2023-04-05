@@ -3,6 +3,7 @@ package connectfour.gui;
 import connectfour.model.ConnectFourBoard;
 import connectfour.model.Observer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,6 +18,10 @@ import javafx.stage.Stage;
 public class ConnectFourGUI extends Application implements Observer<ConnectFourBoard> {
 
     private ConnectFourBoard board;
+
+    private BorderPane borderPane;
+
+    private GridPane gridpane;
 
     private Label moves;
 
@@ -49,18 +54,24 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
     public void init() {
         // create the model and add ourselves as an observer
         this.board = new ConnectFourBoard();
-        this.currentPlayer = new Label("Current Player: " + this.board.getCurrentPlayer());
-        this.moves = new Label(this.board.getMovesMade() + " moves made");
-        this.status = new Label("Status: " + this.board.getGameStatus());
-        this.currentPlayer.setStyle("-fx-font: " + 20 + " arial;");
-        this.status.setStyle("-fx-font: " + 20 + " arial;");
-        this.moves.setStyle("-fx-font: " + 20 + " arial;");
         board.addObserver(this);
     }
 
-    @Override
-    public void update(ConnectFourBoard connectFourBoard) {
+    private void refresh(ConnectFourBoard board) {
+        borderPane.setCenter(gridpane);
+        this.currentPlayer = new Label("Current Player: " + board.getCurrentPlayer());
+        this.moves = new Label(board.getMovesMade() + " moves made");
+        this.status = new Label("Status: " + board.getGameStatus());
 
+    }
+    @Override
+    public void update(ConnectFourBoard board) {
+        if ( Platform.isFxApplicationThread() ) {
+            this.refresh(board);
+        }
+        else {
+            Platform.runLater( () -> this.refresh(board) );
+        }
     }
 
     private enum Player {
@@ -70,11 +81,21 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
     }
 
     private GridPane makeGridPane() {
-        GridPane gridpane = new GridPane();
+        this.gridpane = new GridPane();
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col){
                 connectFourButton button = new connectFourButton(Player.None, col);
-//                button.setOnAction(event -> this.board.makeMove(button.col));
+                button.setOnAction(event -> {
+                    if (this.board.isValidMove(button.col)) {
+                        if (board.getCurrentPlayer() == ConnectFourBoard.Player.P1) {
+                            button.player = Player.P1;
+                        }
+                        else {
+                            button.player = Player.P2;
+                        }
+                        this.board.makeMove(button.col);
+                    }
+                        });
                 gridpane.add(button, col, row);
             }
         }
@@ -86,7 +107,7 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
         private Player player;
 
-        private int col;
+        private final int col;
 
         public connectFourButton(Player player, int col) {
             this.col = col;
@@ -112,12 +133,17 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        BorderPane borderPane = new BorderPane();
+       this.borderPane = new BorderPane();
         GridPane gridPane = makeGridPane();
         borderPane.setCenter(gridPane);
         init();
 //        while (this.board.getGameStatus() == ConnectFourBoard.Status.NOT_OVER) {
-        update(board);
+        this.currentPlayer = new Label("Current Player: " + this.board.getCurrentPlayer());
+        this.moves = new Label(this.board.getMovesMade() + " moves made");
+        this.status = new Label("Status: " + this.board.getGameStatus());
+        this.currentPlayer.setStyle("-fx-font: " + 20 + " arial;");
+        this.status.setStyle("-fx-font: " + 20 + " arial;");
+        this.moves.setStyle("-fx-font: " + 20 + " arial;");
         HBox bottom = new HBox(this.moves, this.currentPlayer, this.status);
         bottom.setSpacing(40);
         bottom.setAlignment(Pos.CENTER);
@@ -133,7 +159,5 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
     }
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
+    public static void main(String[] args) {Application.launch(args);}
 }
