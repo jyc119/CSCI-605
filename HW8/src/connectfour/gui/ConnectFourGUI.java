@@ -3,6 +3,7 @@ package connectfour.gui;
 import connectfour.model.ConnectFourBoard;
 import connectfour.model.Observer;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -73,10 +74,11 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col){
                 connectFourButton button = new connectFourButton(Player.None, col);
-                button.setOnAction(event -> this.board.makeMove(button.col));
+//                button.setOnAction(event -> this.board.makeMove(button.col));
                 gridpane.add(button, col, row);
             }
         }
+        gridpane.setPadding(new Insets(0, 0, 50, 0));
         return gridpane;
     }
 
