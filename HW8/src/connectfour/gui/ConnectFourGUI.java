@@ -30,6 +30,8 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
     private Label status;
 
+//    private connectFourButton[][] buttons;
+
     /** number of rows */
     private final static int ROWS = 6;
 
@@ -55,10 +57,14 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
     public void init() {
         // create the model and add ourselves as an observer
         this.board = new ConnectFourBoard();
-        board.addObserver(this);
+        this.board.addObserver(this);
     }
 
     private void refresh(ConnectFourBoard board) {
+        this.currentPlayer.setText("Current Player: " + this.board.getCurrentPlayer());
+        this.moves.setText(this.board.getMovesMade() + " moves made");
+        this.status.setText("Status: " + this.board.getGameStatus());
+        System.out.println(board);
     }
     @Override
     public void update(ConnectFourBoard board) {
@@ -81,8 +87,16 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col){
                 connectFourButton button = new connectFourButton(Player.None, col, row);
+//                this.buttons[row][col] = button;
                 button.setOnAction(event -> {
                     if (this.board.isValidMove(button.col)) {
+//                        int topRow;
+//                        for (int rows=0; rows <= ROWS; ++rows) {
+//                            if (this.buttons[rows][button.col].player == Player.None) {
+//                                topRow = rows;
+//                                break;
+//                            }
+//                        }
                         if (board.getCurrentPlayer() == ConnectFourBoard.Player.P1) {
                             button.player = Player.P1;
                             button.setGraphic(new ImageView(p1black));
@@ -92,9 +106,6 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
                             button.setGraphic(new ImageView(p2red));
                         }
                         this.board.makeMove(button.col);
-                        this.currentPlayer.setText("Current Player: " + this.board.getCurrentPlayer());
-                        this.moves.setText(this.board.getMovesMade() + " moves made");
-                        this.status.setText("Status: " + this.board.getGameStatus());
                     }
                         });
                 gridpane.add(button, col, row);
@@ -128,20 +139,18 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
                 default:
                     image = empty;
             }
-
             this.setGraphic(new ImageView(image));
             this.setBackground(GRAY);
         }
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
        this.borderPane = new BorderPane();
         GridPane gridPane = makeGridPane();
         borderPane.setCenter(gridPane);
-        init();
-//        while (this.board.getGameStatus() == ConnectFourBoard.Status.NOT_OVER) {
-        this.currentPlayer = new Label("Current Player: " + this.board.getCurrentPlayer());
+        this.currentPlayer = new Label("Current Player: " +
+                this.board.getCurrentPlayer());
         this.moves = new Label(this.board.getMovesMade() + " moves made");
         this.status = new Label("Status: " + this.board.getGameStatus());
         this.currentPlayer.setStyle("-fx-font: " + 20 + " arial;");
@@ -151,8 +160,6 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
         bottom.setSpacing(40);
         bottom.setAlignment(Pos.CENTER);
         borderPane.setBottom(bottom);
-
-
 
         Scene scene = new Scene(borderPane);
         primaryStage.setTitle("Connect Four GUI");
