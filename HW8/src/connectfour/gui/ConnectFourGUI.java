@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,7 +29,7 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
     private Label status;
 
-//    private connectFourButton[][] buttons;
+    private connectFourButton[][] buttons;
 
     /** number of rows */
     private final static int ROWS = 6;
@@ -55,8 +54,8 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
     @Override
     public void init() {
-        // create the model and add ourselves as an observer
         this.board = new ConnectFourBoard();
+        this.buttons = new connectFourButton[ROWS][COLS];
         this.board.addObserver(this);
     }
 
@@ -64,15 +63,14 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
         this.currentPlayer.setText("Current Player: " + this.board.getCurrentPlayer());
         this.moves.setText(this.board.getMovesMade() + " moves made");
         this.status.setText("Status: " + this.board.getGameStatus());
-        System.out.println(board);
     }
     @Override
     public void update(ConnectFourBoard board) {
-        if ( Platform.isFxApplicationThread() ) {
+        if (Platform.isFxApplicationThread()) {
             this.refresh(board);
         }
         else {
-            Platform.runLater( () -> this.refresh(board) );
+            Platform.runLater(() -> this.refresh(board));
         }
     }
 
@@ -84,34 +82,44 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
 
     private GridPane makeGridPane() {
         this.gridpane = new GridPane();
+        gridpane.setHgap(1);
+        gridpane.setVgap(1);
+        gridpane.setBackground(new Background(new BackgroundFill(Color.rgb(0,0,0), new CornerRadii(2.5), new Insets(-1.0))));
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col){
                 connectFourButton button = new connectFourButton(Player.None, col, row);
-//                this.buttons[row][col] = button;
+                this.buttons[row][col] = button;
                 button.setOnAction(event -> {
                     if (this.board.isValidMove(button.col)) {
-//                        int topRow;
-//                        for (int rows=0; rows <= ROWS; ++rows) {
-//                            if (this.buttons[rows][button.col].player == Player.None) {
-//                                topRow = rows;
-//                                break;
-//                            }
-//                        }
+                        int topRow = 0;
+                        for (int rows=ROWS-1; rows >= 0; --rows) {
+                            if (this.buttons[rows][button.col].player == Player.None) {
+                                topRow = rows;
+                                break;
+                            }
+                        }
                         if (board.getCurrentPlayer() == ConnectFourBoard.Player.P1) {
-                            button.player = Player.P1;
-                            button.setGraphic(new ImageView(p1black));
+                            this.buttons[topRow][button.col].player = Player.P1;
+                            this.buttons[topRow][button.col].setGraphic(new ImageView(p1black));
                         }
                         else {
-                            button.player = Player.P2;
-                            button.setGraphic(new ImageView(p2red));
+                            this.buttons[topRow][button.col].player = Player.P2;
+                            this.buttons[topRow][button.col].setGraphic(new ImageView(p2red));
                         }
                         this.board.makeMove(button.col);
+                    }
+                    if (this.board.getGameStatus() != ConnectFourBoard.Status.NOT_OVER) {
+                        for (int rowFinal = 0; rowFinal < ROWS; ++rowFinal) {
+                            for (int colFinal = 0; colFinal < COLS; ++colFinal) {
+                                this.buttons[rowFinal][colFinal].setDisable(true);
+                            }
+                        }
                     }
                         });
                 gridpane.add(button, col, row);
             }
         }
-        gridpane.setPadding(new Insets(0, 0, 50, 0));
+//        gridpane.setPadding(new Insets(0, 0, 50, 0));
         return gridpane;
     }
 
@@ -157,6 +165,7 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
         this.status.setStyle("-fx-font: " + 20 + " arial;");
         this.moves.setStyle("-fx-font: " + 20 + " arial;");
         HBox bottom = new HBox(this.moves, this.currentPlayer, this.status);
+        bottom.setPadding(0, 50, 0, 0);
         bottom.setSpacing(40);
         bottom.setAlignment(Pos.CENTER);
         borderPane.setBottom(bottom);
@@ -166,7 +175,6 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {Application.launch(args);}
