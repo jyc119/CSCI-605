@@ -165,7 +165,7 @@ public class ConnectFourGUI extends Application implements Observer<ConnectFourB
         this.status.setStyle("-fx-font: " + 20 + " arial;");
         this.moves.setStyle("-fx-font: " + 20 + " arial;");
         HBox bottom = new HBox(this.moves, this.currentPlayer, this.status);
-        bottom.setPadding(0, 50, 0, 0);
+        bottom.setPadding(new Insets(50, 0, 0, 0));
         bottom.setSpacing(40);
         bottom.setAlignment(Pos.CENTER);
         borderPane.setBottom(bottom);
