@@ -72,7 +72,8 @@ public class ConnectFourGUI extends Application implements
 
     /** The background for the board */
     private static final Background GRAY =
-            new Background( new BackgroundFill(Color.GRAY, null, null));
+            new Background( new BackgroundFill(Color.GRAY, null,
+                    null));
 
     /**
      * The different players in the game
@@ -100,7 +101,8 @@ public class ConnectFourGUI extends Application implements
      * @param board - The board we are using
      */
     private void refresh(ConnectFourBoard board) {
-        this.currentPlayer.setText("Current Player: " + this.board.getCurrentPlayer());
+        this.currentPlayer.setText("Current Player: " +
+                this.board.getCurrentPlayer());
         this.moves.setText(this.board.getMovesMade() + " moves made");
         this.status.setText("Status: " + this.board.getGameStatus());
     }
