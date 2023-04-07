@@ -1,3 +1,9 @@
+/*
+ * HW7: Connect Four GUI
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package connectfour.gui;
 
 import connectfour.model.ConnectFourBoard;
@@ -15,21 +21,35 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * The class that runs the Connect Four GUI
+ *
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
+
 public class ConnectFourGUI extends Application implements
         Observer<ConnectFourBoard> {
 
+    /** The connect four board in GUI */
     private ConnectFourBoard board;
 
+    /** This represents the borderPane */
     private BorderPane borderPane;
 
+    /** The gridpane that represents the Connect Four GUI */
     private GridPane gridpane;
 
+    /** The total number of moves made */
     private Label moves;
 
+    /** The current player's turn */
     private Label currentPlayer;
 
+    /** This represents the game state  */
     private Label status;
 
+    /** A 2d array representing the connect four buttons*/
     private connectFourButton[][] buttons;
 
     /** number of rows */
@@ -50,9 +70,23 @@ public class ConnectFourGUI extends Application implements
     private Image p2red = new Image(getClass()
             .getResourceAsStream("p2red.png"));
 
+    /** The background for the board */
     private static final Background GRAY =
             new Background( new BackgroundFill(Color.GRAY, null, null));
 
+    /**
+     * The different players in the game
+     */
+    private enum Player {
+        P1,
+        P2,
+        None
+    }
+
+    /**
+     * Assigns the board and buttons to the appropriate
+     * field attributes
+     */
     @Override
     public void init() {
         this.board = new ConnectFourBoard();
@@ -60,11 +94,23 @@ public class ConnectFourGUI extends Application implements
         this.board.addObserver(this);
     }
 
+    /**
+     * This function will update the label everytime the user makes a move
+     *
+     * @param board - The board we are using
+     */
     private void refresh(ConnectFourBoard board) {
         this.currentPlayer.setText("Current Player: " + this.board.getCurrentPlayer());
         this.moves.setText(this.board.getMovesMade() + " moves made");
         this.status.setText("Status: " + this.board.getGameStatus());
     }
+
+    /**
+     * This function is called when a player makes a move
+     *
+     * @param board the object that wishes to inform this object
+     *                about something that has happened.
+     */
     @Override
     public void update(ConnectFourBoard board) {
         if (Platform.isFxApplicationThread()) {
@@ -75,12 +121,13 @@ public class ConnectFourGUI extends Application implements
         }
     }
 
-    private enum Player {
-        P1,
-        P2,
-        None
-    }
-
+    /**
+     * Creates the grid pane where we add a button at every coordinate
+     * and set the events of clicking on a column as well as checking
+     * the game state.
+     *
+     * @return None
+     */
     private GridPane makeGridPane() {
         this.gridpane = new GridPane();
         gridpane.setHgap(1);
@@ -133,14 +180,27 @@ public class ConnectFourGUI extends Application implements
         return gridpane;
     }
 
+    /**
+     * The class that represents each button in the connect four grid.
+     */
     private class connectFourButton extends Button {
 
+        /** The player associated with that button */
         private Player player;
 
+        /** The colum of the button */
         private final int col;
 
+        /** The row of the button */
         private final int row;
 
+        /**
+         * Constructs a button
+         *
+         * @param player - The Player that controls the button
+         * @param col - The column of the button
+         * @param row - The row of the button
+         */
         public connectFourButton(Player player, int col, int row) {
             this.col = col;
             this.row = row;
@@ -162,6 +222,18 @@ public class ConnectFourGUI extends Application implements
         }
     }
 
+    /**
+     *
+     * Creates the border pane and the grid pane. The border pane alters the
+     * style of the text as well as separates the grid from the 3 labels at the
+     * bottom using padding. Centers the border pane so that it is in the middle
+     * of the window.
+     *
+     * @param primaryStage the primary stage for this application, onto which
+     * the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be
+     * primary stages.
+     */
     @Override
     public void start(Stage primaryStage) {
        this.borderPane = new BorderPane();
@@ -187,5 +259,10 @@ public class ConnectFourGUI extends Application implements
         primaryStage.show();
     }
 
+    /**
+     * The main function
+     *
+     * @param args None
+     */
     public static void main(String[] args) {Application.launch(args);}
 }
