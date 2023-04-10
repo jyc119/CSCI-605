@@ -1,5 +1,5 @@
 /*
- * HW7: Connect Four GUI
+ * HW8: Connect Four GUI
  * Jordan Chin, jc9627@rit.edu
  * Charlie Leyens, cal3368@rit.edu
  */
