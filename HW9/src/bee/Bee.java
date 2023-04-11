@@ -51,6 +51,7 @@ public abstract class Bee extends Thread {
      */
     public static Bee createBee(Role role, Worker.Resource resource, BeeHive beeHive) {
         // TODO YOUR CODE HERE
+//        Bee bee = new Bee(role, beeHive);
         return null;
     }
 
