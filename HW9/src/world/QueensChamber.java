@@ -8,6 +8,7 @@ package world;
 
 import bee.Drone;
 
+
 /**
  * The queen's chamber is where the mating ritual between the queen and her
  * drones is conducted. The drones will enter the chamber in order. If the queen
@@ -21,11 +22,15 @@ import bee.Drone;
  */
 public class QueensChamber {
 
+    private boolean mateStatus;
+
     /**
      * Create the chamber. Initially there are no drones in the chamber and the
      * queen is not ready to mate.
      */
-    public QueensChamber(){}
+    public QueensChamber(){
+        this.mateStatus = false;
+    }
 
     /**
      * A drone enters the chamber. The first thing you should display is:
@@ -44,6 +49,8 @@ public class QueensChamber {
      * @param drone the drone who just entered the chamber
      */
     public void enterChamber(Drone drone) {
+        System.out.println("*QC* " + drone + " enters chamber");
+        this.mateStatus = false;
 
     }
 
@@ -62,7 +69,9 @@ public class QueensChamber {
      * Precondition: A drone is ready and waiting to mate
      */
     public void summonDrone() {
-
+        if (hasDrone()) {
+            System.out.println("*QC* Queen mates with "); // Add + bee that leaves queue
+        }
     }
 
     /**
@@ -70,7 +79,7 @@ public class QueensChamber {
      * dismiss all the drones that were waiting to mate. #rit_irl...
      */
     public void dismissDrone() {
-
+        // While hasDrone() dequeue
     }
 
     /**
@@ -80,6 +89,7 @@ public class QueensChamber {
      * @return if there is still a drone waiting
      */
     public boolean hasDrone() {
+        // Check queue for drone
         return true;
     }
 }

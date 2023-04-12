@@ -42,6 +42,7 @@ public class FlowerField {
      * @param worker the worker bee entering the field
      */
     public void enterField(Worker worker) {
+        System.out.println("*FF* " + worker + " enters field");
 
     }
 
@@ -57,5 +58,6 @@ public class FlowerField {
      */
     public void exitField(Worker worker) {
 
+        System.out.println("*FF* " + worker + " leaves field");
     }
 }
