@@ -50,9 +50,22 @@ public abstract class Bee extends Thread {
      * @return the new bee
      */
     public static Bee createBee(Role role, Worker.Resource resource, BeeHive beeHive) {
-        // TODO YOUR CODE HERE
-//        Bee bee = new Bee(role, beeHive);
-        return null;
+        // Could be correct not 100% sure
+        if (role == Role.DRONE){
+            Bee bee = new Drone(beeHive);
+            System.out.println("*BH* "+ bee + " is born");
+            return bee;
+        }
+        else if (role == Role.QUEEN) {
+            Bee bee = new Queen(beeHive);
+            System.out.println("*BH* "+ bee + " is born");
+            return bee;
+        }
+        else {
+            Bee bee = new Worker(resource, beeHive);
+            System.out.println("*BH* "+ resource + bee + " is born");
+            return bee;
+        }
     }
 
     /**
