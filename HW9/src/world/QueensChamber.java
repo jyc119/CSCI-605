@@ -8,6 +8,8 @@ package world;
 
 import bee.Drone;
 
+import java.util.Queue;
+
 
 /**
  * The queen's chamber is where the mating ritual between the queen and her
@@ -22,14 +24,16 @@ import bee.Drone;
  */
 public class QueensChamber {
 
-    private boolean mateStatus;
+    private Queue<Drone> droneQueue;
+
+//    private boolean mateStatus;
 
     /**
      * Create the chamber. Initially there are no drones in the chamber and the
      * queen is not ready to mate.
      */
     public QueensChamber(){
-        this.mateStatus = false;
+//        this.mateStatus = false;
     }
 
     /**
@@ -50,7 +54,8 @@ public class QueensChamber {
      */
     public void enterChamber(Drone drone) {
         System.out.println("*QC* " + drone + " enters chamber");
-        this.mateStatus = false;
+        this.droneQueue.add(drone);
+//        this.mateStatus = false;
 
     }
 
@@ -70,7 +75,9 @@ public class QueensChamber {
      */
     public void summonDrone() {
         if (hasDrone()) {
-            System.out.println("*QC* Queen mates with "); // Add + bee that leaves queue
+            notifyAll(); // Need to do something with a lock
+            Drone removed = this.droneQueue.remove();
+            System.out.println("*QC* Queen mates with " + removed);
         }
     }
 
@@ -79,7 +86,9 @@ public class QueensChamber {
      * dismiss all the drones that were waiting to mate. #rit_irl...
      */
     public void dismissDrone() {
-        // While hasDrone() dequeue
+        while (hasDrone()) {
+            this.droneQueue.remove();
+        }
     }
 
     /**
@@ -89,7 +98,6 @@ public class QueensChamber {
      * @return if there is still a drone waiting
      */
     public boolean hasDrone() {
-        // Check queue for drone
-        return true;
+        return !this.droneQueue.isEmpty();
     }
 }
