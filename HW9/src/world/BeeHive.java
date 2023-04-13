@@ -57,6 +57,9 @@ public class BeeHive {
         this.nectar = this.pollen = 0;
 
         // create the bees!
+
+        this.bees.add(Bee.createBee(Role.QUEEN, Resource.NONE,this));
+
         for (int i=0; i<numNectarWorkers; ++i ) {
             this.bees.add(Bee.createBee(Role.WORKER, Resource.NECTAR, this));
         }
@@ -66,7 +69,6 @@ public class BeeHive {
 
         // TODO YOUR CODE HERE
         // create queen and drone bees
-        this.bees.add(Bee.createBee(Role.QUEEN, Resource.NONE,this));
 
         for (int i=0; i<numDrones; ++i ) {
             this.bees.add(Bee.createBee(Role.DRONE, Resource.NONE, this));

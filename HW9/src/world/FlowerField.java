@@ -47,12 +47,12 @@ public class FlowerField {
      * @param worker the worker bee entering the field
      */
     public void enterField(Worker worker) {
+        System.out.println("*FF* " + worker + " enters field");
         synchronized (worker) {
-            System.out.println("*FF* " + worker + " enters field");
             this.num_workers += 1;
             while (workers_flowers == 10) {
                 try {
-                    wait();
+                    worker.wait();
                 } catch (InterruptedException e) {
                 }
             }
@@ -74,7 +74,7 @@ public class FlowerField {
         synchronized (worker){
             this.num_workers -= 1;
             this.workers_flowers -= 1;
-            notify();
+            worker.notify();
         }
         System.out.println("*FF* " + worker + " leaves field");
     }

@@ -8,6 +8,8 @@ package world;
 
 import bee.Drone;
 
+import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 
@@ -24,7 +26,7 @@ import java.util.Queue;
  */
 public class QueensChamber {
 
-    private Queue<Drone> droneQueue;
+    private LinkedList<Drone> droneQueue;
 
     private boolean mateStatus;
     private Drone curDrone;
@@ -35,6 +37,7 @@ public class QueensChamber {
      */
     public QueensChamber(){
         this.mateStatus = false;
+        this.droneQueue = new LinkedList<Drone>();
     }
 
     /**
@@ -57,9 +60,9 @@ public class QueensChamber {
         System.out.println("*QC* " + drone + " enters chamber");
         synchronized (drone){
             this.curDrone = drone;
-            this.droneQueue.add(curDrone);
+            this.droneQueue.add(drone);
             try {
-                wait();
+                drone.wait();
             }catch (InterruptedException e){
 
             }
@@ -85,7 +88,7 @@ public class QueensChamber {
         synchronized(curDrone) {
             if (hasDrone() && !this.mateStatus) {
                 this.mateStatus = true;
-                notifyAll(); // Need to do something with a lock
+                curDrone.notifyAll(); // Need to do something with a lock
                 this.curDrone = this.droneQueue.remove();
                 System.out.println("*QC* Queen mates with " + this.curDrone);
             }
