@@ -79,6 +79,12 @@ public class Worker extends Bee {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            if (!this.beeHive.isActive()) {
+                synchronized (this) {
+                    this.notifyAll();
+                }
+                break;
+            }
             this.flowerField.exitField(this);
             this.beeHive.deposit(this.resource, this);
         }
