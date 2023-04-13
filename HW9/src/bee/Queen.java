@@ -2,6 +2,7 @@ package bee;
 
 import util.RandomBee;
 import world.BeeHive;
+import world.QueensChamber;
 
 /**
  * The queen is the master of the bee hive and the only bee that is allowed
@@ -65,27 +66,43 @@ public class Queen extends Bee {
      * to make sure that she individually dismisses each drone that is
      * still waiting in her chamber.
      */
+
+    private Bee getBee(){
+        int percentage = RandomBee.get_bee_type();
+        if (percentage<60){
+            return Bee.createBee(Role.DRONE, Worker.Resource.NONE, beeHive);
+        } else if(percentage<80){
+            return Bee.createBee(Role.WORKER,Worker.Resource.NECTAR,beeHive);
+        }else{
+            return Bee.createBee(Role.WORKER,Worker.Resource.POLLEN,beeHive);
+        }
+    }
+
     public void run() {
         // Need to have a while loop I believe for while the simulation is running
         // and then dismiss all the drones left in the queue
         // TODO YOUR CODE HERE
-//        if (this.beeHive.getRemainingNectar() >= 1 &&
-//                this.beeHive.getRemainingPollen() >= 1 &&
-//                this.beeHive.getQueensChamber().hasDrone()) {
-//            this.beeHive.getQueensChamber().summonDrone();
-//            try {
-//                sleep(MATE_TIME_MS);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//            int newBees = RandomBee.nextInt(MIN_NEW_BEES, MAX_NEW_BEES);
-//
-//            System.out.println("*Q* Queen birthed " + newBees + " children");
-//            try {
-//                sleep(SLEEP_TIME_MS);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
+        if (this.beeHive.getRemainingNectar() >= 1 &&
+                this.beeHive.getRemainingPollen() >= 1 &&
+                this.beeHive.getQueensChamber().hasDrone()) {
+            //NEED TO KILL DRONE
+            this.beeHive.getQueensChamber().summonDrone();
+            try {
+                sleep(MATE_TIME_MS);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            int newBees = RandomBee.nextInt(MIN_NEW_BEES, MAX_NEW_BEES);
+            for(int i=0;i<newBees;i++){
+               beeHive.addBee(getBee());
+            }
+            System.out.println("*Q* Queen birthed " + newBees + " children");
+            beeHive.beePerished();
+            try {
+                sleep(SLEEP_TIME_MS);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

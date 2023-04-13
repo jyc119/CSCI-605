@@ -25,4 +25,10 @@ public class RandomBee {
     public static int nextInt(int min, int max) {
         return rand.nextInt(max - min + 1) + min;
     }
+
+    public static int get_bee_type(){
+        Random r = new Random();
+        int percentage = r.nextInt(100);
+        return percentage;
+    }
 }

@@ -73,5 +73,13 @@ public class Worker extends Bee {
      */
     public void run() {
         // TODO YOUR CODE HERE
+
+        this.flowerField.enterField(this);
+        try{
+            sleep(WORKER_SLEEP_TIME_MS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        this.flowerField.exitField(this);
     }
 }
