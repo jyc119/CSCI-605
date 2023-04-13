@@ -2,7 +2,6 @@ package bee;
 
 import util.RandomBee;
 import world.BeeHive;
-import world.QueensChamber;
 
 /**
  * The queen is the master of the bee hive and the only bee that is allowed
@@ -44,6 +43,17 @@ public class Queen extends Bee {
         super(Bee.Role.QUEEN, beeHive);
     }
 
+    private Bee getBee(){
+        int percentage = RandomBee.get_bee_type();
+        if (percentage<60){
+            return Bee.createBee(Role.DRONE, Worker.Resource.NONE, beeHive);
+        } else if(percentage<80){
+            return Bee.createBee(Role.WORKER,Worker.Resource.NECTAR,beeHive);
+        }else{
+            return Bee.createBee(Role.WORKER,Worker.Resource.POLLEN,beeHive);
+        }
+    }
+
     /**
      * The queen will continue performing her task of mating until the bee hive
      * becomes inactive. Each time she tries to mate, whether successful or not,
@@ -66,18 +76,6 @@ public class Queen extends Bee {
      * to make sure that she individually dismisses each drone that is
      * still waiting in her chamber.
      */
-
-    private Bee getBee(){
-        int percentage = RandomBee.get_bee_type();
-        if (percentage<60){
-            return Bee.createBee(Role.DRONE, Worker.Resource.NONE, beeHive);
-        } else if(percentage<80){
-            return Bee.createBee(Role.WORKER,Worker.Resource.NECTAR,beeHive);
-        }else{
-            return Bee.createBee(Role.WORKER,Worker.Resource.POLLEN,beeHive);
-        }
-    }
-
     public void run() {
         // Need to have a while loop I believe for while the simulation is running
         // and then dismiss all the drones left in the queue
@@ -92,6 +90,9 @@ public class Queen extends Bee {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+                if (!this.beeHive.isActive()) {
+                    break;
+                }
                 int newBees = RandomBee.nextInt(MIN_NEW_BEES, MAX_NEW_BEES);
                 for (int i = 0; i < newBees; i++) {
                     beeHive.addBee(getBee());
@@ -105,6 +106,8 @@ public class Queen extends Bee {
                 }
             }
         }
-        this.beeHive.getQueensChamber().dismissDrone();
+        while (this.beeHive.getQueensChamber().hasDrone()) {
+            this.beeHive.getQueensChamber().dismissDrone();
+        }
     }
 }

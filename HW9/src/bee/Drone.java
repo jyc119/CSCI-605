@@ -41,8 +41,16 @@ public class Drone extends Bee {
      */
     public void run() {
         // TODO YOUR CODE HERE
-        if(this.beeHive.isActive()){
+        while (this.beeHive.isActive()) {
             this.beeHive.getQueensChamber().enterChamber(this);
+            try {
+                sleep(Queen.MATE_TIME_MS);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if (!this.beeHive.isActive()) {
+                break;
+            }
             this.beeHive.beePerished(this);
             System.out.println("*D* " + this + " has perished!");
         }

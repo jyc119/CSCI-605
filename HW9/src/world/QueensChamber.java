@@ -66,7 +66,7 @@ public class QueensChamber {
             }catch (InterruptedException e){
 
             }
-            System.out.println("*QC* " + this + " leaves chamber");
+            System.out.println("*QC* " + drone + " leaves chamber");
         }
     }
 
@@ -100,8 +100,9 @@ public class QueensChamber {
      * dismiss all the drones that were waiting to mate. #rit_irl...
      */
     public void dismissDrone() {
-        while (hasDrone()) {
-            this.droneQueue.remove();
+        synchronized (curDrone) {
+            curDrone = this.droneQueue.remove();
+            curDrone.notifyAll();
         }
     }
 
