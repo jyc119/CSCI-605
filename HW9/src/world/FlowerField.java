@@ -22,13 +22,14 @@ public class FlowerField {
     /** the maximum number of workers allowed in the field at the same time */
     public static final int MAX_WORKERS = 10;
     private int num_workers;
-    private boolean freeFlower = true;
+    private int workers_flowers;
 
     /**
      * Create the flower field. Initially there are no worker bees in the field.
      */
     public FlowerField(){
         this.num_workers = 0;
+        this.workers_flowers = 0;
     }
 
     /**
@@ -47,19 +48,16 @@ public class FlowerField {
      */
     public void enterField(Worker worker) {
         synchronized (worker) {
-            while (!freeFlower) {
+            System.out.println("*FF* " + worker + " enters field");
+            this.num_workers += 1;
+            while (workers_flowers == 10) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
                 }
             }
-            this.num_workers += 1;
-            if(this.num_workers >= 10){
-                this.freeFlower = false;
-            }
+            this.workers_flowers += 1;
         }
-        System.out.println("*FF* " + worker + " enters field");
-
     }
 
     /**
@@ -75,8 +73,9 @@ public class FlowerField {
     public void exitField(Worker worker) {
         synchronized (worker){
             this.num_workers -= 1;
+            this.workers_flowers -= 1;
+            notify();
         }
-        notify();
         System.out.println("*FF* " + worker + " leaves field");
     }
 }

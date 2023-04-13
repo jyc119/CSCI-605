@@ -26,14 +26,15 @@ public class QueensChamber {
 
     private Queue<Drone> droneQueue;
 
-//    private boolean mateStatus;
+    private boolean mateStatus;
+    private Drone curDrone;
 
     /**
      * Create the chamber. Initially there are no drones in the chamber and the
      * queen is not ready to mate.
      */
     public QueensChamber(){
-//        this.mateStatus = false;
+        this.mateStatus = false;
     }
 
     /**
@@ -54,9 +55,16 @@ public class QueensChamber {
      */
     public void enterChamber(Drone drone) {
         System.out.println("*QC* " + drone + " enters chamber");
-        this.droneQueue.add(drone);
-//        this.mateStatus = false;
+        synchronized (drone){
+            this.curDrone = drone;
+            this.droneQueue.add(curDrone);
+            try {
+                wait();
+            }catch (InterruptedException e){
 
+            }
+            System.out.println("*QC* " + this + " leaves chamber");
+        }
     }
 
     /**
@@ -74,10 +82,13 @@ public class QueensChamber {
      * Precondition: A drone is ready and waiting to mate
      */
     public void summonDrone() {
-        if (hasDrone()) {
-            notifyAll(); // Need to do something with a lock
-            Drone removed = this.droneQueue.remove();
-            System.out.println("*QC* Queen mates with " + removed);
+        synchronized(curDrone) {
+            if (hasDrone() && !this.mateStatus) {
+                this.mateStatus = true;
+                notifyAll(); // Need to do something with a lock
+                this.curDrone = this.droneQueue.remove();
+                System.out.println("*QC* Queen mates with " + this.curDrone);
+            }
         }
     }
 

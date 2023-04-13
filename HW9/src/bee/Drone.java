@@ -1,6 +1,7 @@
 package bee;
 
 import world.BeeHive;
+import world.QueensChamber;
 
 /**
  * The male drone bee has a tough life.  His only job is to mate with the queen
@@ -40,5 +41,10 @@ public class Drone extends Bee {
      */
     public void run() {
         // TODO YOUR CODE HERE
+        if(this.beeHive.isActive()){
+            this.beeHive.getQueensChamber().enterChamber(this);
+            this.beeHive.beePerished(this);
+            System.out.println("*D* " + this + " has perished!");
+        }
     }
 }
