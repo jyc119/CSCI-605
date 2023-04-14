@@ -33,6 +33,7 @@ public class Worker extends Bee {
     /** the field of flowers */
     private FlowerField flowerField;
 
+
     /**
      * Create the worker.  They need to remember their resource, as well as get
      * access to the flower field via the bee hive.
@@ -76,15 +77,7 @@ public class Worker extends Bee {
             this.flowerField.enterField(this);
             try {
                 sleep(WORKER_SLEEP_TIME_MS);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            if (!this.beeHive.isActive()) {
-                synchronized (this) {
-                    this.notifyAll();
-                }
-                break;
-            }
+            } catch (InterruptedException e) {}
             this.flowerField.exitField(this);
             this.beeHive.deposit(this.resource, this);
         }

@@ -6,6 +6,7 @@
 
 package world;
 
+import bee.Bee;
 import bee.Worker;
 
 
@@ -23,14 +24,12 @@ public class FlowerField {
     /** the maximum number of workers allowed in the field at the same time */
     public static final int MAX_WORKERS = 10;
     private int num_workers;
-//    private int workers_flowers;
 
     /**
      * Create the flower field. Initially there are no worker bees in the field.
      */
     public FlowerField(){
         this.num_workers = 0;
-//        this.workers_flowers = 0;
     }
 
     /**
@@ -48,16 +47,15 @@ public class FlowerField {
      * @param worker the worker bee entering the field
      */
     public void enterField(Worker worker) {
+        System.out.println("*FF* " + worker + " enters field");
         synchronized (worker) {
-            if (num_workers < MAX_WORKERS) {
-                System.out.println("*FF* " + worker + " enters field");
-                this.num_workers += 1;
-            } else {
+            while (num_workers == MAX_WORKERS) {
                 try {
                     worker.wait();
                 } catch (InterruptedException e) {
                 }
             }
+            num_workers +=1;
         }
     }
 
@@ -74,7 +72,6 @@ public class FlowerField {
     public void exitField(Worker worker) {
         synchronized (worker){
             this.num_workers -= 1;
-//            this.workers_flowers -= 1;
             System.out.println("*FF* " + worker + " leaves field");
             worker.notify();
         }

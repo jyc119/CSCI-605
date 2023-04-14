@@ -63,9 +63,7 @@ public class QueensChamber {
             this.droneQueue.add(drone);
             try {
                 drone.wait();
-            }catch (InterruptedException e){
-
-            }
+            }catch (InterruptedException e){}
             System.out.println("*QC* " + drone + " leaves chamber");
         }
     }

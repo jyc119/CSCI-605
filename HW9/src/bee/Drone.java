@@ -40,14 +40,11 @@ public class Drone extends Bee {
      * sleeping.
      */
     public void run() {
-        // TODO YOUR CODE HERE
         while (this.beeHive.isActive()) {
             this.beeHive.getQueensChamber().enterChamber(this);
             try {
                 sleep(Queen.MATE_TIME_MS);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            } catch (InterruptedException e) {}
             if (!this.beeHive.isActive()) {
                 break;
             }

@@ -101,9 +101,7 @@ public class Queen extends Bee {
                 System.out.println("*Q* Queen birthed " + newBees + " children");
                 try {
                     sleep(SLEEP_TIME_MS);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                } catch (InterruptedException e) {}
             }
         }
         while (this.beeHive.getQueensChamber().hasDrone()) {

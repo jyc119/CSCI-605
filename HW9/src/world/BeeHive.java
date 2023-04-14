@@ -60,20 +60,16 @@ public class BeeHive {
 
         this.bees.add(Bee.createBee(Role.QUEEN, Resource.NONE,this));
 
+        for (int i=0; i<numDrones; ++i ) {
+            this.bees.add(Bee.createBee(Role.DRONE, Resource.NONE, this));
+        }
+
         for (int i=0; i<numNectarWorkers; ++i ) {
             this.bees.add(Bee.createBee(Role.WORKER, Resource.NECTAR, this));
         }
         for (int i=0; i<numPollenWorkers; ++i ) {
             this.bees.add(Bee.createBee(Role.WORKER, Resource.POLLEN, this));
         }
-
-        // TODO YOUR CODE HERE
-        // create queen and drone bees
-
-        for (int i=0; i<numDrones; ++i ) {
-            this.bees.add(Bee.createBee(Role.DRONE, Resource.NONE, this));
-        }
-
 
         this.active = true;
         this.numBorn = this.bees.size();
@@ -176,6 +172,9 @@ public class BeeHive {
     public void begin() {
         System.out.println("*BH* Bee hive begins buzzing!");
         for (Bee bee: bees) {
+            try {
+                bee.join();
+            } catch (InterruptedException e) {}
             bee.start();
         }
     }
@@ -202,13 +201,11 @@ public class BeeHive {
         // flip the switch
         this.active = false;
 
-        for (Bee bee: bees) {
-            try {
-                bee.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        for (Bee bee: bees) {
+//            try {
+//                bee.join();
+//            } catch (InterruptedException e) {}
+//        }
 
         System.out.println("*BH* Bee hive stops buzzing!");
     }
