@@ -48,7 +48,7 @@ public class FlowerField {
      */
     public void enterField(Worker worker) {
         System.out.println("*FF* " + worker + " enters field");
-        synchronized (worker) {
+//        synchronized (worker) {
             while (num_workers == MAX_WORKERS) {
                 try {
                     worker.wait();
@@ -56,7 +56,7 @@ public class FlowerField {
                 }
             }
             num_workers +=1;
-        }
+//        }
     }
 
     /**

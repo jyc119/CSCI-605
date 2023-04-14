@@ -58,14 +58,14 @@ public class QueensChamber {
      */
     public void enterChamber(Drone drone) {
         System.out.println("*QC* " + drone + " enters chamber");
-        synchronized (drone){
+//        synchronized (drone){
             this.curDrone = drone;
             this.droneQueue.add(drone);
             try {
                 drone.wait();
             }catch (InterruptedException e){}
             System.out.println("*QC* " + drone + " leaves chamber");
-        }
+//        }
     }
 
     /**
@@ -83,14 +83,14 @@ public class QueensChamber {
      * Precondition: A drone is ready and waiting to mate
      */
     public void summonDrone() {
-        synchronized(curDrone) {
+//        synchronized(curDrone) {
             if (hasDrone() && !this.mateStatus) {
                 this.mateStatus = true;
                 curDrone.notifyAll();
                 this.curDrone = this.droneQueue.remove();
                 System.out.println("*QC* Queen mates with " + this.curDrone);
             }
-        }
+//        }
     }
 
     /**
