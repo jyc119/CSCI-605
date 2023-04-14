@@ -86,7 +86,7 @@ public class QueensChamber {
         synchronized(curDrone) {
             if (hasDrone() && !this.mateStatus) {
                 this.mateStatus = true;
-                curDrone.notifyAll(); // Need to do something with a lock
+                curDrone.notifyAll();
                 this.curDrone = this.droneQueue.remove();
                 System.out.println("*QC* Queen mates with " + this.curDrone);
             }

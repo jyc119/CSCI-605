@@ -77,9 +77,6 @@ public class Queen extends Bee {
      * still waiting in her chamber.
      */
     public void run() {
-        // Need to have a while loop I believe for while the simulation is running
-        // and then dismiss all the drones left in the queue
-        // TODO YOUR CODE HERE
         while(beeHive.isActive()) {
             if (this.beeHive.hasResources() &&
                     this.beeHive.getQueensChamber().hasDrone()) {

@@ -73,13 +73,16 @@ public class Worker extends Bee {
      * repeats until the bee hive becomes inactive.
      */
     public void run() {
-        while (this.beeHive.isActive()) {
-            this.flowerField.enterField(this);
-            try {
-                sleep(WORKER_SLEEP_TIME_MS);
-            } catch (InterruptedException e) {}
-            this.flowerField.exitField(this);
-            this.beeHive.deposit(this.resource, this);
+        synchronized (this) {
+            while (this.beeHive.isActive()) {
+                this.flowerField.enterField(this);
+                try {
+                    sleep(WORKER_SLEEP_TIME_MS);
+                } catch (InterruptedException e) {
+                }
+                this.flowerField.exitField(this);
+                this.beeHive.deposit(this.resource, this);
+            }
         }
     }
 }

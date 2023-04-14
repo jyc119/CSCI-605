@@ -172,9 +172,6 @@ public class BeeHive {
     public void begin() {
         System.out.println("*BH* Bee hive begins buzzing!");
         for (Bee bee: bees) {
-            try {
-                bee.join();
-            } catch (InterruptedException e) {}
             bee.start();
         }
     }
@@ -197,16 +194,13 @@ public class BeeHive {
      */
     public void end() {
         System.out.println("*BH* Bee hive is becoming inactive!");
-
         // flip the switch
         this.active = false;
-
-//        for (Bee bee: bees) {
-//            try {
-//                bee.join();
-//            } catch (InterruptedException e) {}
-//        }
-
+        for (Bee bee: bees) {
+            try {
+                bee.join();
+            } catch (InterruptedException e) {}
+        }
         System.out.println("*BH* Bee hive stops buzzing!");
     }
 
