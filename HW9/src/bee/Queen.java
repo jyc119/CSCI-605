@@ -77,16 +77,14 @@ public class Queen extends Bee {
      * still waiting in her chamber.
      */
     public void run() {
-        while(beeHive.isActive()) {
+        while (beeHive.isActive()) {
             if (this.beeHive.hasResources() &&
                     this.beeHive.getQueensChamber().hasDrone()) {
-                //NEED TO KILL DRONE
+
                 this.beeHive.getQueensChamber().summonDrone();
                 try {
                     sleep(MATE_TIME_MS);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                } catch (InterruptedException e) {}
                 if (!this.beeHive.isActive()) {
                     break;
                 }
@@ -95,10 +93,12 @@ public class Queen extends Bee {
                     beeHive.addBee(getBee());
                 }
                 this.beeHive.claimResources();
-                System.out.println("*Q* Queen birthed " + newBees + " children");
+                System.out.println("*Q* Queen birthed " +
+                        newBees + " children");
                 try {
                     sleep(SLEEP_TIME_MS);
-                } catch (InterruptedException e) {}
+                } catch (InterruptedException e) {
+                }
             }
         }
         while (this.beeHive.getQueensChamber().hasDrone()) {

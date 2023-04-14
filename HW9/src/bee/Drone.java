@@ -1,7 +1,6 @@
 package bee;
 
 import world.BeeHive;
-import world.QueensChamber;
 
 /**
  * The male drone bee has a tough life.  His only job is to mate with the queen
@@ -14,6 +13,8 @@ import world.QueensChamber;
  */
 public class Drone extends Bee {
 
+    private boolean hasMated;
+
     /**
      * When the drone is created they should retrieve the queen's
      * chamber from the bee hive and initially the drone has not mated.
@@ -22,6 +23,14 @@ public class Drone extends Bee {
      */
     protected Drone(BeeHive beeHive){
         super(Role.DRONE, beeHive);
+        this.hasMated = false;
+    }
+
+    /**
+     * The queen will let the drone know when they have mated.
+     */
+    public void setMated() {
+        this.hasMated = true;
     }
 
     /**
@@ -40,16 +49,13 @@ public class Drone extends Bee {
      * sleeping.
      */
     public void run() {
-        synchronized (this) {
-            while (this.beeHive.isActive()) {
-                this.beeHive.getQueensChamber().enterChamber(this);
+        while (this.beeHive.isActive()) {
+            this.beeHive.getQueensChamber().enterChamber(this);
+            if (this.hasMated) {
                 try {
                     sleep(Queen.MATE_TIME_MS);
-                } catch (InterruptedException e) {
-                }
-                if (!this.beeHive.isActive()) {
-                    break;
-                }
+                } catch (InterruptedException e) {}
+                this.setMated();
                 this.beeHive.beePerished(this);
                 System.out.println("*D* " + this + " has perished!");
             }

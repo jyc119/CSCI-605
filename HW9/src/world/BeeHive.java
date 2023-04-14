@@ -171,9 +171,9 @@ public class BeeHive {
      */
     public void begin() {
         System.out.println("*BH* Bee hive begins buzzing!");
-        for (Bee bee: bees) {
-            bee.start();
-        }
+            for (Bee bee : this.bees) {
+                bee.start();
+            }
     }
 
     /**
@@ -223,7 +223,6 @@ public class BeeHive {
      * @param bee the new bee
      */
     public synchronized void addBee(Bee bee) {
-        // TODO YOUR CODE HERE
         this.bees.add(bee);
         bee.start();
     }
@@ -235,7 +234,6 @@ public class BeeHive {
      * @return do we have enough resources?
      */
     public synchronized boolean hasResources() {
-        // TODO YOUR CODE HERE
         if(nectarGathered > 0 && pollenGathered > 0){
             return true;
         }
@@ -249,7 +247,6 @@ public class BeeHive {
      * @rit.pre {@link BeeHive#hasResources()} is true
      */
     public synchronized void claimResources() {
-        // TODO YOUR CODE HERE
         this.nectar -= 1;
         this.pollen -= 1;
     }
@@ -277,6 +274,5 @@ public class BeeHive {
             this.nectar +=1;
             this.nectarGathered += 1;
         }
-        // TODO YOUR CODE HERE
     }
 }
