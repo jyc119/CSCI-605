@@ -4,12 +4,12 @@ import world.BeeHive;
 import world.FlowerField;
 
 /**
- * The female worker bee has the task of going to the flower field and collecting
- * their assigned resource - nectar or pollen.  A worker will always get exactly 1
- * unit of their resource each time they go out to the field and when they
- * return will deposit that resource into the bee hive (as long as the hive is still
- * active). After each successful gather, the worker will sleep for the required time
- * before heading out to the fields again.
+ * The female worker bee has the task of going to the flower field and
+ * collecting their assigned resource - nectar or pollen.  A worker will always
+ * get exactly 1 unit of their resource each time they go out to the field and
+ * when they return will deposit that resource into the bee hive (as long as the
+ * hive is still active). After each successful gather, the worker will sleep
+ * for the required time before heading out to the fields again.
  *
  * @author RIT CS
  * @author YOUR NAME HERE

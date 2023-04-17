@@ -24,15 +24,21 @@ import world.QueensChamber;
  */
 public class Queen extends Bee {
     /**
-     * the amount of time the queen waits after performing a task, whether she mated
-     * this specific time or not.
+     * the amount of time the queen waits after performing a task,
+     * whether she mated this specific time or not.
      */
     public final static int SLEEP_TIME_MS = 1000;
     /** the time it takes for the queen and the drone to mate */
     public final static int MATE_TIME_MS = 1000;
-    /** the minimum number of new bees that will be created by one mating session */
+    /**
+     * the minimum number of new bees that will be created by
+     * one mating session
+     */
     public final static int MIN_NEW_BEES = 1;
-    /** the maximum number of new bees that will be created by one mating session */
+    /**
+     * the maximum number of new bees that will be
+     * created by one mating session
+     */
     public final static int MAX_NEW_BEES = 4;
 
     /** the Queen's Chamber */
