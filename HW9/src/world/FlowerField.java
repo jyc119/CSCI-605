@@ -6,7 +6,6 @@
 
 package world;
 
-import bee.Bee;
 import bee.Worker;
 
 
@@ -47,8 +46,8 @@ public class FlowerField {
      * @param worker the worker bee entering the field
      */
     public void enterField(Worker worker) {
-        System.out.println("*FF* " + worker + " enters field");
         synchronized (this) {
+            System.out.println("*FF* " + worker + " enters field");
             while (num_workers == MAX_WORKERS) {
                 try {
                     this.wait();
@@ -71,8 +70,8 @@ public class FlowerField {
     public void exitField(Worker worker) {
         synchronized (this){
             this.num_workers -= 1;
-            System.out.println("*FF* " + worker + " leaves field");
             this.notify();
+            System.out.println("*FF* " + worker + " leaves field");
         }
     }
 }

@@ -2,6 +2,7 @@ package bee;
 
 import util.RandomBee;
 import world.BeeHive;
+import world.QueensChamber;
 
 /**
  * The queen is the master of the bee hive and the only bee that is allowed
@@ -34,6 +35,9 @@ public class Queen extends Bee {
     /** the maximum number of new bees that will be created by one mating session */
     public final static int MAX_NEW_BEES = 4;
 
+    /** the Queen's Chamber */
+    private QueensChamber queensChamber;
+
     /**
      * Create the queen.  She should get the queen's chamber from the bee hive.
      *
@@ -41,6 +45,7 @@ public class Queen extends Bee {
      */
     protected Queen(BeeHive beeHive) {
         super(Bee.Role.QUEEN, beeHive);
+        this.queensChamber = this.beeHive.getQueensChamber();
     }
 
     private Bee getBee(){
@@ -79,20 +84,29 @@ public class Queen extends Bee {
     public void run() {
         while (beeHive.isActive()) {
             if (this.beeHive.hasResources() &&
-                    this.beeHive.getQueensChamber().hasDrone()) {
+                    this.queensChamber.hasDrone()) {
 
-                this.beeHive.getQueensChamber().summonDrone();
+                this.queensChamber.summonDrone();
+                int newBees = RandomBee.nextInt(MIN_NEW_BEES, MAX_NEW_BEES);
+                if (!(this.beeHive.getRemainingNectar() >= newBees &&
+                        this.beeHive.getRemainingPollen() >= newBees)) {
+                    if (this.beeHive.getRemainingPollen() >=
+                            this.beeHive.getRemainingNectar()) {
+                        newBees = this.beeHive.getRemainingNectar();
+                    }
+                    else {
+                        newBees = this.beeHive.getRemainingPollen();
+                    }
+                }
+                for (int i = 0; i < newBees; i++) {
+                    this.beeHive.claimResources();
+                }
                 try {
                     sleep(MATE_TIME_MS);
                 } catch (InterruptedException e) {}
-                if (!this.beeHive.isActive()) {
-                    break;
-                }
-                int newBees = RandomBee.nextInt(MIN_NEW_BEES, MAX_NEW_BEES);
                 for (int i = 0; i < newBees; i++) {
                     beeHive.addBee(getBee());
                 }
-                this.beeHive.claimResources();
                 System.out.println("*Q* Queen birthed " +
                         newBees + " children");
                 try {
@@ -101,8 +115,8 @@ public class Queen extends Bee {
                 }
             }
         }
-        while (this.beeHive.getQueensChamber().hasDrone()) {
-            this.beeHive.getQueensChamber().dismissDrone();
+        while (this.queensChamber.hasDrone()) {
+            this.queensChamber.dismissDrone();
         }
     }
 }

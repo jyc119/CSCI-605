@@ -30,6 +30,7 @@ public class Worker extends Bee {
 
     /** the resource the worker will continually gather */
     private Resource resource;
+
     /** the field of flowers */
     private FlowerField flowerField;
 

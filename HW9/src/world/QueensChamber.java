@@ -9,8 +9,6 @@ package world;
 import bee.Drone;
 
 import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 
 /**
@@ -28,7 +26,7 @@ public class QueensChamber {
 
     private LinkedList<Drone> droneQueue;
 
-    private boolean mateStatus;
+//    private boolean isReady;
     private Drone curDrone;
 
     /**
@@ -36,7 +34,7 @@ public class QueensChamber {
      * queen is not ready to mate.
      */
     public QueensChamber(){
-        this.mateStatus = false;
+//        this.isReady = false;
         this.droneQueue = new LinkedList<Drone>();
     }
 
@@ -57,13 +55,15 @@ public class QueensChamber {
      * @param drone the drone who just entered the chamber
      */
     public void enterChamber(Drone drone) {
-        System.out.println("*QC* " + drone + " enters chamber");
-        synchronized (droneQueue){
-            this.curDrone = drone;
+        synchronized (this) {
+            System.out.println("*QC* " + drone + " enters chamber");
             this.droneQueue.add(drone);
-            try {
-                droneQueue.wait();
-            }catch (InterruptedException e){}
+            while (droneQueue.contains(drone)) {
+                try {
+                    this.wait();
+                } catch (InterruptedException e) {
+                }
+            }
             System.out.println("*QC* " + drone + " leaves chamber");
         }
     }
@@ -83,14 +83,11 @@ public class QueensChamber {
      * Precondition: A drone is ready and waiting to mate
      */
     public void summonDrone() {
-        synchronized(droneQueue) {
-            if (hasDrone() && !this.mateStatus) {
-                this.mateStatus = true;
-                droneQueue.notifyAll();
-                this.curDrone = this.droneQueue.remove();
-                System.out.println("*QC* Queen mates with " + this.curDrone);
-//                curDrone.setMated();
-            }
+        synchronized(this) {
+            this.curDrone = this.droneQueue.remove();
+            System.out.println("*QC* Queen mates with " + this.curDrone);
+            curDrone.setMated();
+            this.notifyAll();
         }
     }
 
@@ -99,9 +96,9 @@ public class QueensChamber {
      * dismiss all the drones that were waiting to mate. #rit_irl...
      */
     public void dismissDrone() {
-        synchronized (droneQueue) {
-        this.droneQueue.remove();
-            droneQueue.notifyAll();
+        synchronized (this) {
+            this.droneQueue.remove();
+            this.notifyAll();
         }
     }
 

@@ -61,14 +61,17 @@ public class BeeHive {
         this.bees.add(Bee.createBee(Role.QUEEN, Resource.NONE,this));
 
         for (int i=0; i<numDrones; ++i ) {
-            this.bees.add(Bee.createBee(Role.DRONE, Resource.NONE, this));
+            this.bees.add(Bee.createBee(Role.DRONE, Resource.NONE,
+                    this));
         }
 
         for (int i=0; i<numNectarWorkers; ++i ) {
-            this.bees.add(Bee.createBee(Role.WORKER, Resource.NECTAR, this));
+            this.bees.add(Bee.createBee(Role.WORKER, Resource.NECTAR,
+                    this));
         }
         for (int i=0; i<numPollenWorkers; ++i ) {
-            this.bees.add(Bee.createBee(Role.WORKER, Resource.POLLEN, this));
+            this.bees.add(Bee.createBee(Role.WORKER, Resource.POLLEN,
+                    this));
         }
 
         this.active = true;
@@ -77,7 +80,8 @@ public class BeeHive {
     }
 
     /**
-     * Get the flower field.  Having this here reduces the amount of passing we have to do.
+     * Get the flower field.
+     * Having this here reduces the amount of passing we have to do.
      * The worker bees who need the field can get it from the bee hive.
      *
      * @return the field of flowers
@@ -87,7 +91,8 @@ public class BeeHive {
     }
 
     /**
-     * Get the queen's chamber.  The queen bee and the drones need to be aware of this.
+     * Get the queen's chamber.
+     * The queen bee and the drones need to be aware of this.
      *
      * @return the queen's chamber
      */
@@ -171,9 +176,9 @@ public class BeeHive {
      */
     public void begin() {
         System.out.println("*BH* Bee hive begins buzzing!");
-            for (Bee bee : this.bees) {
-                bee.start();
-            }
+        for (Bee bee : this.bees) {
+            bee.start();
+        }
     }
 
     /**
@@ -212,7 +217,6 @@ public class BeeHive {
      * @param bee the bee who perished
      */
     public synchronized void beePerished (Bee bee){
-        this.bees.remove(bee);
         this.perishedBees.add(bee);
     }
 
@@ -225,11 +229,12 @@ public class BeeHive {
     public synchronized void addBee(Bee bee) {
         this.bees.add(bee);
         bee.start();
+        this.numBorn = this.bees.size();
     }
 
     /**
-     * If the bee hive has at least 1 unit of both nectar and pollen, it meets one
-     * of the conditions by the queen for mating with a drone.
+     * If the bee hive has at least 1 unit of both nectar and pollen,
+     * it meets on of the conditions by the queen for mating with a drone.
      *
      * @return do we have enough resources?
      */
@@ -241,8 +246,8 @@ public class BeeHive {
     }
 
     /**
-     * When the queen is ready to mate with a drone, they will claim 1 unit of each
-     * resource.
+     * When the queen is ready to mate with a drone,
+     * they will claim 1 unit of each resource.
      *
      * @rit.pre {@link BeeHive#hasResources()} is true
      */
