@@ -7,6 +7,8 @@ import java.util.Random;
  * numbers in an inclusive range provided by the caller.
  *
  * @author RIT CS
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class RandomBee {
     /** Random number generator usable by all classes */
@@ -26,6 +28,10 @@ public class RandomBee {
         return rand.nextInt(max - min + 1) + min;
     }
 
+    /**
+     * Generates a random percentage to get a new bee type
+     * @return A random percentage
+     */
     public static int get_bee_type(){
         Random r = new Random();
         int percentage = r.nextInt(100);

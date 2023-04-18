@@ -14,8 +14,8 @@ import world.BeeHive;
  * <tt>Bee.createBee(Bee.Role.WORKER, Resource.POLLEN, beeHive)</tt><br>
  * <br>
  *
- * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public abstract class Bee extends Thread {
     /** The three roles */

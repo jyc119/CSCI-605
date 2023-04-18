@@ -9,8 +9,8 @@ import world.QueensChamber;
  * sexy time.  Unfortunately his reward from mating with the queen is his
  * endophallus gets ripped off and he perishes soon after mating.
  *
- * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class Drone extends Bee {
 

@@ -11,8 +11,8 @@ import world.FlowerField;
  * hive is still active). After each successful gather, the worker will sleep
  * for the required time before heading out to the fields again.
  *
- * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class Worker extends Bee {
     /**

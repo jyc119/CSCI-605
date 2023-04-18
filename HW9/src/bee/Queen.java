@@ -19,8 +19,8 @@ import world.QueensChamber;
  * Finally, the queen takes a break and smokes a cigarette and puts on some
  * netflix before she chills with her next drone.
  *
- * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
  */
 public class Queen extends Bee {
     /**
@@ -54,6 +54,13 @@ public class Queen extends Bee {
         this.queensChamber = this.beeHive.getQueensChamber();
     }
 
+    /**
+     * Generates a percentage and based on the number, create a
+     * Drone if the number is between 0-59, a nectar worker if it is
+     * between 60-79 and pollen worker 80-99.
+     *
+     * @return A new bee
+     */
     private Bee getBee(){
         int percentage = RandomBee.get_bee_type();
         if (percentage<60){
