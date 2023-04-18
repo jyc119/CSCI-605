@@ -96,13 +96,8 @@ public class Queen extends Bee {
                 int newBees = RandomBee.nextInt(MIN_NEW_BEES, MAX_NEW_BEES);
                 if (!(this.beeHive.getRemainingNectar() >= newBees &&
                         this.beeHive.getRemainingPollen() >= newBees)) {
-                    if (this.beeHive.getRemainingPollen() >=
-                            this.beeHive.getRemainingNectar()) {
-                        newBees = this.beeHive.getRemainingNectar();
-                    }
-                    else {
-                        newBees = this.beeHive.getRemainingPollen();
-                    }
+                    newBees = Math.min(this.beeHive.getRemainingPollen(),
+                            this.beeHive.getRemainingNectar());
                 }
                 for (int i = 0; i < newBees; i++) {
                     this.beeHive.claimResources();

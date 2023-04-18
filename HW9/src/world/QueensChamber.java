@@ -34,7 +34,6 @@ public class QueensChamber {
      * queen is not ready to mate.
      */
     public QueensChamber(){
-//        this.isReady = false;
         this.droneQueue = new LinkedList<Drone>();
     }
 
