@@ -52,7 +52,13 @@ public class ConcentrationClientServerThread extends Thread {
                 String reveal = in.readLine();
                 System.out.println(client + "received: " + reveal);
                 String[] coordinates = reveal.split(WHITESPACE);
-                ConcentrationBoard.CardMatch cardMatch = board.reveal(Integer.parseInt(coordinates[1]), Integer.parseInt(coordinates[2]));
+                ConcentrationBoard.CardMatch cardMatch =
+                        board.reveal(Integer.parseInt(coordinates[1]),
+                                Integer.parseInt(coordinates[2]));
+                ConcentrationCard card = board.getCard(Integer.parseInt(coordinates[1]), Integer.parseInt(coordinates[2]));
+                String sendCard = String.format(ConcentrationProtocol.CARD_MSG,
+                        card.getRow(), card.getCol(), card.getLetter());
+                out.println(sendCard);
                 if (cardMatch.isReady()) {
                     if (cardMatch.isMatch()) {
                         out.println(String.format(ConcentrationProtocol.
@@ -69,10 +75,6 @@ public class ConcentrationClientServerThread extends Thread {
                                 cardMatch.getCard2().getCol()));
                     }
                 }
-                ConcentrationCard card = board.getCard(Integer.parseInt(coordinates[1]), Integer.parseInt(coordinates[2]));
-                String sendCard = String.format(ConcentrationProtocol.CARD_MSG,
-                        card.getRow(), card.getCol(), card.getLetter());
-                out.println(sendCard);
                 System.out.println(client + " sending: " + sendCard);
                 System.out.println(client);
                 System.out.println(board);

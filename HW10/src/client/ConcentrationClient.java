@@ -41,21 +41,36 @@ public class ConcentrationClient {
                         new InputStreamReader(socket.getInputStream()));
         ) {
             String fromServer;
+            String fromClient;
             fromServer = in.readLine();
             board = new ConcentrationClientBoard(Integer.parseInt
                     (fromServer.split(WHITESPACE)[1]));
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(System.in));
-            while (fromServer != (ConcentrationProtocol.GAME_OVER_MSG)) {
+            while (true) {
                 System.out.println(board);
                 System.out.print(Prompt);
-                fromServer = input.readLine();
-                String[] cor = fromServer.split(WHITESPACE);
+                fromClient = input.readLine();
+                String[] cor = fromClient.split(WHITESPACE);
                 board.getCard(Integer.parseInt(cor[0]),
                         Integer.parseInt(cor[1])).reveal();
                 out.println(String.format(ConcentrationProtocol.
                         REVEAL_MSG, Integer.parseInt(cor[0]),
                         Integer.parseInt(cor[1])));
+                in.readLine();
+                if ((fromServer = in.readLine()) != null) {
+                    String[] checkMatch = fromServer.split(WHITESPACE);
+                    if (checkMatch[0].equals("MISMATCH")) {
+                        board.getCard(Integer.parseInt(checkMatch[1]),
+                                Integer.parseInt(checkMatch[2])).hide();
+                        board.getCard(Integer.parseInt(checkMatch[3]),
+                                Integer.parseInt(checkMatch[4])).hide();
+                    }
+                }
+                //May not work
+                if (in.readLine().equals(ConcentrationProtocol.GAME_OVER_MSG)) {
+                    break;
+                }
             }
             System.out.println("You won!");
         } catch (IOException e) {
