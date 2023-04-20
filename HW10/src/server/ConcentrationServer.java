@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 
 public class ConcentrationServer {
 
+
+
     int portNumber;
 
     int dimension;
@@ -12,14 +14,14 @@ public class ConcentrationServer {
     public ConcentrationServer(int portNumber, int dimension) {
         this.portNumber = portNumber;
         this.dimension = dimension;
+        System.out.println("Concentration server starting on port " +
+                portNumber + " DIM=" + dimension);
     }
 
     public void run() {
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-            while (true) {
                 new ConcentrationClientServerThread(serverSocket.accept())
                         .start();
-            }
         } catch (IOException e) {
             System.err.println("Incorrect port number: " + portNumber);
             System.exit(-1);;

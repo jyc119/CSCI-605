@@ -1,6 +1,7 @@
 package game;
 
 import common.ConcentrationException;
+import common.ConcentrationProtocol;
 import game.ConcentrationCard;
 
 import java.util.ArrayList;
@@ -175,7 +176,7 @@ public class ConcentrationBoard {
         //TODO YOUR CODE HERE
         //Done I think
         if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
-            throw new ConcentrationException("Invalid coordinate");
+            throw new ConcentrationException(ConcentrationProtocol.ERROR_MSG);
         }
         return board[row][col];
     }
@@ -193,14 +194,14 @@ public class ConcentrationBoard {
     public CardMatch reveal(int row, int col) throws ConcentrationException {
         //TODO YOUR CODE HERE
         //Dont know what to return
-        if (gameOver()) {
-            throw new ConcentrationException("Game is over!");
-        }
+//        if (gameOver()) {
+//            throw new ConcentrationException(ConcentrationProtocol.GAME_OVER_MSG);
+//        }
         if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
-            throw new ConcentrationException("Invalid coordinate");
+            throw new ConcentrationException(ConcentrationProtocol.ERROR_MSG);
         }
         if (!this.board[row][col].isHidden()) {
-            throw new ConcentrationException("Card has already been revealed");
+            throw new ConcentrationException("ERROR Card has already been revealed");
         }
         this.board[row][col].reveal();
         if (this.revealedCard == null) {
