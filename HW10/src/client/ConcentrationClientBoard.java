@@ -1,4 +1,4 @@
-package client.model;
+package client;
 
 import common.ConcentrationException;
 import game.ConcentrationCard;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ConcentrationModel {
+public class ConcentrationClientBoard {
 
     /** the smallest board is 2x2 */
     private final static int MIN_DIM = 2;
@@ -92,7 +92,7 @@ public class ConcentrationModel {
      * @param DIM square dimension
      * @throws ConcentrationException if the dimension is illegal
      */
-    public ConcentrationModel(int DIM) throws ConcentrationException {
+    public ConcentrationClientBoard(int DIM) throws ConcentrationException {
         this(DIM, false);
     }
 
@@ -103,7 +103,7 @@ public class ConcentrationModel {
      * @param cheat whether to display the fully revealed board or not
      * @throws ConcentrationException if the dimensions are invalid
      */
-    public ConcentrationModel(int DIM, boolean cheat) throws
+    public ConcentrationClientBoard(int DIM, boolean cheat) throws
             ConcentrationException {
         // check for bad dimensions
         if (DIM < MIN_DIM || DIM > MAX_DIM) {
@@ -204,11 +204,11 @@ public class ConcentrationModel {
         }
         else {
             if (this.revealedCard == this.board[row][col]) {
-                return new ConcentrationModel.CardMatch(this.revealedCard,
+                return new ConcentrationClientBoard.CardMatch(this.revealedCard,
                         this.board[row][col], true);
             }
             else {
-                return new ConcentrationModel.CardMatch(this.revealedCard,
+                return new ConcentrationClientBoard.CardMatch(this.revealedCard,
                         this.board[row][col], false);
             }
         }
