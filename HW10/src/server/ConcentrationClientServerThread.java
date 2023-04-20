@@ -1,6 +1,9 @@
 package server;
 
+import common.ConcentrationException;
 import common.ConcentrationProtocol;
+import game.ConcentrationBoard;
+import game.ConcentrationCard;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,16 +13,25 @@ import java.net.Socket;
 
 public class ConcentrationClientServerThread extends Thread {
 
+    private static final String WHITESPACE = "\\s+";
+
     private Socket socket = null;
 
-    private ConcentrationServer server;
+    private final int dimension;
+
+    private ConcentrationBoard board;
+
+    private ConcentrationBoard cheatBoard;
+
+    private String client = "Client #" + "ID#:";
 
 
-    public ConcentrationClientServerThread(Socket socket) {
+    public ConcentrationClientServerThread(Socket socket, int dimension) {
         super("ConcentrationClientServerThread");
         this.socket = socket;
-        System.out.println("CLient #" + this.getId() + ": Client " +
-                this.getId() + " connected: " + socket);
+        this.dimension = dimension;
+        System.out.println(client + ": Client " +
+                "ID#" + " connected: " + socket);
     }
 
     public void run() {
@@ -29,9 +41,46 @@ public class ConcentrationClientServerThread extends Thread {
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));
         ) {
-            //ADD ACTUAL CODE HERE
+            this.cheatBoard = new ConcentrationBoard(dimension, true);
+            this.board = new ConcentrationBoard(dimension);
+            System.out.println(client + ": Client started...");
+            System.out.println(client);
+            System.out.println(board);
+            String boardDim = String.format(ConcentrationProtocol.BOARD_DIM_MSG, dimension);
+            out.println(boardDim);
+            while (!this.board.gameOver()) {
+                String reveal = in.readLine();
+                System.out.println(client + "received: " + reveal);
+                String[] coordinates = reveal.split(WHITESPACE);
+                ConcentrationBoard.CardMatch cardMatch = board.reveal(Integer.parseInt(coordinates[1]), Integer.parseInt(coordinates[2]));
+                if (cardMatch.isReady()) {
+                    if (cardMatch.isMatch()) {
+                        out.println(String.format(ConcentrationProtocol.
+                                MATCH_MSG, cardMatch.getCard1().getRow(),
+                                cardMatch.getCard1().getCol(),
+                                cardMatch.getCard2().getRow(),
+                                cardMatch.getCard2().getCol()));
+                    }
+                    else {
+                        out.println(String.format(ConcentrationProtocol.
+                                        MISMATCH_MSG, cardMatch.getCard1().getRow(),
+                                cardMatch.getCard1().getCol(),
+                                cardMatch.getCard2().getRow(),
+                                cardMatch.getCard2().getCol()));
+                    }
+                }
+                ConcentrationCard card = board.getCard(Integer.parseInt(coordinates[1]), Integer.parseInt(coordinates[2]));
+                String sendCard = String.format(ConcentrationProtocol.CARD_MSG,
+                        card.getRow(), card.getCol(), card.getLetter());
+                out.println(sendCard);
+                System.out.println(client + " sending: " + sendCard);
+                System.out.println(client);
+                System.out.println(board);
+            }
             socket.close();
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ConcentrationException e) {
             throw new RuntimeException(e);
         }
     }

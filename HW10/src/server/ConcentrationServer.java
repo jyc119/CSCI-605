@@ -7,9 +7,9 @@ public class ConcentrationServer {
 
 
 
-    int portNumber;
+    private final int portNumber;
 
-    int dimension;
+    private final int dimension;
 
     public ConcentrationServer(int portNumber, int dimension) {
         this.portNumber = portNumber;
@@ -20,7 +20,7 @@ public class ConcentrationServer {
 
     public void run() {
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-                new ConcentrationClientServerThread(serverSocket.accept())
+                new ConcentrationClientServerThread(serverSocket.accept(), dimension)
                         .start();
         } catch (IOException e) {
             System.err.println("Incorrect port number: " + portNumber);

@@ -1,6 +1,10 @@
 package client;
 
 
+import common.ConcentrationException;
+import common.ConcentrationProtocol;
+
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,20 +35,35 @@ public class ConcentrationClient {
     private void play() {
         try (
                 Socket socket = new Socket(hostName, portNumber);
-                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                PrintWriter out = new PrintWriter(socket.getOutputStream(),
+                        true);
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));
         ) {
-                BufferedReader input =
-                        new BufferedReader(new InputStreamReader(System.in));
-            //            while (!board.gameOver()) {
-//            System.out.println(board);
-            System.out.print(Prompt);
-//            }
-        } catch (UnknownHostException e) {
-            //Put something here
+            String fromServer;
+            fromServer = in.readLine();
+            board = new ConcentrationClientBoard(Integer.parseInt
+                    (fromServer.split(WHITESPACE)[1]));
+            BufferedReader input =
+                    new BufferedReader(new InputStreamReader(System.in));
+            while (fromServer != (ConcentrationProtocol.GAME_OVER_MSG)) {
+                System.out.println(board);
+                System.out.print(Prompt);
+                fromServer = input.readLine();
+                String[] cor = fromServer.split(WHITESPACE);
+                board.getCard(Integer.parseInt(cor[0]),
+                        Integer.parseInt(cor[1])).reveal();
+                out.println(String.format(ConcentrationProtocol.
+                        REVEAL_MSG, Integer.parseInt(cor[0]),
+                        Integer.parseInt(cor[1])));
+            }
+            System.out.println("You won!");
         } catch (IOException e) {
-            //Put something here
+            System.err.println("Couldn't get I/O for the connection to " +
+                    hostName);
+            System.exit(1);
+        } catch (ConcentrationException e) {
+            e.getMessage();
         }
     }
 

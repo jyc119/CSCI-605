@@ -173,8 +173,6 @@ public class ConcentrationBoard {
      */
     public ConcentrationCard getCard(int row, int col)
             throws ConcentrationException {
-        //TODO YOUR CODE HERE
-        //Done I think
         if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
             throw new ConcentrationException(ConcentrationProtocol.ERROR_MSG);
         }
@@ -192,13 +190,9 @@ public class ConcentrationBoard {
      *     card has already been revealed.
      */
     public CardMatch reveal(int row, int col) throws ConcentrationException {
-        //TODO YOUR CODE HERE
-        //Dont know what to return
-//        if (gameOver()) {
-//            throw new ConcentrationException(ConcentrationProtocol.GAME_OVER_MSG);
-//        }
         if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
-            throw new ConcentrationException(ConcentrationProtocol.ERROR_MSG);
+            throw new ConcentrationException(String.format(ConcentrationProtocol
+                    .ERROR_MSG, " Invalid coordinate"));
         }
         if (!this.board[row][col].isHidden()) {
             throw new ConcentrationException("ERROR Card has already been revealed");
@@ -206,6 +200,7 @@ public class ConcentrationBoard {
         this.board[row][col].reveal();
         if (this.revealedCard == null) {
             this.revealedCard = this.board[row][col];
+            return new CardMatch(this.board[row][col], null, false);
         }
         else {
             if (this.revealedCard == this.board[row][col]) {
@@ -217,8 +212,6 @@ public class ConcentrationBoard {
                         this.board[row][col], false);
             }
         }
-        // Dont know what to return if its the first card revealed
-        return null;
     }
 
     /**
@@ -227,8 +220,6 @@ public class ConcentrationBoard {
      * @return whether the game is over or not
      */
     public boolean gameOver() {
-        //TODO YOUR CODE HERE
-        //Done I think
         return matches == DIM * DIM / 2;
     }
 

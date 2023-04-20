@@ -10,82 +10,11 @@ import java.util.List;
 
 public class ConcentrationClientBoard {
 
-    /** the smallest board is 2x2 */
-    private final static int MIN_DIM = 2;
-    /** the largest board is 6x6 */
-    private final static int MAX_DIM = 6;
+    /** the actual board is a 2-D grid of cards */
+    private ConcentrationCard board[][];
 
     /** the square dimension of the board */
     private int DIM;
-    /** the actual board is a 2-D grid of cards */
-    private ConcentrationCard board[][];
-    /** if the first card is revealed this is set (otherwise null) */
-    private ConcentrationCard revealedCard;
-    /** the number of card matches that have been made so far */
-    private int matches;
-
-    /**
-     * An internal class used to determine a card match or mismatch.
-     */
-    public class CardMatch {
-        /** the first card */
-        private ConcentrationCard card1;
-        /** the second card */
-        private ConcentrationCard card2;
-        /** do the cards match? */
-        private boolean match;
-
-        /**
-         * Create a new instance from the two revealed cards and whether they
-         * matches.
-         *
-         * @param card1 first card
-         * @param card2 second card
-         * @param match do the cards match or not
-         */
-        public CardMatch(ConcentrationCard card1, ConcentrationCard card2,
-                         boolean match) {
-            this.card1 = card1;
-            this.card2 = card2;
-            this.match = match;
-        }
-
-        /**
-         * Get the first card.
-         *
-         * @return first card
-         */
-        public ConcentrationCard getCard1() {
-            return this.card1;
-        }
-
-        /**
-         * Get the second card.
-         *
-         * @return second card
-         */
-        public ConcentrationCard getCard2() {
-            return this.card2;
-        }
-
-        /**
-         * Is there a card match?
-         *
-         * @return whether there was a match or not
-         */
-        public boolean isMatch() {
-            return this.match;
-        }
-
-        /**
-         * Is it ready to check for a match - both cards should be non-null
-         *
-         * @return is a match ready to check?
-         */
-        public boolean isReady() {
-            return this.card1 != null && this.card2 != null;
-        }
-    }
 
     /**
      * Create the board in non-cheat mode.
@@ -106,12 +35,12 @@ public class ConcentrationClientBoard {
      */
     public ConcentrationClientBoard(int DIM, boolean cheat) throws
             ConcentrationException {
-        // check for bad dimensions
-        if (DIM < MIN_DIM || DIM > MAX_DIM) {
-            throw new ConcentrationException("Board size out of range: " + DIM);
-        } else if (DIM % 2 != 0) {
-            throw new ConcentrationException("Board size not even: " + DIM);
-        }
+//        // check for bad dimensions
+//        if (DIM < MIN_DIM || DIM > MAX_DIM) {
+//            throw new ConcentrationException("Board size out of range: " + DIM);
+//        } else if (DIM % 2 != 0) {
+//            throw new ConcentrationException("Board size not even: " + DIM);
+//        }
 
         /** create the pair of cards and shuffle them */
         List<Character> chars = new ArrayList<>(DIM*DIM);
@@ -145,10 +74,6 @@ public class ConcentrationClientBoard {
                 this.board[row][col].hide();
             }
         }
-
-        // initialize rest of state
-        this.revealedCard = null;
-        this.matches = 0;
     }
 
     /**
@@ -169,63 +94,10 @@ public class ConcentrationClientBoard {
      */
     public ConcentrationCard getCard(int row, int col)
             throws ConcentrationException {
-        //TODO YOUR CODE HERE
-        //Done I think
         if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
-            throw new ConcentrationException(ConcentrationProtocol.ERROR_MSG);
+            throw new ConcentrationException(String.format(ConcentrationProtocol.ERROR_MSG, "Invalid coordinate"));
         }
         return board[row][col];
-    }
-
-    /**
-     * Reveal a hidden card.
-     *
-     * @param row the row
-     * @param col the column
-     * @return resulting information about a potential match or mismatch
-     * @throws ConcentrationException if the game is over, the coordinate is
-     * invalid, or the
-     *     card has already been revealed.
-     */
-    public CardMatch reveal(int row, int col) throws ConcentrationException {
-        //TODO YOUR CODE HERE
-        //Dont know what to return
-//        if (gameOver()) {
-//            throw new ConcentrationException(ConcentrationProtocol.GAME_OVER_MSG);
-//        }
-        if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
-            throw new ConcentrationException(ConcentrationProtocol.ERROR_MSG);
-        }
-        if (!this.board[row][col].isHidden()) {
-            throw new ConcentrationException("ERROR Card has already been revealed");
-        }
-        this.board[row][col].reveal();
-        if (this.revealedCard == null) {
-            this.revealedCard = this.board[row][col];
-        }
-        else {
-            if (this.revealedCard == this.board[row][col]) {
-                return new ConcentrationClientBoard.CardMatch(this.revealedCard,
-                        this.board[row][col], true);
-            }
-            else {
-                return new ConcentrationClientBoard.CardMatch(this.revealedCard,
-                        this.board[row][col], false);
-            }
-        }
-        // Dont know what to return if its the first card revealed
-        return null;
-    }
-
-    /**
-     * The game is over when all the matches have been made.
-     *
-     * @return whether the game is over or not
-     */
-    public boolean gameOver() {
-        //TODO YOUR CODE HERE
-        //Done I think
-        return matches == DIM * DIM / 2;
     }
 
     /**
