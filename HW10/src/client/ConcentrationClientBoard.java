@@ -33,8 +33,7 @@ public class ConcentrationClientBoard {
      * @param cheat whether to display the fully revealed board or not
      * @throws ConcentrationException if the dimensions are invalid
      */
-    public ConcentrationClientBoard(int DIM, boolean cheat) throws
-            ConcentrationException {
+    public ConcentrationClientBoard(int DIM, boolean cheat) {
 //        // check for bad dimensions
 //        if (DIM < MIN_DIM || DIM > MAX_DIM) {
 //            throw new ConcentrationException("Board size out of range: " + DIM);

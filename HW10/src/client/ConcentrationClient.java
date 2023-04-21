@@ -10,13 +10,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class ConcentrationClient {
 
     private static final String WHITESPACE = "\\s+";
-
-    private static final String QUIT = "q";
 
     /** What to display when the program is ready for a user command */
     public static final String Prompt = "> ";
@@ -40,14 +37,25 @@ public class ConcentrationClient {
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));
         ) {
-            String fromServer;
-            String fromClient;
-            fromServer = in.readLine();
-            board = new ConcentrationClientBoard(Integer.parseInt
-                    (fromServer.split(WHITESPACE)[1]));
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(System.in));
-            while (true) {
+            String fromServer;
+            String fromClient;
+            while ((fromServer = in.readLine()) != null) {
+                String[] message = fromServer.split(WHITESPACE);
+                if (message[0].equals(ConcentrationProtocol.BOARD_DIM)) {
+                    board = new ConcentrationClientBoard(Integer.parseInt
+                            (message[1]));
+                }
+                if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
+                    break;
+                }
+                if (message[0].equals("MISMATCH")) {
+                    board.getCard(Integer.parseInt(message[1]),
+                            Integer.parseInt(message[2])).hide();
+                    board.getCard(Integer.parseInt(message[3]),
+                            Integer.parseInt(message[4])).hide();
+                }
                 System.out.println(board);
                 System.out.print(Prompt);
                 fromClient = input.readLine();
@@ -55,23 +63,39 @@ public class ConcentrationClient {
                 board.getCard(Integer.parseInt(cor[0]),
                         Integer.parseInt(cor[1])).reveal();
                 out.println(String.format(ConcentrationProtocol.
-                        REVEAL_MSG, Integer.parseInt(cor[0]),
+                                REVEAL_MSG, Integer.parseInt(cor[0]),
                         Integer.parseInt(cor[1])));
-                in.readLine();
-                if ((fromServer = in.readLine()) != null) {
-                    String[] checkMatch = fromServer.split(WHITESPACE);
-                    if (checkMatch[0].equals("MISMATCH")) {
-                        board.getCard(Integer.parseInt(checkMatch[1]),
-                                Integer.parseInt(checkMatch[2])).hide();
-                        board.getCard(Integer.parseInt(checkMatch[3]),
-                                Integer.parseInt(checkMatch[4])).hide();
-                    }
-                }
-                //May not work
-                if (in.readLine().equals(ConcentrationProtocol.GAME_OVER_MSG)) {
-                    break;
-                }
             }
+//            fromServer = in.readLine();
+//            board = new ConcentrationClientBoard(Integer.parseInt
+//                    (fromServer.split(WHITESPACE)[1]));
+//            BufferedReader input =
+//                    new BufferedReader(new InputStreamReader(System.in));
+//            while (true) {
+//                System.out.println(board);
+//                System.out.print(Prompt);
+//                fromClient = input.readLine();
+//                String[] cor = fromClient.split(WHITESPACE);
+//                board.getCard(Integer.parseInt(cor[0]),
+//                        Integer.parseInt(cor[1])).reveal();
+//                out.println(String.format(ConcentrationProtocol.
+//                        REVEAL_MSG, Integer.parseInt(cor[0]),
+//                        Integer.parseInt(cor[1])));
+//                in.readLine();
+//                if ((fromServer = in.readLine()) != null) {
+//                    String[] checkMatch = fromServer.split(WHITESPACE);
+//                    if (checkMatch[0].equals("MISMATCH")) {
+//                        board.getCard(Integer.parseInt(checkMatch[1]),
+//                                Integer.parseInt(checkMatch[2])).hide();
+//                        board.getCard(Integer.parseInt(checkMatch[3]),
+//                                Integer.parseInt(checkMatch[4])).hide();
+//                    }
+//                }
+                //May not work
+//                if (in.readLine().equals(ConcentrationProtocol.GAME_OVER_MSG)) {
+//                    break;
+//                }
+//            }
             System.out.println("You won!");
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to " +

@@ -50,40 +50,49 @@ public class ConcentrationClientServerThread extends Thread {
             out.println(boardDim);
             while (!this.board.gameOver()) {
                 String reveal = in.readLine();
-                System.out.println(client + "received: " + reveal);
+                System.out.println(client + " received: " + reveal);
                 String[] coordinates = reveal.split(WHITESPACE);
-                ConcentrationBoard.CardMatch cardMatch =
-                        board.reveal(Integer.parseInt(coordinates[1]),
-                                Integer.parseInt(coordinates[2]));
-                ConcentrationCard card = board.getCard(Integer.parseInt(coordinates[1]), Integer.parseInt(coordinates[2]));
-                String sendCard = String.format(ConcentrationProtocol.CARD_MSG,
-                        card.getRow(), card.getCol(), card.getLetter());
-                out.println(sendCard);
-                if (cardMatch.isReady()) {
-                    if (cardMatch.isMatch()) {
-                        out.println(String.format(ConcentrationProtocol.
-                                MATCH_MSG, cardMatch.getCard1().getRow(),
-                                cardMatch.getCard1().getCol(),
-                                cardMatch.getCard2().getRow(),
-                                cardMatch.getCard2().getCol()));
+                try {
+                    ConcentrationBoard.CardMatch cardMatch =
+                            board.reveal(Integer.parseInt(coordinates[1]),
+                                    Integer.parseInt(coordinates[2]));
+                    ConcentrationCard card = board.getCard(Integer.parseInt
+                            (coordinates[1]), Integer.parseInt(coordinates[2]));
+                    String sendCard = String.format
+                            (ConcentrationProtocol.CARD_MSG, card.getRow(),
+                                    card.getCol(), card.getLetter());
+                    out.println(sendCard);
+                    if (cardMatch.isReady()) {
+                        if (cardMatch.isMatch()) {
+                            out.println(String.format
+                                    (ConcentrationProtocol.MATCH_MSG,
+                                            cardMatch.getCard1().getRow(),
+                                            cardMatch.getCard1().getCol(),
+                                            cardMatch.getCard2().getRow(),
+                                            cardMatch.getCard2().getCol()));
+                        } else {
+                            out.println(String.format
+                                    (ConcentrationProtocol.MISMATCH_MSG,
+                                            cardMatch.getCard1().getRow(),
+                                            cardMatch.getCard1().getCol(),
+                                            cardMatch.getCard2().getRow(),
+                                            cardMatch.getCard2().getCol()));
+                        }
                     }
-                    else {
-                        out.println(String.format(ConcentrationProtocol.
-                                        MISMATCH_MSG, cardMatch.getCard1().getRow(),
-                                cardMatch.getCard1().getCol(),
-                                cardMatch.getCard2().getRow(),
-                                cardMatch.getCard2().getCol()));
-                    }
+                    System.out.println(client + " sending: " + sendCard);
+                    System.out.println(client);
+                    System.out.println(board);
+                } catch (ConcentrationException e) {
+                    System.out.println(e);
                 }
-                System.out.println(client + " sending: " + sendCard);
-                System.out.println(client);
-                System.out.println(board);
             }
             socket.close();
+            System.out.println(client + " Client ending...");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         } catch (ConcentrationException e) {
-            throw new RuntimeException(e);
+            e.getMessage();
+            System.exit(1);
         }
     }
 }
