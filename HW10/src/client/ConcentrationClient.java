@@ -107,6 +107,7 @@ public class ConcentrationClient {
                 }
                 else if (message[0].equals(ConcentrationProtocol.ERROR)) {
                     System.out.println(board);
+                    System.out.println("Try again.");
                     getInput(out, input);
                 }
                 else {
