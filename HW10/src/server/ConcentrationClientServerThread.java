@@ -21,16 +21,14 @@ public class ConcentrationClientServerThread extends Thread {
 
     private ConcentrationBoard board;
 
-    private ConcentrationBoard cheatBoard;
-
-    private String client = "Client #" + "ID#:";
+    private String client = "Client #" + this.getId() + ":";
 
 
     public ConcentrationClientServerThread(Socket socket, int dimension) {
         super("ConcentrationClientServerThread");
         this.socket = socket;
         this.dimension = dimension;
-        System.out.println(client + ": Client " +
+        System.out.println(client + " Client " +
                 "ID#" + " connected: " + socket);
     }
 
@@ -41,7 +39,7 @@ public class ConcentrationClientServerThread extends Thread {
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));
         ) {
-            this.cheatBoard = new ConcentrationBoard(dimension, true);
+            new ConcentrationBoard(dimension, true);
             this.board = new ConcentrationBoard(dimension);
             System.out.println(client + ": Client started...");
             System.out.println(client);

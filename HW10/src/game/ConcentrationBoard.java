@@ -2,7 +2,6 @@ package game;
 
 import common.ConcentrationException;
 import common.ConcentrationProtocol;
-import game.ConcentrationCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -206,7 +205,7 @@ public class ConcentrationBoard {
                     false);
         }
         else {
-            if (this.revealedCard == this.board[row][col]) {
+            if (this.revealedCard.equals(this.board[row][col])) {
                 ConcentrationCard temp = this.revealedCard;
                 this.revealedCard = null;
                 this.matches += 1;
@@ -214,6 +213,8 @@ public class ConcentrationBoard {
                         this.board[row][col], true);
             }
             else {
+                this.revealedCard.hide();
+                this.board[row][col].hide();
                 ConcentrationCard temp = this.revealedCard;
                 this.revealedCard = null;
                 return new CardMatch(temp,

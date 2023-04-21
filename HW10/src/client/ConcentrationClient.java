@@ -48,6 +48,9 @@ public class ConcentrationClient {
                     board = new ConcentrationClientBoard(Integer.parseInt
                             (message[1]));
                 }
+                if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
+                    break;
+                }
                 System.out.println(board);
                 System.out.print(Prompt);
                 fromClient = input.readLine();
@@ -70,9 +73,6 @@ public class ConcentrationClient {
                         Integer.parseInt(cor[1])));
                 if (message[0].equals(ConcentrationProtocol.CARD)) {
                     message[0] = in.readLine().split(WHITESPACE)[0];
-                }
-                if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
-                    break;
                 }
                 if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
                     board.getCard(Integer.parseInt(message[1]),
