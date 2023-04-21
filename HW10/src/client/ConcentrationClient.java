@@ -3,6 +3,7 @@ package client;
 
 import common.ConcentrationException;
 import common.ConcentrationProtocol;
+import game.ConcentrationCard;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -52,24 +53,53 @@ public class ConcentrationClient {
                 fromClient = input.readLine();
                 String[] cor = fromClient.split(WHITESPACE);
                 try {
-                    board.getCard(Integer.parseInt(cor[0]),
-                            Integer.parseInt(cor[1])).reveal();
+                    ConcentrationCard card = board.getCard(Integer.parseInt(cor[0]),
+                            Integer.parseInt(cor[1]));
+                    if (card.isHidden()) {
+                        card.reveal();
+                    }
+                    else {
+                        System.out.println("ERROR Card is already revealed. " +
+                                "Try again.");
+                    }
                 } catch (ConcentrationException e) {
                     System.out.println(e);
                 }
                 out.println(String.format(ConcentrationProtocol.
                                 REVEAL_MSG, Integer.parseInt(cor[0]),
                         Integer.parseInt(cor[1])));
+                if (message[0].equals(ConcentrationProtocol.CARD)) {
+                    message[0] = in.readLine().split(WHITESPACE)[0];
+                }
                 if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
                     break;
                 }
-                if (message[0].equals("MISMATCH")) {
-                    System.out.println(board);
+                if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
                     board.getCard(Integer.parseInt(message[1]),
                             Integer.parseInt(message[2])).hide();
                     board.getCard(Integer.parseInt(message[3]),
                             Integer.parseInt(message[4])).hide();
                 }
+//                System.out.println(board);
+//                System.out.print(Prompt);
+//                fromClient = input.readLine();
+//                String[] cor = fromClient.split(WHITESPACE);
+//                try {
+//                    ConcentrationCard card = board.getCard(Integer.parseInt(cor[0]),
+//                                    Integer.parseInt(cor[1]));
+//                    if (card.isHidden()) {
+//                        card.reveal();
+//                    }
+//                    else {
+//                        System.out.println("ERROR Card is already revealed. " +
+//                                "Try again.");
+//                    }
+//                } catch (ConcentrationException e) {
+//                    System.out.println(e);
+//                }
+//                out.println(String.format(ConcentrationProtocol.
+//                                REVEAL_MSG, Integer.parseInt(cor[0]),
+//                        Integer.parseInt(cor[1])));
             }
 //            fromServer = in.readLine();
 //            board = new ConcentrationClientBoard(Integer.parseInt

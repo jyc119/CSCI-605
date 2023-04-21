@@ -97,10 +97,6 @@ public class ConcentrationClientBoard {
             throw new ConcentrationException(String.format(ConcentrationProtocol
                     .ERROR_MSG, "Invalid coordinate"));
         }
-        if (!board[row][col].isHidden()) {
-            throw new ConcentrationException(String.format(ConcentrationProtocol
-                    .ERROR_MSG, "Card is already revealed"));
-        }
         return board[row][col];
     }
 

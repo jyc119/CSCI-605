@@ -24,7 +24,7 @@ public class ConcentrationServer {
                         .start();
         } catch (IOException e) {
             System.err.println("Incorrect port number: " + portNumber);
-            System.exit(-1);;
+            System.exit(-1);
         }
     }
 

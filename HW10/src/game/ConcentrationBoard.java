@@ -140,7 +140,7 @@ public class ConcentrationBoard {
         // if cheat mode is enabled display the fully revealed board
         if (cheat) {
             System.out.println("SOLUTION:");
-            System.out.println(this.toString());
+            System.out.println(this);
         }
 
         // hide all the cards in the board
@@ -174,7 +174,8 @@ public class ConcentrationBoard {
     public ConcentrationCard getCard(int row, int col)
             throws ConcentrationException {
         if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
-            throw new ConcentrationException(ConcentrationProtocol.ERROR_MSG);
+            throw new ConcentrationException(String.format(ConcentrationProtocol
+                    .ERROR_MSG, "Invalid coordinate"));
         }
         return board[row][col];
     }
@@ -195,20 +196,27 @@ public class ConcentrationBoard {
                     .ERROR_MSG, " Invalid coordinate"));
         }
         if (!this.board[row][col].isHidden()) {
-            throw new ConcentrationException("ERROR Card has already been revealed");
+            throw new ConcentrationException("ERROR Card has " +
+                    "already been revealed");
         }
         this.board[row][col].reveal();
         if (this.revealedCard == null) {
             this.revealedCard = this.board[row][col];
-            return new CardMatch(this.board[row][col], null, false);
+            return new CardMatch(this.board[row][col], null,
+                    false);
         }
         else {
             if (this.revealedCard == this.board[row][col]) {
-                return new CardMatch(this.revealedCard,
+                ConcentrationCard temp = this.revealedCard;
+                this.revealedCard = null;
+                this.matches += 1;
+                return new CardMatch(temp,
                         this.board[row][col], true);
             }
             else {
-                return new CardMatch(this.revealedCard,
+                ConcentrationCard temp = this.revealedCard;
+                this.revealedCard = null;
+                return new CardMatch(temp,
                         this.board[row][col], false);
             }
         }

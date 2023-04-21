@@ -62,10 +62,18 @@ public class ConcentrationClientServerThread extends Thread {
                             (ConcentrationProtocol.CARD_MSG, card.getRow(),
                                     card.getCol(), card.getLetter());
                     out.println(sendCard);
+                    System.out.println(client + " sending: " + sendCard);
                     if (cardMatch.isReady()) {
                         if (cardMatch.isMatch()) {
                             out.println(String.format
                                     (ConcentrationProtocol.MATCH_MSG,
+                                            cardMatch.getCard1().getRow(),
+                                            cardMatch.getCard1().getCol(),
+                                            cardMatch.getCard2().getRow(),
+                                            cardMatch.getCard2().getCol()));
+                            System.out.println(client + " sending: " +
+                                    String.format(ConcentrationProtocol.
+                                                    MATCH_MSG,
                                             cardMatch.getCard1().getRow(),
                                             cardMatch.getCard1().getCol(),
                                             cardMatch.getCard2().getRow(),
@@ -77,9 +85,15 @@ public class ConcentrationClientServerThread extends Thread {
                                             cardMatch.getCard1().getCol(),
                                             cardMatch.getCard2().getRow(),
                                             cardMatch.getCard2().getCol()));
+                            System.out.println(client + " sending: " +
+                                    String.format(ConcentrationProtocol.
+                                                    MISMATCH_MSG,
+                                            cardMatch.getCard1().getRow(),
+                                            cardMatch.getCard1().getCol(),
+                                            cardMatch.getCard2().getRow(),
+                                            cardMatch.getCard2().getCol()));
                         }
                     }
-                    System.out.println(client + " sending: " + sendCard);
                     System.out.println(client);
                     System.out.println(board);
                 } catch (ConcentrationException e) {
@@ -89,6 +103,7 @@ public class ConcentrationClientServerThread extends Thread {
                     System.out.println(e);
                 }
             }
+            out.println(ConcentrationProtocol.GAME_OVER_MSG);
             socket.close();
             System.out.println(client + " Client ending...");
         } catch (IOException e) {
