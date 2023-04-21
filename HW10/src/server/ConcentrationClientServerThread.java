@@ -21,15 +21,14 @@ public class ConcentrationClientServerThread extends Thread {
 
     private ConcentrationBoard board;
 
-    private String client = "Client #" + this.getId() + ":";
+    private String client = "Client:";
 
 
     public ConcentrationClientServerThread(Socket socket, int dimension) {
         super("ConcentrationClientServerThread");
         this.socket = socket;
         this.dimension = dimension;
-        System.out.println(client + " Client " +
-                "ID#" + " connected: " + socket);
+        System.out.println(client + " Client connected: " + socket);
     }
 
     public void run() {
@@ -41,10 +40,11 @@ public class ConcentrationClientServerThread extends Thread {
         ) {
             new ConcentrationBoard(dimension, true);
             this.board = new ConcentrationBoard(dimension);
-            System.out.println(client + ": Client started...");
+            System.out.println(client + " Client started...");
             System.out.println(client);
             System.out.println(board);
-            String boardDim = String.format(ConcentrationProtocol.BOARD_DIM_MSG, dimension);
+            String boardDim = String.format(ConcentrationProtocol.BOARD_DIM_MSG,
+                    dimension);
             out.println(boardDim);
             while (!this.board.gameOver()) {
                 String reveal = in.readLine();
@@ -59,6 +59,7 @@ public class ConcentrationClientServerThread extends Thread {
                     String sendCard = String.format
                             (ConcentrationProtocol.CARD_MSG, card.getRow(),
                                     card.getCol(), card.getLetter());
+                    System.out.println(sendCard); // Remember to remove
                     out.println(sendCard);
                     System.out.println(client + " sending: " + sendCard);
                     if (cardMatch.isReady()) {

@@ -3,7 +3,6 @@ package client;
 
 import common.ConcentrationException;
 import common.ConcentrationProtocol;
-import game.ConcentrationCard;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -21,9 +20,13 @@ public class ConcentrationClient {
 
     private ConcentrationClientBoard board;
 
-    String hostName;
+    private final String hostName;
 
-    int portNumber;
+    private final int portNumber;
+
+    private int counter;
+
+
 
     public ConcentrationClient(String hostName, int portNumber) {
         this.hostName = hostName;
@@ -47,38 +50,84 @@ public class ConcentrationClient {
                 if (message[0].equals(ConcentrationProtocol.BOARD_DIM)) {
                     board = new ConcentrationClientBoard(Integer.parseInt
                             (message[1]));
+                    System.out.println(board);
+                    System.out.print(Prompt);
+                    // Reads the coordinate of the line flipped
+                    fromClient = input.readLine();
+                    String[] cor = fromClient.split(WHITESPACE);
+                    out.println(String.format(ConcentrationProtocol.
+                                    REVEAL_MSG, Integer.parseInt(cor[0]),
+                            Integer.parseInt(cor[1])));
                 }
-                if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
+                else if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
                     System.out.println("You won!");
                     break;
                 }
-                System.out.println(board);
-                System.out.print(Prompt);
-                // Reads the coordinate of the line flipped
-                fromClient = input.readLine();
-                String[] cor = fromClient.split(WHITESPACE);
-
-
-                out.println(String.format(ConcentrationProtocol.
-                                REVEAL_MSG, Integer.parseInt(cor[0]),
-                        Integer.parseInt(cor[1])));
-                if (message[0].equals(ConcentrationProtocol.CARD)) {
-                    message[0] = in.readLine().split(WHITESPACE)[0];
-
-                    if(board.getCard(Integer.parseInt(cor[0]),
-                            Integer.parseInt(cor[1])) == "."){
-                        board.setCard(Integer.parseInt(cor[0]),
-                                Integer.parseInt(cor[1]),message[3]);
+                else if (message[0].equals(ConcentrationProtocol.CARD)) {
+//                    message[0] = in.readLine().split(WHITESPACE)[0];
+                    counter++;
+                    if(board.getCard(Integer.parseInt(message[1]),
+                            Integer.parseInt(message[2])).equals(".")){
+                        board.setCard(Integer.parseInt(message[1]),
+                                Integer.parseInt(message[2]), message[3]);
                     }else{
                         System.out.println("ERROR Card is already revealed. " +
                                 "Try again.");
                     }
+                    System.out.println(board);
+                    if (counter % 2 != 0) {
+                        System.out.print(Prompt);
+                        // Reads the coordinate of the line flipped
+                        fromClient = input.readLine();
+                        String[] cor = fromClient.split(WHITESPACE);
+                        out.println(String.format(ConcentrationProtocol.
+                                        REVEAL_MSG, Integer.parseInt(cor[0]),
+                                Integer.parseInt(cor[1])));
+                    }
                 }
-//                if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
-//                    board[Integer.parseInt(message[1])][Integer.parseInt(message[2])] = ".";
-//                    board[Integer.parseInt(message[3])][Integer.parseInt(message[4])] = ".";
-//                }
-
+                else if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
+                    board.setCard(Integer.parseInt(message[1]),
+                            Integer.parseInt(message[2]), ".");
+                    board.setCard(Integer.parseInt(message[3]),
+                            Integer.parseInt(message[4]), ".");
+                    System.out.println(board);
+                    System.out.print(Prompt);
+                    // Reads the coordinate of the line flipped
+                    fromClient = input.readLine();
+                    String[] cor = fromClient.split(WHITESPACE);
+                    out.println(String.format(ConcentrationProtocol.
+                                    REVEAL_MSG, Integer.parseInt(cor[0]),
+                            Integer.parseInt(cor[1])));
+                }
+                else if (message[0].equals(ConcentrationProtocol.MATCH)) {
+                    System.out.println(board);
+                    System.out.print(Prompt);
+                    // Reads the coordinate of the line flipped
+                    fromClient = input.readLine();
+                    String[] cor = fromClient.split(WHITESPACE);
+                    out.println(String.format(ConcentrationProtocol.
+                                    REVEAL_MSG, Integer.parseInt(cor[0]),
+                            Integer.parseInt(cor[1])));
+                }
+                else if (message[0].equals(ConcentrationProtocol.ERROR)) {
+                    System.out.println(board);
+                    System.out.print(Prompt);
+                    // Reads the coordinate of the line flipped
+                    fromClient = input.readLine();
+                    String[] cor = fromClient.split(WHITESPACE);
+                    out.println(String.format(ConcentrationProtocol.
+                                    REVEAL_MSG, Integer.parseInt(cor[0]),
+                            Integer.parseInt(cor[1])));
+                }
+                else {
+                    System.out.print(Prompt);
+                    // Reads the coordinate of the line flipped
+                    fromClient = input.readLine();
+                    String[] cor = fromClient.split(WHITESPACE);
+                    out.println(String.format(ConcentrationProtocol.
+                                    REVEAL_MSG, Integer.parseInt(cor[0]),
+                            Integer.parseInt(cor[1])));
+                }
 //                try {
 //                    board.setCard(Integer.parseInt(cor[0]),
 //                            Integer.parseInt(cor[1]), cor[2].charAt(0));
@@ -127,36 +176,6 @@ public class ConcentrationClient {
 //                                REVEAL_MSG, Integer.parseInt(cor[0]),
 //                        Integer.parseInt(cor[1])));
             }
-//            fromServer = in.readLine();
-//            board = new ConcentrationClientBoard(Integer.parseInt
-//                    (fromServer.split(WHITESPACE)[1]));
-//            BufferedReader input =
-//                    new BufferedReader(new InputStreamReader(System.in));
-//            while (true) {
-//                System.out.println(board);
-//                System.out.print(Prompt);
-//                fromClient = input.readLine();
-//                String[] cor = fromClient.split(WHITESPACE);
-//                board.getCard(Integer.parseInt(cor[0]),
-//                        Integer.parseInt(cor[1])).reveal();
-//                out.println(String.format(ConcentrationProtocol.
-//                        REVEAL_MSG, Integer.parseInt(cor[0]),
-//                        Integer.parseInt(cor[1])));
-//                in.readLine();
-//                if ((fromServer = in.readLine()) != null) {
-//                    String[] checkMatch = fromServer.split(WHITESPACE);
-//                    if (checkMatch[0].equals("MISMATCH")) {
-//                        board.getCard(Integer.parseInt(checkMatch[1]),
-//                                Integer.parseInt(checkMatch[2])).hide();
-//                        board.getCard(Integer.parseInt(checkMatch[3]),
-//                                Integer.parseInt(checkMatch[4])).hide();
-//                    }
-//                }
-                //May not work
-//                if (in.readLine().equals(ConcentrationProtocol.GAME_OVER_MSG)) {
-//                    break;
-//                }
-//            }
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to " +
                     hostName);
