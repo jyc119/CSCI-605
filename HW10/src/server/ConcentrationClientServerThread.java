@@ -38,8 +38,7 @@ public class ConcentrationClientServerThread extends Thread {
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));
         ) {
-            new ConcentrationBoard(dimension, true);
-            this.board = new ConcentrationBoard(dimension);
+            this.board = new ConcentrationBoard(dimension, true);
             System.out.println(client + " Client started...");
             System.out.println(client);
             System.out.println(board);
