@@ -46,8 +46,7 @@ public class ConcentrationClient {
                             REVEAL_MSG, Integer.parseInt(cor[0]),
                     Integer.parseInt(cor[1])));
         } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to " +
-                    hostName);
+            System.err.println("Couldn't get I/O for the connection to input");
             System.exit(1);
         }
     }
@@ -113,53 +112,6 @@ public class ConcentrationClient {
                 else {
                     getInput(out, input);
                 }
-//                try {
-//                    board.setCard(Integer.parseInt(cor[0]),
-//                            Integer.parseInt(cor[1]), cor[2].charAt(0));
-//                    ConcentrationCard card = board.getCard(Integer.parseInt(cor[0]),
-//                            Integer.parseInt(cor[1]));
-//                    if (card.isHidden()) {
-//                        card.reveal();
-//                    }
-//                    else {
-//                        System.out.println("ERROR Card is already revealed. " +
-//                                "Try again.");
-//                    }
-//                } catch (ConcentrationException e) {
-//                    System.out.println(e);
-//                }
-//                out.println(String.format(ConcentrationProtocol.
-//                                REVEAL_MSG, Integer.parseInt(cor[0]),
-//                        Integer.parseInt(cor[1])));
-//                if (message[0].equals(ConcentrationProtocol.CARD)) {
-//                    message[0] = in.readLine().split(WHITESPACE)[0];
-//                }
-//                if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
-//                    board.getCard(Integer.parseInt(message[1]),
-//                            Integer.parseInt(message[2])).hide();
-//                    board.getCard(Integer.parseInt(message[3]),
-//                            Integer.parseInt(message[4])).hide();
-//                }
-//                System.out.println(board);
-//                System.out.print(Prompt);
-//                fromClient = input.readLine();
-//                String[] cor = fromClient.split(WHITESPACE);
-//                try {
-//                    ConcentrationCard card = board.getCard(Integer.parseInt(cor[0]),
-//                                    Integer.parseInt(cor[1]));
-//                    if (card.isHidden()) {
-//                        card.reveal();
-//                    }
-//                    else {
-//                        System.out.println("ERROR Card is already revealed. " +
-//                                "Try again.");
-//                    }
-//                } catch (ConcentrationException e) {
-//                    System.out.println(e);
-//                }
-//                out.println(String.format(ConcentrationProtocol.
-//                                REVEAL_MSG, Integer.parseInt(cor[0]),
-//                        Integer.parseInt(cor[1])));
             }
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to " +
