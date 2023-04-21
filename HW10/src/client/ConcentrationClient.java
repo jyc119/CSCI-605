@@ -49,6 +49,7 @@ public class ConcentrationClient {
                             (message[1]));
                 }
                 if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
+                    System.out.println("You won!");
                     break;
                 }
                 System.out.println(board);
@@ -131,17 +132,16 @@ public class ConcentrationClient {
 //                    break;
 //                }
 //            }
-            System.out.println("You won!");
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to " +
                     hostName);
             System.exit(1);
         } catch (ConcentrationException e) {
-            e.getMessage();
+            System.out.println(e);
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         if (args.length != 2) {
             System.err.println(
                     "Usage: java ConcentrationPTUI <host name> <port number>");

@@ -34,13 +34,6 @@ public class ConcentrationClientBoard {
      * @throws ConcentrationException if the dimensions are invalid
      */
     public ConcentrationClientBoard(int DIM, boolean cheat) {
-//        // check for bad dimensions
-//        if (DIM < MIN_DIM || DIM > MAX_DIM) {
-//            throw new ConcentrationException("Board size out of range: " + DIM);
-//        } else if (DIM % 2 != 0) {
-//            throw new ConcentrationException("Board size not even: " + DIM);
-//        }
-
         /** create the pair of cards and shuffle them */
         List<Character> chars = new ArrayList<>(DIM*DIM);
         for (char i=0; i<(DIM*DIM)/2; ++i) {

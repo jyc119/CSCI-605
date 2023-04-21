@@ -107,7 +107,7 @@ public class ConcentrationClientServerThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ConcentrationException e) {
-            e.getMessage();
+            System.out.println(e);
             System.exit(1);
         }
     }
