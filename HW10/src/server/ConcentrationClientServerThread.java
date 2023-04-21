@@ -83,6 +83,9 @@ public class ConcentrationClientServerThread extends Thread {
                     System.out.println(client);
                     System.out.println(board);
                 } catch (ConcentrationException e) {
+                    out.println(String.format(ConcentrationProtocol.ERROR_MSG,
+                            Integer.parseInt(coordinates[1]),
+                            Integer.parseInt(coordinates[2])));
                     System.out.println(e);
                 }
             }

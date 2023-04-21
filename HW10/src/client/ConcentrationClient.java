@@ -47,24 +47,29 @@ public class ConcentrationClient {
                     board = new ConcentrationClientBoard(Integer.parseInt
                             (message[1]));
                 }
+                System.out.println(board);
+                System.out.print(Prompt);
+                fromClient = input.readLine();
+                String[] cor = fromClient.split(WHITESPACE);
+                try {
+                    board.getCard(Integer.parseInt(cor[0]),
+                            Integer.parseInt(cor[1])).reveal();
+                } catch (ConcentrationException e) {
+                    System.out.println(e);
+                }
+                out.println(String.format(ConcentrationProtocol.
+                                REVEAL_MSG, Integer.parseInt(cor[0]),
+                        Integer.parseInt(cor[1])));
                 if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
                     break;
                 }
                 if (message[0].equals("MISMATCH")) {
+                    System.out.println(board);
                     board.getCard(Integer.parseInt(message[1]),
                             Integer.parseInt(message[2])).hide();
                     board.getCard(Integer.parseInt(message[3]),
                             Integer.parseInt(message[4])).hide();
                 }
-                System.out.println(board);
-                System.out.print(Prompt);
-                fromClient = input.readLine();
-                String[] cor = fromClient.split(WHITESPACE);
-                board.getCard(Integer.parseInt(cor[0]),
-                        Integer.parseInt(cor[1])).reveal();
-                out.println(String.format(ConcentrationProtocol.
-                                REVEAL_MSG, Integer.parseInt(cor[0]),
-                        Integer.parseInt(cor[1])));
             }
 //            fromServer = in.readLine();
 //            board = new ConcentrationClientBoard(Integer.parseInt
