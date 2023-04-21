@@ -26,11 +26,30 @@ public class ConcentrationClient {
 
     private int counter;
 
+    private int matches;
+
 
 
     public ConcentrationClient(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
+    }
+
+    private void getInput(PrintWriter out, BufferedReader input) {
+        String fromClient;
+        System.out.print(Prompt);
+        // Reads the coordinate of the line flipped
+        try {
+            fromClient = input.readLine();
+            String[] cor = fromClient.split(WHITESPACE);
+            out.println(String.format(ConcentrationProtocol.
+                            REVEAL_MSG, Integer.parseInt(cor[0]),
+                    Integer.parseInt(cor[1])));
+        } catch (IOException e) {
+            System.err.println("Couldn't get I/O for the connection to " +
+                    hostName);
+            System.exit(1);
+        }
     }
 
     private void play() {
@@ -44,20 +63,13 @@ public class ConcentrationClient {
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(System.in));
             String fromServer;
-            String fromClient;
             while ((fromServer = in.readLine()) != null) {
                 String[] message = fromServer.split(WHITESPACE);
                 if (message[0].equals(ConcentrationProtocol.BOARD_DIM)) {
                     board = new ConcentrationClientBoard(Integer.parseInt
                             (message[1]));
                     System.out.println(board);
-                    System.out.print(Prompt);
-                    // Reads the coordinate of the line flipped
-                    fromClient = input.readLine();
-                    String[] cor = fromClient.split(WHITESPACE);
-                    out.println(String.format(ConcentrationProtocol.
-                                    REVEAL_MSG, Integer.parseInt(cor[0]),
-                            Integer.parseInt(cor[1])));
+                    getInput(out, input);
                 }
                 else if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
                     System.out.println("You won!");
@@ -76,13 +88,7 @@ public class ConcentrationClient {
                     }
                     System.out.println(board);
                     if (counter % 2 != 0) {
-                        System.out.print(Prompt);
-                        // Reads the coordinate of the line flipped
-                        fromClient = input.readLine();
-                        String[] cor = fromClient.split(WHITESPACE);
-                        out.println(String.format(ConcentrationProtocol.
-                                        REVEAL_MSG, Integer.parseInt(cor[0]),
-                                Integer.parseInt(cor[1])));
+                        getInput(out, input);
                     }
                 }
                 else if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
@@ -91,42 +97,21 @@ public class ConcentrationClient {
                     board.setCard(Integer.parseInt(message[3]),
                             Integer.parseInt(message[4]), ".");
                     System.out.println(board);
-                    System.out.print(Prompt);
-                    // Reads the coordinate of the line flipped
-                    fromClient = input.readLine();
-                    String[] cor = fromClient.split(WHITESPACE);
-                    out.println(String.format(ConcentrationProtocol.
-                                    REVEAL_MSG, Integer.parseInt(cor[0]),
-                            Integer.parseInt(cor[1])));
+                    getInput(out, input);
                 }
                 else if (message[0].equals(ConcentrationProtocol.MATCH)) {
+                    matches++;
                     System.out.println(board);
-                    System.out.print(Prompt);
-                    // Reads the coordinate of the line flipped
-                    fromClient = input.readLine();
-                    String[] cor = fromClient.split(WHITESPACE);
-                    out.println(String.format(ConcentrationProtocol.
-                                    REVEAL_MSG, Integer.parseInt(cor[0]),
-                            Integer.parseInt(cor[1])));
+                    if (matches != board.getDIM() * board.getDIM() / 2) {
+                        getInput(out, input);
+                    }
                 }
                 else if (message[0].equals(ConcentrationProtocol.ERROR)) {
                     System.out.println(board);
-                    System.out.print(Prompt);
-                    // Reads the coordinate of the line flipped
-                    fromClient = input.readLine();
-                    String[] cor = fromClient.split(WHITESPACE);
-                    out.println(String.format(ConcentrationProtocol.
-                                    REVEAL_MSG, Integer.parseInt(cor[0]),
-                            Integer.parseInt(cor[1])));
+                    getInput(out, input);
                 }
                 else {
-                    System.out.print(Prompt);
-                    // Reads the coordinate of the line flipped
-                    fromClient = input.readLine();
-                    String[] cor = fromClient.split(WHITESPACE);
-                    out.println(String.format(ConcentrationProtocol.
-                                    REVEAL_MSG, Integer.parseInt(cor[0]),
-                            Integer.parseInt(cor[1])));
+                    getInput(out, input);
                 }
 //                try {
 //                    board.setCard(Integer.parseInt(cor[0]),
