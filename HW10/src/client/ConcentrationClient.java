@@ -54,33 +54,58 @@ public class ConcentrationClient {
                 }
                 System.out.println(board);
                 System.out.print(Prompt);
+                // Reads the coordinate of the line flipped
                 fromClient = input.readLine();
                 String[] cor = fromClient.split(WHITESPACE);
-                try {
-                    ConcentrationCard card = board.getCard(Integer.parseInt(cor[0]),
-                            Integer.parseInt(cor[1]));
-                    if (card.isHidden()) {
-                        card.reveal();
-                    }
-                    else {
-                        System.out.println("ERROR Card is already revealed. " +
-                                "Try again.");
-                    }
-                } catch (ConcentrationException e) {
-                    System.out.println(e);
-                }
+
+
                 out.println(String.format(ConcentrationProtocol.
                                 REVEAL_MSG, Integer.parseInt(cor[0]),
                         Integer.parseInt(cor[1])));
                 if (message[0].equals(ConcentrationProtocol.CARD)) {
                     message[0] = in.readLine().split(WHITESPACE)[0];
+
+                    if(board.getCard(Integer.parseInt(cor[0]),
+                            Integer.parseInt(cor[1])) == "."){
+                        board.setCard(Integer.parseInt(cor[0]),
+                                Integer.parseInt(cor[1]),message[3]);
+                    }else{
+                        System.out.println("ERROR Card is already revealed. " +
+                                "Try again.");
+                    }
                 }
-                if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
-                    board.getCard(Integer.parseInt(message[1]),
-                            Integer.parseInt(message[2])).hide();
-                    board.getCard(Integer.parseInt(message[3]),
-                            Integer.parseInt(message[4])).hide();
-                }
+//                if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
+//                    board[Integer.parseInt(message[1])][Integer.parseInt(message[2])] = ".";
+//                    board[Integer.parseInt(message[3])][Integer.parseInt(message[4])] = ".";
+//                }
+
+//                try {
+//                    board.setCard(Integer.parseInt(cor[0]),
+//                            Integer.parseInt(cor[1]), cor[2].charAt(0));
+//                    ConcentrationCard card = board.getCard(Integer.parseInt(cor[0]),
+//                            Integer.parseInt(cor[1]));
+//                    if (card.isHidden()) {
+//                        card.reveal();
+//                    }
+//                    else {
+//                        System.out.println("ERROR Card is already revealed. " +
+//                                "Try again.");
+//                    }
+//                } catch (ConcentrationException e) {
+//                    System.out.println(e);
+//                }
+//                out.println(String.format(ConcentrationProtocol.
+//                                REVEAL_MSG, Integer.parseInt(cor[0]),
+//                        Integer.parseInt(cor[1])));
+//                if (message[0].equals(ConcentrationProtocol.CARD)) {
+//                    message[0] = in.readLine().split(WHITESPACE)[0];
+//                }
+//                if (message[0].equals(ConcentrationProtocol.MISMATCH)) {
+//                    board.getCard(Integer.parseInt(message[1]),
+//                            Integer.parseInt(message[2])).hide();
+//                    board.getCard(Integer.parseInt(message[3]),
+//                            Integer.parseInt(message[4])).hide();
+//                }
 //                System.out.println(board);
 //                System.out.print(Prompt);
 //                fromClient = input.readLine();

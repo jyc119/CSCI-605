@@ -11,10 +11,13 @@ import java.util.List;
 public class ConcentrationClientBoard {
 
     /** the actual board is a 2-D grid of cards */
-    private ConcentrationCard board[][];
+    //private ConcentrationCard board[][];
+    private String board[][];
 
     /** the square dimension of the board */
     private int DIM;
+
+    private int[] revealedCard;
 
     /**
      * Create the board in non-cheat mode.
@@ -35,35 +38,35 @@ public class ConcentrationClientBoard {
      */
     public ConcentrationClientBoard(int DIM, boolean cheat) {
         /** create the pair of cards and shuffle them */
-        List<Character> chars = new ArrayList<>(DIM*DIM);
-        for (char i=0; i<(DIM*DIM)/2; ++i) {
-            chars.add((char)(i+'A'));
-            chars.add((char)(i+'A'));
-        }
-        Collections.shuffle(chars);
+//        List<Character> chars = new ArrayList<>(DIM*DIM);
+//        for (char i=0; i<(DIM*DIM)/2; ++i) {
+//            chars.add((char)(i+'A'));
+//            chars.add((char)(i+'A'));
+//        }
+//        Collections.shuffle(chars);
 
         /**
          * Create the grid of cards and populate from the shuffled list.
          */
         this.DIM = DIM;
-        this.board = new ConcentrationCard[DIM][DIM];
-        for (int row=0; row<DIM; ++row) {
-            for (int col=0; col<DIM; ++col) {
-                this.board[row][col] = new ConcentrationCard(row, col,
-                        chars.remove(0));
-            }
-        }
+        this.board = new String[DIM][DIM];
+//        for (int row=0; row<DIM; ++row) {
+//            for (int col=0; col<DIM; ++col) {
+//                this.board[row][col] = new ConcentrationCard(row, col,
+//                        chars.remove(0));
+//            }
+//        }
 
         // if cheat mode is enabled display the fully revealed board
-        if (cheat) {
-            System.out.println("SOLUTION:");
-            System.out.println(this.toString());
-        }
+//        if (cheat) {
+//            System.out.println("SOLUTION:");
+//            System.out.println(this.toString());
+//        }
 
         // hide all the cards in the board
         for (int row = 0; row < DIM; ++row) {
             for (int col = 0; col < DIM; ++col) {
-                this.board[row][col].hide();
+                this.board[row][col] = ".";
             }
         }
     }
@@ -84,13 +87,26 @@ public class ConcentrationClientBoard {
      * @return the card
      * @throws ConcentrationException if the coordinate is invalid
      */
-    public ConcentrationCard getCard(int row, int col)
+//    public ConcentrationCard getCard(int row, int col)
+//            throws ConcentrationException {
+//        if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
+//            throw new ConcentrationException(String.format(ConcentrationProtocol
+//                    .ERROR_MSG, "Invalid coordinate"));
+//        }
+//        return board[row][col];
+//    }
+
+    public String getCard(int row, int col)
             throws ConcentrationException {
         if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
             throw new ConcentrationException(String.format(ConcentrationProtocol
                     .ERROR_MSG, "Invalid coordinate"));
         }
         return board[row][col];
+    }
+
+    public void setCard(int row, int col, String  letter){
+        this.board[row][col] = letter;
     }
 
     /**
@@ -105,6 +121,34 @@ public class ConcentrationClientBoard {
      *
      * @return the board as a string
      */
+//    @Override
+//    public String toString() {
+//        StringBuilder str = new StringBuilder();
+//        // build the top row of indices
+//        str.append("  ");
+//        for (int col=0; col<this.DIM; ++col) {
+//            str.append(col);
+//        }
+//        str.append("\n");
+//        // build each row of the actual board
+//        for (int row=0; row<this.DIM; ++row) {
+//            str.append(row).append("|");
+//            // build the columns of the board
+//            for (int col=0; col<this.DIM; ++col) {
+//                ConcentrationCard card = this.board[row][col];
+//                // based on whether the card is hidden or not display
+//                // build with the correct letter
+//                if (card.isHidden()) {
+//                    str.append(ConcentrationCard.HIDDEN);
+//                } else {
+//                    str.append(this.board[row][col].getLetter());
+//                }
+//            }
+//            str.append("\n");
+//        }
+//        return str.toString();
+//    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
@@ -119,14 +163,7 @@ public class ConcentrationClientBoard {
             str.append(row).append("|");
             // build the columns of the board
             for (int col=0; col<this.DIM; ++col) {
-                ConcentrationCard card = this.board[row][col];
-                // based on whether the card is hidden or not display
-                // build with the correct letter
-                if (card.isHidden()) {
-                    str.append(ConcentrationCard.HIDDEN);
-                } else {
-                    str.append(this.board[row][col].getLetter());
-                }
+                str.append(this.board[row][col]);
             }
             str.append("\n");
         }
