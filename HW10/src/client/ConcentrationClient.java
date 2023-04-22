@@ -18,6 +18,8 @@ public class ConcentrationClient {
     /** What to display when the program is ready for a user command */
     public static final String Prompt = "> ";
 
+    public static final String QUIT = "q";
+
     private ConcentrationClientBoard board;
 
     private final String hostName;
@@ -42,6 +44,10 @@ public class ConcentrationClient {
         try {
             fromClient = input.readLine();
             String[] cor = fromClient.split(WHITESPACE);
+            if (cor[0].equals(QUIT)) {
+                out.println(QUIT);
+                System.exit(1);
+            }
             out.println(String.format(ConcentrationProtocol.
                             REVEAL_MSG, Integer.parseInt(cor[0]),
                     Integer.parseInt(cor[1])));

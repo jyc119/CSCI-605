@@ -1,5 +1,6 @@
 package server;
 
+import client.ConcentrationClient;
 import common.ConcentrationException;
 import common.ConcentrationProtocol;
 import game.ConcentrationBoard;
@@ -49,6 +50,11 @@ public class ConcentrationClientServerThread extends Thread {
                 String reveal = in.readLine();
                 System.out.println(client + " received: " + reveal);
                 String[] coordinates = reveal.split(WHITESPACE);
+                if (coordinates[0].equals(ConcentrationClient.QUIT)) {
+                    socket.close();
+                    System.out.println(client + " Client ending...");
+                    System.exit(1);
+                }
                 try {
                     ConcentrationBoard.CardMatch cardMatch =
                             board.reveal(Integer.parseInt(coordinates[1]),
@@ -58,7 +64,6 @@ public class ConcentrationClientServerThread extends Thread {
                     String sendCard = String.format
                             (ConcentrationProtocol.CARD_MSG, card.getRow(),
                                     card.getCol(), card.getLetter());
-                    System.out.println(sendCard); // Remember to remove
                     out.println(sendCard);
                     System.out.println(client + " sending: " + sendCard);
                     if (cardMatch.isReady()) {
