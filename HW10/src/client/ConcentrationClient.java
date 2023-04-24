@@ -4,7 +4,6 @@ package client;
 import common.ConcentrationException;
 import common.ConcentrationProtocol;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -76,21 +75,15 @@ public class ConcentrationClient {
                     System.out.println(board);
                     getInput(out, input);
                 }
-                else if (message[0].equals(ConcentrationProtocol.GAME_OVER_MSG)) {
+                else if (message[0].equals(ConcentrationProtocol.
+                        GAME_OVER_MSG)) {
                     System.out.println("You won!");
                     break;
                 }
                 else if (message[0].equals(ConcentrationProtocol.CARD)) {
-//                    message[0] = in.readLine().split(WHITESPACE)[0];
                     counter++;
-                    if(board.getCard(Integer.parseInt(message[1]),
-                            Integer.parseInt(message[2])).equals(".")){
-                        board.setCard(Integer.parseInt(message[1]),
-                                Integer.parseInt(message[2]), message[3]);
-                    }else{
-                        System.out.println("ERROR Card is already revealed. " +
-                                "Try again.");
-                    }
+                    board.setCard(Integer.parseInt(message[1]),
+                            Integer.parseInt(message[2]), message[3]);
                     System.out.println(board);
                     if (counter % 2 != 0) {
                         getInput(out, input);

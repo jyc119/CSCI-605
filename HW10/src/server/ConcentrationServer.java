@@ -20,8 +20,8 @@ public class ConcentrationServer {
 
     public void run() {
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-                new ConcentrationClientServerThread(serverSocket.accept(), dimension)
-                        .start();
+                new ConcentrationClientServerThread(serverSocket.accept(),
+                        dimension).start();
         } catch (IOException e) {
             System.err.println("Incorrect port number: " + portNumber);
             System.exit(-1);
