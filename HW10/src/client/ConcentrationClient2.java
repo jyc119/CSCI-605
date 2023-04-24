@@ -53,6 +53,9 @@ public class ConcentrationClient2 {
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to input");
             System.exit(1);
+        } catch (Exception e) {
+            System.out.println("Input must be two integers in the form (# #)");
+            getInput(out, input);
         }
     }
 

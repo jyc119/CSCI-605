@@ -107,7 +107,7 @@ public class ConcentrationClientServerThread extends Thread {
                                             cardMatch.getCard2().getCol()));
                         }
                     }
-                    System.out.println(client);
+                    System.out.println(client + clientNumber + ":");
                     System.out.println(board);
                 } catch (ConcentrationException e) {
                     out.println(String.format(ConcentrationProtocol.ERROR_MSG,
