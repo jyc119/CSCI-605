@@ -11,17 +11,26 @@ public class ConcentrationServer {
 
     private final int dimension;
 
+    private int clientNumber;
+
+    static int numClients;
+
     public ConcentrationServer(int portNumber, int dimension) {
         this.portNumber = portNumber;
         this.dimension = dimension;
+        this.clientNumber = 1;
+        numClients = 0;
         System.out.println("Concentration server starting on port " +
                 portNumber + " DIM=" + dimension);
     }
 
     public void run() {
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
+            while (true) {
                 new ConcentrationClientServerThread(serverSocket.accept(),
-                        dimension).start();
+                        dimension, clientNumber).start();
+                clientNumber ++;
+            }
         } catch (IOException e) {
             System.err.println("Incorrect port number: " + portNumber);
             System.exit(-1);

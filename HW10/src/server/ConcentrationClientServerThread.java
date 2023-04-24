@@ -22,14 +22,19 @@ public class ConcentrationClientServerThread extends Thread {
 
     private ConcentrationBoard board;
 
-    private String client = "Client:";
+    private final int clientNumber;
+
+    private String client = "Client #";
 
 
-    public ConcentrationClientServerThread(Socket socket, int dimension) {
+    public ConcentrationClientServerThread(Socket socket, int dimension,
+                                           int clientNumber) {
         super("ConcentrationClientServerThread");
         this.socket = socket;
         this.dimension = dimension;
-        System.out.println(client + " Client connected: " + socket);
+        this.clientNumber = clientNumber;
+        System.out.println(client + clientNumber + ": Client connected: " +
+                socket);
     }
 
     public void run() {
@@ -40,20 +45,22 @@ public class ConcentrationClientServerThread extends Thread {
                         new InputStreamReader(socket.getInputStream()));
         ) {
             this.board = new ConcentrationBoard(dimension, true);
-            System.out.println(client + " Client started...");
-            System.out.println(client);
+            System.out.println(client + clientNumber + ": Client started...");
+            System.out.println(client + clientNumber + ":");
             System.out.println(board);
             String boardDim = String.format(ConcentrationProtocol.BOARD_DIM_MSG,
                     dimension);
             out.println(boardDim);
             while (!this.board.gameOver()) {
                 String reveal = in.readLine();
-                System.out.println(client + " received: " + reveal);
+                System.out.println(client + clientNumber + ": received: " +
+                        reveal);
                 String[] coordinates = reveal.split(WHITESPACE);
                 if (coordinates[0].equals(ConcentrationClient.QUIT)) {
                     socket.close();
-                    System.out.println(client + " Client ending...");
-                    System.exit(1);
+                    System.out.println(client + clientNumber +
+                            ": Client ending...");
+                    return;
                 }
                 try {
                     ConcentrationBoard.CardMatch cardMatch =
@@ -65,7 +72,8 @@ public class ConcentrationClientServerThread extends Thread {
                             (ConcentrationProtocol.CARD_MSG, card.getRow(),
                                     card.getCol(), card.getLetter());
                     out.println(sendCard);
-                    System.out.println(client + " sending: " + sendCard);
+                    System.out.println(client + clientNumber + ": sending: "
+                            + sendCard);
                     if (cardMatch.isReady()) {
                         if (cardMatch.isMatch()) {
                             out.println(String.format
@@ -74,7 +82,8 @@ public class ConcentrationClientServerThread extends Thread {
                                             cardMatch.getCard1().getCol(),
                                             cardMatch.getCard2().getRow(),
                                             cardMatch.getCard2().getCol()));
-                            System.out.println(client + " sending: " +
+                            System.out.println(client + clientNumber +
+                                    ": sending: " +
                                     String.format(ConcentrationProtocol.
                                                     MATCH_MSG,
                                             cardMatch.getCard1().getRow(),
@@ -88,7 +97,8 @@ public class ConcentrationClientServerThread extends Thread {
                                             cardMatch.getCard1().getCol(),
                                             cardMatch.getCard2().getRow(),
                                             cardMatch.getCard2().getCol()));
-                            System.out.println(client + " sending: " +
+                            System.out.println(client + clientNumber +
+                                    ": sending: " +
                                     String.format(ConcentrationProtocol.
                                                     MISMATCH_MSG,
                                             cardMatch.getCard1().getRow(),
@@ -108,9 +118,11 @@ public class ConcentrationClientServerThread extends Thread {
             }
             out.println(ConcentrationProtocol.GAME_OVER_MSG);
             socket.close();
-            System.out.println(client + " Client ending...");
+            System.out.println(client + clientNumber + ": Client ending...");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (NullPointerException e) {
+            System.out.println(client + clientNumber + ": Terminated");
         } catch (ConcentrationException e) {
             System.out.println(e);
             System.exit(1);

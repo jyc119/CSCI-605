@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ConcentrationClient {
+public class ConcentrationClient2 {
 
     private static final String WHITESPACE = "\\s+";
 
@@ -31,7 +31,7 @@ public class ConcentrationClient {
 
 
 
-    public ConcentrationClient(String hostName, int portNumber) {
+    public ConcentrationClient2(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
     }
@@ -53,9 +53,6 @@ public class ConcentrationClient {
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to input");
             System.exit(1);
-        } catch (Exception e) {
-            System.out.println("Input must be two integers in the form (# #)");
-            getInput(out, input);
         }
     }
 
@@ -131,7 +128,7 @@ public class ConcentrationClient {
                     "Usage: java ConcentrationPTUI <host name> <port number>");
             System.exit(1);
         }
-        ConcentrationClient client = new ConcentrationClient(args[0],
+        ConcentrationClient2 client = new ConcentrationClient2(args[0],
                 Integer.parseInt(args[1]));
         client.play();
     }
