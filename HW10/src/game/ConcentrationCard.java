@@ -1,3 +1,9 @@
+/*
+ * HW10: Concentration
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package game;
 
 /**

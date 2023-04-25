@@ -1,20 +1,40 @@
+/*
+ * HW10: Concentration
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 
+/**
+ * The concentration server for the game
+ *
+ * @author RIT CS
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
 public class ConcentrationServer {
 
-
-
+    /** The port number for the server*/
     private final int portNumber;
 
+    /** The dimension of the board*/
     private final int dimension;
 
+    /** The total number of clients that connected to the server*/
     private int clientNumber;
 
+    /** The number of clients currently connected to the server*/
     static int numClients;
 
+    /**
+     * Creates the server
+     * @param portNumber The port number for the server
+     * @param dimension Board dimenstion
+     */
     public ConcentrationServer(int portNumber, int dimension) {
         this.portNumber = portNumber;
         this.dimension = dimension;
@@ -24,6 +44,9 @@ public class ConcentrationServer {
                 portNumber + " DIM=" + dimension);
     }
 
+    /**
+     * Run the server thread
+     */
     public void run() {
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
             while (true) {

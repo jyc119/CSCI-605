@@ -1,3 +1,9 @@
+/*
+ * HW10: Concentration
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package client;
 
 
@@ -10,32 +16,55 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * The concentration client that connects to the server
+ *
+ * @author RIT CS
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
+
 public class ConcentrationClient {
 
+    /** The whitespace character */
     private static final String WHITESPACE = "\\s+";
 
     /** What to display when the program is ready for a user command */
     public static final String Prompt = "> ";
 
+    /** The quit command */
     public static final String QUIT = "q";
 
+    /** The board for the client */
     private ConcentrationClientBoard board;
 
+    /** The name of the host */
     private final String hostName;
 
+    /** The port number the client connects to */
     private final int portNumber;
 
+    /** The counter for the read ad match statements */
     private int counter;
 
+    /** The number of matches */
     private int matches;
 
-
-
+    /**
+     * Creates the concentration client
+     * @param hostName The host name the client is connected to
+     * @param portNumber The port number of the server
+     */
     public ConcentrationClient(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
     }
 
+    /**
+     * Gets the input from the user
+     * @param out The output stream
+     * @param input The input stream
+     */
     private void getInput(PrintWriter out, BufferedReader input) {
         String fromClient;
         System.out.print(Prompt);
@@ -59,6 +88,10 @@ public class ConcentrationClient {
         }
     }
 
+    /**
+     * The play function where the client receives and sends information to
+     * the server
+     */
     private void play() {
         try (
                 Socket socket = new Socket(hostName, portNumber);
@@ -125,6 +158,10 @@ public class ConcentrationClient {
         }
     }
 
+    /**
+     * The main function
+     * @param args The argument parameters
+     */
     public static void main(String[] args) {
         if (args.length != 2) {
             System.err.println(

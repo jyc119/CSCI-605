@@ -1,3 +1,9 @@
+/*
+ * HW10: Concentration
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package server;
 
 import client.ConcentrationClient;
@@ -12,21 +18,40 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * The concentration server for a thread
+ *
+ * @author RIT CS
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
 public class ConcentrationClientServerThread extends Thread {
 
+    /** The white space character*/
     private static final String WHITESPACE = "\\s+";
 
+    /** The socket associated with this thread*/
     private Socket socket = null;
 
+    /** get the square dimensions of the board */
     private final int dimension;
 
+    /** The concentration board */
     private ConcentrationBoard board;
 
+    /** The client number for this thread */
     private final int clientNumber;
 
+    /** The string representation for the client */
     private String client = "Client #";
 
 
+    /**
+     * Creating the client server thread.
+     * @param socket The socket for the thread
+     * @param dimension The dimensions of the board
+     * @param clientNumber The client number
+     */
     public ConcentrationClientServerThread(Socket socket, int dimension,
                                            int clientNumber) {
         super("ConcentrationClientServerThread");
@@ -37,6 +62,9 @@ public class ConcentrationClientServerThread extends Thread {
                 socket);
     }
 
+    /**
+     * Runs the thread simulation
+     */
     public void run() {
         try (
                 PrintWriter out = new PrintWriter(socket.getOutputStream(),

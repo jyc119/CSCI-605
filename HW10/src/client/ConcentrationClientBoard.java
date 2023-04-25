@@ -1,8 +1,21 @@
+/*
+ * HW10: Concentration
+ * Jordan Chin, jc9627@rit.edu
+ * Charlie Leyens, cal3368@rit.edu
+ */
+
 package client;
 
 import common.ConcentrationException;
 import common.ConcentrationProtocol;
 
+/**
+ * The board for the concentration client
+ *
+ * @author RIT CS
+ * @author Jordan Chin, jc9627@rit.edu
+ * @author Charlie Leyens, cal3368@rit.edu
+ */
 public class ConcentrationClientBoard {
 
     private String board[][];
@@ -50,6 +63,13 @@ public class ConcentrationClientBoard {
         return this.DIM;
     }
 
+    /**
+     * Gets the card at the specified row ad column
+     * @param row The row of the card
+     * @param col The column of the card
+     * @return The card
+     * @throws ConcentrationException
+     */
     public String getCard(int row, int col)
             throws ConcentrationException {
         if (row < 0 || col < 0 || row > DIM-1 || col > DIM-1) {
@@ -59,10 +79,20 @@ public class ConcentrationClientBoard {
         return board[row][col];
     }
 
+    /**
+     * Set a letter at a board location
+     * @param row The row of the card
+     * @param col The column of the card
+     * @param letter The letter set
+     */
     public void setCard(int row, int col, String  letter){
         this.board[row][col] = letter;
     }
 
+    /**
+     * Return a string representation of the board
+     * @return The board
+     */
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
